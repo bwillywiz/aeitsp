@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css>.input-group {
+  margin-bottom: 25px;
+}
+
+input, button {
+  background-color: rgba(138, 143, 160, 0.6);
+  color:#fff !important;
+  font-weight: 300;
+  border-color:rgba(255, 255, 255, 0.3);
+}
+
+input::-webkit-input-placeholder {
+  color: #fff !important;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+  color: #fff !important;  
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+  color: #fff !important;  
+}
+
+input:-ms-input-placeholder {  
+  color: #fff !important;  
+}</css>
+        <glyph>search</glyph>
+        <id/>
+        <order>0</order>
+        <roles/>
+        <short_description/>
+        <size>lg</size>
+        <sp_column display_value="2">266cb49bdb16f30018159c29db961995</sp_column>
+        <sp_widget display_value="Typeahead Search">fa20ec02cb31020000f8d856634c9ce9</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-02 17:52:48</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>666cb49bdb16f30018159c29db961997</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Search the knowledge base</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_instance_666cb49bdb16f30018159c29db961997</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-02 17:52:48</sys_updated_on>
+        <title>Search the knowledge base</title>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=666cb49bdb16f30018159c29db961997"/>
+</record_update>

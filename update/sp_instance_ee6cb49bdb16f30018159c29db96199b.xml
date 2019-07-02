@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css>.panel-heading, .panel-footer {
+  background-color: rgba(138, 143, 160, 0.6);
+  border-bottom: 0px solid transparent;
+  color: #fff;
+}
+
+.panel {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: none;
+}</css>
+        <glyph/>
+        <id/>
+        <order>2</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">266cb49bdb16f30018159c29db961995</sp_column>
+        <sp_widget display_value="Language Switch">af0f73105b0122000d7ec7ad31f91a27</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-02 17:52:48</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ee6cb49bdb16f30018159c29db96199b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_instance_ee6cb49bdb16f30018159c29db96199b</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-02 17:52:48</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=ee6cb49bdb16f30018159c29db96199b"/>
+</record_update>
