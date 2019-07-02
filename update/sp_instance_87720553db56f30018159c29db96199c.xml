@@ -10,14 +10,14 @@
         <roles/>
         <short_description/>
         <size>md</size>
-        <sp_column display_value="1">c9e24d53db56f30018159c29db96196e</sp_column>
+        <sp_column display_value="1">709391d7db96f30018159c29db961994</sp_column>
         <sp_widget display_value="HTML">8679ef89cb21120000f8d856634c9c4f</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>williamsbr.local</sys_created_by>
         <sys_created_on>2019-07-02 18:19:19</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>87720553db56f30018159c29db96199c</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>AE IT Service Portal Index</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
@@ -25,13 +25,13 @@
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_instance_87720553db56f30018159c29db96199c</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-02 18:26:25</sys_updated_on>
+        <sys_updated_on>2019-07-02 19:41:31</sys_updated_on>
         <title>AE IT Service Portal Index</title>
         <url/>
         <widget_parameters><![CDATA[{
 	"html": {
-		"value": "<p><br></p><h1 class=\"text-white text-4x\">${Welcome to the Austin Energy IT<br>Service Portal}</h1><h3 class=\"text-white\">${Click A Button for Service}</h3>",
-		"displayValue": "<p>&nbsp;</p>\n<h1 class=\"text-white text-4x\">${Welcome to the Austin Energy IT<br />Service Portal}</h1>\n<h3 class=\"text-white\">${Click A Button for Service}</h3>"
+		"value": "<h1 class=\"text-white text-4x\" style=\"text-align: center;\" data-mce-style=\"text-align: center;\">${Welcome to the <br>Austin Energy IT<br>Service Portal}</h1><h3 class=\"text-white\" style=\"text-align: center;\" data-mce-style=\"text-align: center;\">${Click A Button for Service}</h3>",
+		"displayValue": "<h1 class=\"text-white text-4x\" style=\"text-align: center;\">${Welcome to the <br />Austin Energy IT<br />Service Portal}</h1>\n<h3 class=\"text-white\" style=\"text-align: center;\">${Click A Button for Service}</h3>"
 	}
 }]]></widget_parameters>
     </sp_instance>
