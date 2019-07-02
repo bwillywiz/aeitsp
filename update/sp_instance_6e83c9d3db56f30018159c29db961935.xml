@@ -10,7 +10,7 @@
         <roles/>
         <short_description/>
         <size/>
-        <sp_column display_value="2">d50305d3db56f30018159c29db961958</sp_column>
+        <sp_column display_value="1">d50305d3db56f30018159c29db961958</sp_column>
         <sp_widget display_value="Typeahead Search">fa20ec02cb31020000f8d856634c9ce9</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>williamsbr.local</sys_created_by>
