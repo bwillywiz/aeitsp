@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>other</category>
+        <client_script><![CDATA[function($scope, $location) {
+	var c = this;
+	
+	c.clickQuestion = function($event, question) {
+		$event.stopPropagation();
+		$event.preventDefault();
+		$location.search({id: "kb_social_qa_question", sys_id: question.sys_id});
+	}
+	
+	c.questionVoteDirection = function(votes) {
+		return {
+			'fa-chevron-up': votes >= 0,
+			'fa-chevron-down': votes < 0
+		}
+	}
+	
+	c.getMaxShownLabel = function(maxEntries, totalCount) {
+		return "${First [0] of [1] shown}".replace('[0]', maxEntries).replace('[1]', totalCount);
+	};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>p {
+	margin-bottom: 15px;
+}
+
+.question-item {
+  display: block;
+}
+
+.question-title {
+	margin: 0 
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data>{
+  "options": {
+    "color": "default",
+		"maximum_entries": 3
+  }
+}</demo_data>
+        <description>History of popular AE Motor Vehicle Loaner Pool questions</description>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>ae_motor_pool_questions</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>AE Motor Vehicle Pool Popular Questions</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[// populate the 'data' object
+// e.g., data.table = $sp.getValue('table');
+data.userIsGuest = (gs.getUserName() === "guest");
+
+data.knowledgeBase = $sp.getPortalRecord().getValue("sqanda_knowledge_base") || gs.getProperty("glide.service_portal.sqanda.default_kb");
+
+data.questions = [];
+
+options.maximum_entries = options.maximum_entries || 5;
+
+var questionGR = new GlideRecord("kb_social_qa_question");
+questionGR.addActiveQuery();
+questionGR.addQuery("kb_knowledge_base", data.knowledgeBase);
+questionGR.orderByDesc("answer_count");
+questionGR.query();
+
+data.totalQuestionCount = questionGR.getRowCount();
+
+var count = 0;
+while(questionGR.next() && count < options.maximum_entries) {
+	data.questions.push(new Question(questionGR));
+	count++;
+}
+
+function Question(gr) {
+	this.sys_created_on = gr.getValue("sys_created_on");
+	this.question = gr.getValue("question");
+	this.sys_id = gr.getValue("sys_id");
+	this.profile = gr.getElement("profile").getRefRecord().getValue("name");
+	this.votes = gr.getValue("votes");
+	this.answers = gr.getValue("answer_count");
+}]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-10 20:38:44</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>9b1f6e31db66ff0018159c29db961970</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>AE Motor Vehicle Pool Popular Questions</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_9b1f6e31db66ff0018159c29db961970</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-10 20:40:47</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-{{::c.options.color}} b">
+  <div class="panel-heading">
+    <h2 class="h4 panel-title">${Popular Motor Vehicle Pool Questions}</h2>
+  </div>
+  <div ng-if="::(c.data.questions.length == 0)" class="empty-state-content panel-body">
+    <p>${No questions have been asked yet}</p>
+    <a ng-if="!data.userIsGuest" href="?id=sqanda_new_question" class="btn btn-default btn-block">${Ask a Question}</a>
+  </div>
+  <div ng-if="::(c.data.questions.length > 0)" class="list-group" style="max-height: none; overflow-y: auto;">
+    <div ng-repeat="question in ::c.data.questions" class="list-group-item">
+      <a ng-click="c.clickQuestion($event, question)" class="question-item" href>
+          <p class="question-title">{{::question.question}}</p>
+          <small class="text-muted m-r-sm"><i class="fa fa-user"></i><span style="padding-left: 5px;">{{::question.profile}}</span></small>
+          <small style="white-space: nowrap;" class="text-muted"><i class="fa fa-clock-o"></i><span style="padding-left: 5px;"><sn-time-ago timestamp="question.sys_created_on"></sn-time-ago></span></small>
+      </a>
+    </div>
+  </div>
+  <div class="panel-footer" ng-if="::(c.data.totalQuestionCount > c.data.questions.length)">
+    <h2 class="h4 panel-title">{{::c.getMaxShownLabel(c.options.maximum_entries, c.data.totalQuestionCount)}} 
+      <a class="pull-right" href="?id=sqa_tagged_questions&sort=top">${View all}</a>
+    </h2>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

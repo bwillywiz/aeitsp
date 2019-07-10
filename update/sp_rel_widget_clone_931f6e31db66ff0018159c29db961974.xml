@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
+    <sp_rel_widget_clone action="INSERT_OR_UPDATE">
+        <child display_value="AE Motor Vehicle Pool Popular Questions">9b1f6e31db66ff0018159c29db961970</child>
+        <cloned>2019-07-10 20:38:44</cloned>
+        <last_validated>2019-07-10 20:38:44</last_validated>
+        <parent display_value="Popular Questions">e0c3a791d721120023c84f80de610304</parent>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;sp_widget&gt;&lt;category&gt;other&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function($scope, $location) {
+	var c = this;
+	
+	c.clickQuestion = function($event, question) {
+		$event.stopPropagation();
+		$event.preventDefault();
+		$location.search({id: "kb_social_qa_question", sys_id: question.sys_id});
+	}
+	
+	c.questionVoteDirection = function(votes) {
+		return {
+			'fa-chevron-up': votes &gt;= 0,
+			'fa-chevron-down': votes &lt; 0
+		}
+	}
+	
+	c.getMaxShownLabel = function(maxEntries, totalCount) {
+		return "${First [0] of [1] shown}".replace('[0]', maxEntries).replace('[1]', totalCount);
+	};
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;p {
+	margin-bottom: 15px;
+}
+
+.question-item {
+  display: block;
+}
+
+.question-title {
+	margin: 0 
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data&gt;{
+  "options": {
+    "color": "default",
+		"maximum_entries": 3
+  }
+}&lt;/demo_data&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id&gt;sqanda-popular-questions&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link/&gt;&lt;name&gt;Popular Questions&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;true&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[// populate the 'data' object
+// e.g., data.table = $sp.getValue('table');
+data.userIsGuest = (gs.getUserName() === "guest");
+
+data.knowledgeBase = $sp.getPortalRecord().getValue("sqanda_knowledge_base") || gs.getProperty("glide.service_portal.sqanda.default_kb");
+
+data.questions = [];
+
+options.maximum_entries = options.maximum_entries || 5;
+
+var questionGR = new GlideRecord("kb_social_qa_question");
+questionGR.addActiveQuery();
+questionGR.addQuery("kb_knowledge_base", data.knowledgeBase);
+questionGR.orderByDesc("answer_count");
+questionGR.query();
+
+data.totalQuestionCount = questionGR.getRowCount();
+
+var count = 0;
+while(questionGR.next() &amp;&amp; count &lt; options.maximum_entries) {
+	data.questions.push(new Question(questionGR));
+	count++;
+}
+
+function Question(gr) {
+	this.sys_created_on = gr.getValue("sys_created_on");
+	this.question = gr.getValue("question");
+	this.sys_id = gr.getValue("sys_id");
+	this.profile = gr.getElement("profile").getRefRecord().getValue("name");
+	this.votes = gr.getValue("votes");
+	this.answers = gr.getValue("answer_count");
+}]]&gt;&lt;/script&gt;&lt;servicenow&gt;true&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2016-02-12 17:02:05&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;e0c3a791d721120023c84f80de610304&lt;/sys_id&gt;&lt;sys_mod_count&gt;55&lt;/sys_mod_count&gt;&lt;sys_name&gt;Popular Questions&lt;/sys_name&gt;&lt;sys_package display_value="Service Portal Social QA" source="com.glide.service-portal.sqanda"&gt;6153e105db213300651698e7db9619d0&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_e0c3a791d721120023c84f80de610304&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2018-10-04 18:33:31&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="panel panel-{{::c.options.color}} b"&gt;
+  &lt;div class="panel-heading"&gt;
+    &lt;h2 class="h4 panel-title"&gt;${Popular Questions}&lt;/h2&gt;
+  &lt;/div&gt;
+  &lt;div ng-if="::(c.data.questions.length == 0)" class="empty-state-content panel-body"&gt;
+    &lt;p&gt;${No questions have been asked yet}&lt;/p&gt;
+    &lt;a ng-if="!data.userIsGuest" href="?id=sqanda_new_question" class="btn btn-default btn-block"&gt;${Ask a Question}&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div ng-if="::(c.data.questions.length &gt; 0)" class="list-group" style="max-height: none; overflow-y: auto;"&gt;
+    &lt;div ng-repeat="question in ::c.data.questions" class="list-group-item"&gt;
+      &lt;a ng-click="c.clickQuestion($event, question)" class="question-item" href&gt;
+          &lt;p class="question-title"&gt;{{::question.question}}&lt;/p&gt;
+          &lt;small class="text-muted m-r-sm"&gt;&lt;i class="fa fa-user"&gt;&lt;/i&gt;&lt;span style="padding-left: 5px;"&gt;{{::question.profile}}&lt;/span&gt;&lt;/small&gt;
+          &lt;small style="white-space: nowrap;" class="text-muted"&gt;&lt;i class="fa fa-clock-o"&gt;&lt;/i&gt;&lt;span style="padding-left: 5px;"&gt;&lt;sn-time-ago timestamp="question.sys_created_on"&gt;&lt;/sn-time-ago&gt;&lt;/span&gt;&lt;/small&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel-footer" ng-if="::(c.data.totalQuestionCount &gt; c.data.questions.length)"&gt;
+    &lt;h2 class="h4 panel-title"&gt;{{::c.getMaxShownLabel(c.options.maximum_entries, c.data.totalQuestionCount)}} 
+      &lt;a class="pull-right" href="?id=sqa_tagged_questions&amp;sort=top"&gt;${View all}&lt;/a&gt;
+    &lt;/h2&gt;
+  &lt;/div&gt;
+&lt;/div&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;</payload>
+        <sys_class_name>sp_rel_widget_clone</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-10 20:38:44</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>931f6e31db66ff0018159c29db961974</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>9b1f6e31db66ff0018159c29db961970</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_rel_widget_clone_931f6e31db66ff0018159c29db961974</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-10 20:38:44</sys_updated_on>
+    </sp_rel_widget_clone>
+</record_update>

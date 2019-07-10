@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_theme">
+    <sp_theme action="INSERT_OR_UPDATE">
+        <css_variables>$brand-primary:			#0574DE !default;&#13;
+$brand-success:         #0a5d0c !default;&#13;
+$brand-info:            #0F7D8B !default;&#13;
+$brand-warning:         #9E6817 !default;&#13;
+$brand-danger:          #B12F2C !default;&#13;
+&#13;
+$accessible-placeholder-gray:       #565656;&#13;
+&#13;
+$primary:				$brand-primary !default;&#13;
+&#13;
+$sp-logo-margin-x: 		15px !default;&#13;
+$sp-tagline-color:		$text-color !default;&#13;
+$navbar-inverse-bg: 	#22273C !default;&#13;
+$navbar-inverse-link-color: #bdc0c4 !default;&#13;
+$navbar-inverse-link-hover-color: #ffffff !default;&#13;
+$navbar-inverse-link-hover-bg: $brand-primary !default;&#13;
+$navbar-inverse-link-active-bg: $brand-primary !default;&#13;
+$body-bg: 				#fff !default;&#13;
+$dropdown-link-disabled-color: #ccc;&#13;
+$sp-disabled-breadcrumb: #1a1a1a;&#13;
+&#13;
+//** Global textual link color.&#13;
+$link-color:            #045AAE !default;&#13;
+//** Link hover color set via `darken()` function.&#13;
+$link-hover-color:      darken($link-color, 15%) !default;&#13;
+//** Link hover decoration.&#13;
+$link-hover-decoration: underline !default;&#13;
+&#13;
+//** Panel styles&#13;
+$panel-primary-heading-bg: #CCE5FF !default;&#13;
+$panel-primary-border: #CCE5FF !default;&#13;
+$panel-primary-text: #2E2E2E !default;&#13;
+&#13;
+$text-muted:			#646567 !default;&#13;
+&#13;
+.label {&#13;
+	font-weight: normal !important;&#13;
+    font-size: 12px !important;&#13;
+}&#13;
+&#13;
+/* alert overrides */&#13;
+.alert-success {&#13;
+    color: $brand-success !important;&#13;
+}&#13;
+.alert-info {&#13;
+    color: $brand-info !important;&#13;
+}&#13;
+.alert-warning {&#13;
+    color: $brand-warning !important;&#13;
+}&#13;
+.alert-danger {&#13;
+    color: $brand-danger !important;&#13;
+}&#13;
+&#13;
+[accessibility="true"] {&#13;
+	a {  &#13;
+      &amp;:hover {&#13;
+          text-decoration: underline !important;&#13;
+      }&#13;
+      &amp;:focus {  		&#13;
+          text-decoration: underline !important;&#13;
+      }&#13;
+	}&#13;
+    &#13;
+    .sp-announcement-root {&#13;
+    	a {&#13;
+        	text-decoration: underline !important;&#13;
+          }&#13;
+     }&#13;
+           &#13;
+    [uib-rating] {&#13;
+    	.glyphicon-star {&#13;
+        	color: black !important;&#13;
+        }&#13;
+    }&#13;
+    &#13;
+    input::-webkit-input-placeholder {&#13;
+		color: $accessible-placeholder-gray !important;&#13;
+	}&#13;
+	input::-moz-placeholder {&#13;
+    	color: $accessible-placeholder-gray !important;&#13;
+	}&#13;
+	input:-ms-input-placeholder {&#13;
+		color: $accessible-placeholder-gray !important;&#13;
+	}&#13;
+}&#13;
+&#13;
+button:focus {&#13;
+     outline:none; &#13;
+     border:1px solid #4D90FE;&#13;
+     -webkit-box-shadow: 0px 0px 5px  #4D90FE;&#13;
+     box-shadow: 0px 0px 5px  #4D90FE;&#13;
+}&#13;
+&#13;
+[tabindex]:focus {&#13;
+	outline:none; &#13;
+	border:1px solid #4D90FE;&#13;
+	-webkit-box-shadow: 0px 0px 5px  #4D90FE;&#13;
+	box-shadow: 0px 0px 5px  #4D90FE;&#13;
+}&#13;
+&#13;
+&#13;
+.navbar-nav {&#13;
+	.open {&#13;
+    	a {&#13;
+        	.label {&#13;
+            	background-color: #F5F5F5;&#13;
+                color: $brand-primary;&#13;
+            }&#13;
+        }&#13;
+    }&#13;
+    &#13;
+    li {&#13;
+    	a:hover {&#13;
+          .label {&#13;
+          	background-color: #F5F5F5;&#13;
+            color: $brand-primary;&#13;
+          }&#13;
+        }&#13;
+    }&#13;
+}&#13;
+&#13;
+.panel-primary {&#13;
+	.label {&#13;
+    	background-color: #F5F5F5;&#13;
+        border: 1px solid #dcdcdc;&#13;
+        color: #2E2E2E;&#13;
+    }&#13;
+}&#13;
+&#13;
+.breadcrumbs-container {&#13;
+    background-color: #f0f3f4 !important;&#13;
+}&#13;
+&#13;
+.timeline-badge {&#13;
+	&amp;.success {&#13;
+		background-color: $brand-success !important;&#13;
+    }&#13;
+}&#13;
+&#13;
+.select2-results {&#13;
+	.select2-highlighted {&#13;
+    	background: $brand-primary !important;&#13;
+    }&#13;
+}&#13;
+&#13;
+.CodeMirror-linenumber {&#13;
+	color: #4c4c4c !important;&#13;
+}&#13;
+&#13;
+.help-block {&#13;
+	color: #545454 !important;&#13;
+}&#13;
+&#13;
+.selected {&#13;
+	background-color: #707070;&#13;
+}&#13;
+&#13;
+@media (max-width: 767px) {&#13;
+  .navbar-inverse .navbar-nav .open .dropdown-menu &gt; li &gt; a {&#13;
+  	.text-muted {&#13;
+		color: $navbar-inverse-link-color !important;    &#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+//** Panel footer is a light gray background, so text color should be dark.&#13;
+.panel-footer {&#13;
+	color: #515151 !important;&#13;
+}</css_variables>
+        <footer display_value="Sample Footer">feb4f763df121200ba13a4836bf26320</footer>
+        <footer_fixed>true</footer_fixed>
+        <header display_value="Stock Header">bf5ec2f2cb10120000f8d856634c9c0c</header>
+        <name>AE ITSM Theme - High Contrast</name>
+        <navbar_fixed>true</navbar_fixed>
+        <sys_class_name>sp_theme</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-10 20:54:28</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>bdb2f635db66ff0018159c29db96191e</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>AE ITSM Theme - High Contrast</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_theme_bdb2f635db66ff0018159c29db96191e</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-10 20:56:27</sys_updated_on>
+    </sp_theme>
+</record_update>
