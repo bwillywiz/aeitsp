@@ -158,14 +158,14 @@ a.color_box .fa {
 }</css>
         <data_table>sp_instance_link</data_table>
         <demo_data/>
-        <description>Link to IT Services portal page</description>
+        <description>LInk to Train Registration portal page</description>
         <docs/>
         <field_list>type,url,sc_category,sc_cat_item,kb_topic,kb_article,kb_category,sp_page,title,short_description,color,class_name,glyph</field_list>
         <has_preview>false</has_preview>
-        <id>ask_it_icon_link</id>
+        <id>reg_on_train_icon</id>
         <internal>false</internal>
         <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>Ask IT Icon Link</name>
+        <name>Register on Train Icon Link</name>
         <option_schema>[{"name":"link_template","section":"Presentation","label":"Template","type":"choice","choices":[{"label":"Top Icon","value":"Top Icon"},{"label":"Circle Icon","value":"Circle Icon"},{"label":"Color Box","value":"Color Box"}]}]</option_schema>
         <public>true</public>
         <roles/>
@@ -177,25 +177,24 @@ a.color_box .fa {
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>williamsbr.local</sys_created_by>
-        <sys_created_on>2019-07-09 22:22:04</sys_created_on>
+        <sys_created_on>2019-07-10 13:59:58</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>d32df96ddb6e7f0018159c29db9619ca</sys_id>
-        <sys_mod_count>4</sys_mod_count>
-        <sys_name>Ask IT Icon Link</sys_name>
+        <sys_id>02d311b5db6ebf0018159c29db96197e</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Register on Train Icon Link</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
-        <sys_update_name>sp_widget_d32df96ddb6e7f0018159c29db9619ca</sys_update_name>
+        <sys_update_name>sp_widget_02d311b5db6ebf0018159c29db96197e</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-10 13:31:26</sys_updated_on>
+        <sys_updated_on>2019-07-10 14:13:30</sys_updated_on>
         <template><![CDATA[<div class="iconlink" ng-class="{'high-contrast': accessibilityModeEnabled}">
   <!--// Top Icon -->
   <a ng-if="::(options.link_template == 'Top Icon' || !options.link_template)" ng-href="{{::data.href}}" class="top_icon {{::options.class_name}}" target="{{::data.target}}">
     <div class="m-b fa fa-{{::options.glyph}} fa-4x {{::options.class_name}} text-{{::options.color}}"></div>
     <h2>{{::options.title}}</h2>
-     <img src="askIT.png" width="196" height="199"/>
-    <span class="text-muted">{{::options.short_description}}</span>
+    <img src="trainIcon.png" width="196" height="199"/>
   </a>
 
   <!--// Circle Icon -->

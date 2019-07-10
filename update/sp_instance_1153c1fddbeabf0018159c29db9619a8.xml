@@ -1,46 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_link">
-    <sp_instance_link action="INSERT_OR_UPDATE">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
         <active>true</active>
         <class_name/>
         <color>default</color>
         <css/>
         <glyph/>
         <id/>
-        <kb_article/>
-        <kb_category/>
-        <kb_topic/>
-        <order>2</order>
+        <order>1</order>
         <roles/>
-        <sc_cat_item/>
-        <sc_category/>
         <short_description/>
         <size>md</size>
         <sp_column display_value="1">dceffc9fdb16f30018159c29db9619b2</sp_column>
-        <sp_page display_value="ae_it_services_landing">7ce5d5addbaa7f0018159c29db9619ef</sp_page>
-        <sp_widget display_value="Ask IT Icon Link">d32df96ddb6e7f0018159c29db9619ca</sp_widget>
-        <sys_class_name>sp_instance_link</sys_class_name>
+        <sp_widget display_value="HTML">8679ef89cb21120000f8d856634c9c4f</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>williamsbr.local</sys_created_by>
-        <sys_created_on>2019-07-10 04:23:56</sys_created_on>
+        <sys_created_on>2019-07-10 12:47:50</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>880017e9dbe2bf0018159c29db961942</sys_id>
+        <sys_id>1153c1fddbeabf0018159c29db9619a8</sys_id>
         <sys_mod_count>7</sys_mod_count>
         <sys_name/>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
-        <sys_update_name>sp_instance_link_880017e9dbe2bf0018159c29db961942</sys_update_name>
+        <sys_update_name>sp_instance_1153c1fddbeabf0018159c29db9619a8</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
         <sys_updated_on>2019-07-10 13:04:30</sys_updated_on>
         <title/>
-        <type>page</type>
         <url/>
         <widget_parameters><![CDATA[{
-	"link_template": {
-		"value": "",
-		"displayValue": ""
+	"html": {
+		"value": "<h2 class=\"text-black text-2x\" style=\"text-align: left;\" data-mce-style=\"text-align: left;\">${Have a question or need a service... }</h2>",
+		"displayValue": "<h2 class=\"text-black text-2x\" style=\"text-align: left;\">${Have a question or need a service... }</h2>"
 	}
 }]]></widget_parameters>
-    </sp_instance_link>
-    <sys_translated_text action="delete_multiple" query="documentkey=880017e9dbe2bf0018159c29db961942"/>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=1153c1fddbeabf0018159c29db9619a8"/>
 </record_update>
