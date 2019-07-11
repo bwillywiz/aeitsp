@@ -17,21 +17,21 @@
         <sys_created_on>2019-07-10 23:03:40</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>1e405bf9dbe6ff0018159c29db961976</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name/>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_instance_1e405bf9dbe6ff0018159c29db961976</sys_update_name>
-        <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-10 23:33:11</sys_updated_on>
+        <sys_updated_by>Delgado.local</sys_updated_by>
+        <sys_updated_on>2019-07-11 19:11:41</sys_updated_on>
         <title/>
         <url/>
         <widget_parameters><![CDATA[{
 	"html": {
-		"value": "<h3>${<strong>Vendor and Asset Management Portal Page</strong>}</h3>",
-		"displayValue": "<h3>${<strong>Vendor and Asset Management Portal Page</strong>}</h3>"
+		"value": "<h3>${<strong>Vendor and Asset Management Portal Page</strong>}</h3><form class=\"form-horizontal\"><fieldset><!-- Form Name --> <legend>Form Name</legend> <!-- Prepended checkbox --><div class=\"form-group\"><label class=\"col-md-4 control-label\" for=\"prependedcheckbox\">Prepended Checkbox</label><div class=\"col-md-4\"><div class=\"input-group\"><span class=\"input-group-addon\"> <input type=\"checkbox\"> </span> <input id=\"prependedcheckbox\" name=\"prependedcheckbox\" class=\"form-control\" type=\"text\" placeholder=\"placeholder\"></div><p class=\"help-block\">Submit Me.</p></div></div><!-- Text input--><div class=\"form-group\"><label class=\"col-md-4 control-label\" for=\"textinput\">Text Input</label><div class=\"col-md-4\"><input id=\"textinput\" name=\"textinput\" type=\"text\" placeholder=\"placeholder\" class=\"form-control input-md\"> <span class=\"help-block\">help</span></div></div></fieldset></form>",
+		"displayValue": "<h3>${<strong>Vendor and Asset Management Portal Page</strong>}</h3>\n<form class=\"form-horizontal\"><fieldset><!-- Form Name --> <legend>Form Name</legend> <!-- Prepended checkbox -->\n<div class=\"form-group\"><label class=\"col-md-4 control-label\" for=\"prependedcheckbox\">Prepended Checkbox</label>\n<div class=\"col-md-4\">\n<div class=\"input-group\"><span class=\"input-group-addon\"> <input type=\"checkbox\" /> </span> <input id=\"prependedcheckbox\" class=\"form-control\" name=\"prependedcheckbox\" type=\"text\" placeholder=\"placeholder\" /></div>\n<p class=\"help-block\">Submit Me.</p>\n</div>\n</div>\n<!-- Text input-->\n<div class=\"form-group\"><label class=\"col-md-4 control-label\" for=\"textinput\">Text Input</label>\n<div class=\"col-md-4\"><input id=\"textinput\" class=\"form-control input-md\" name=\"textinput\" type=\"text\" placeholder=\"placeholder\" /> <span class=\"help-block\">help</span></div>\n</div>\n</fieldset></form>"
 	}
 }]]></widget_parameters>
     </sp_instance>

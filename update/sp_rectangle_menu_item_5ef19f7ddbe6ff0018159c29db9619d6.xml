@@ -12,7 +12,7 @@
         <kb_article/>
         <kb_category/>
         <kb_topic/>
-        <label>IT Teams</label>
+        <label>IT Divisions</label>
         <order>100</order>
         <record_script/>
         <sc_cat_item/>
@@ -26,15 +26,15 @@
         <sys_created_on>2019-07-10 23:11:23</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>5ef19f7ddbe6ff0018159c29db9619d6</sys_id>
-        <sys_mod_count>1</sys_mod_count>
-        <sys_name>IT Teams</sys_name>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>IT Divisions</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_rectangle_menu_item_5ef19f7ddbe6ff0018159c29db9619d6</sys_update_name>
-        <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-10 23:56:27</sys_updated_on>
+        <sys_updated_by>Delgado.local</sys_updated_by>
+        <sys_updated_on>2019-07-11 19:21:07</sys_updated_on>
         <table/>
         <type>page</type>
         <url/>

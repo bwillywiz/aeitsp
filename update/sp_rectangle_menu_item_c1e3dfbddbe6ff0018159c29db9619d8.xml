@@ -20,7 +20,7 @@
         <short_description/>
         <sp_page display_value="ae_it_edge_device_portal_page">e4c0173ddbe6ff0018159c29db96193e</sp_page>
         <sp_rectangle_menu/>
-        <sp_rectangle_menu_item display_value="IT Teams">5ef19f7ddbe6ff0018159c29db9619d6</sp_rectangle_menu_item>
+        <sp_rectangle_menu_item display_value="IT Divisions">5ef19f7ddbe6ff0018159c29db9619d6</sp_rectangle_menu_item>
         <sys_class_name>sp_rectangle_menu_item</sys_class_name>
         <sys_created_by>williamsbr.local</sys_created_by>
         <sys_created_on>2019-07-10 23:19:25</sys_created_on>
