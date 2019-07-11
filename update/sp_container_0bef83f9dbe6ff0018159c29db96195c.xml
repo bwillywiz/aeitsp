@@ -4,26 +4,26 @@
         <background_image/>
         <background_style>default</background_style>
         <bootstrap_alt>false</bootstrap_alt>
-        <class_name>visible-xs</class_name>
+        <class_name/>
         <container_class_name/>
-        <name>AE IT Service Portal Index - Container 2</name>
-        <order>2</order>
-        <sp_page display_value="aeit_index">14effc9fdb16f30018159c29db961995</sp_page>
+        <name>AE IT BRM Portal - Container 1</name>
+        <order>1</order>
+        <sp_page display_value="ae_it_brm_portal">fdef8b39dbe6ff0018159c29db9619be</sp_page>
         <subheader>false</subheader>
         <sys_class_name>sp_container</sys_class_name>
         <sys_created_by>williamsbr.local</sys_created_by>
-        <sys_created_on>2019-07-02 18:07:56</sys_created_on>
+        <sys_created_on>2019-07-10 23:02:04</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>94effc9fdb16f30018159c29db9619a6</sys_id>
-        <sys_mod_count>3</sys_mod_count>
-        <sys_name>AE IT Service Portal Index - Container 2</sys_name>
+        <sys_id>0bef83f9dbe6ff0018159c29db96195c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AE IT BRM Portal - Container 1</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
-        <sys_update_name>sp_container_94effc9fdb16f30018159c29db9619a6</sys_update_name>
+        <sys_update_name>sp_container_0bef83f9dbe6ff0018159c29db96195c</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-10 23:34:53</sys_updated_on>
+        <sys_updated_on>2019-07-10 23:02:04</sys_updated_on>
         <title/>
         <width>container</width>
     </sp_container>
