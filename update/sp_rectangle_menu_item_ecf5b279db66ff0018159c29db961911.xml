@@ -13,7 +13,7 @@
         <kb_category/>
         <kb_topic/>
         <label>Management Views</label>
-        <order>100</order>
+        <order>200</order>
         <record_script/>
         <sc_cat_item/>
         <sc_category/>
@@ -26,7 +26,7 @@
         <sys_created_on>2019-07-10 21:09:29</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>ecf5b279db66ff0018159c29db961911</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Management Views</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
@@ -34,7 +34,7 @@
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_rectangle_menu_item_ecf5b279db66ff0018159c29db961911</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-10 23:57:04</sys_updated_on>
+        <sys_updated_on>2019-07-11 19:58:46</sys_updated_on>
         <table/>
         <type>page</type>
         <url/>

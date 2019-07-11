@@ -18,8 +18,8 @@
         <sc_cat_item/>
         <sc_category/>
         <short_description/>
-        <sp_page display_value="ae_it_vam_portal">cf3053f9dbe6ff0018159c29db961982</sp_page>
-        <sp_rectangle_menu display_value="AE IT Teams Portal">e28f8f39dbe6ff0018159c29db9619e7</sp_rectangle_menu>
+        <sp_page display_value="ae_it_bqm_portal">cf3053f9dbe6ff0018159c29db961982</sp_page>
+        <sp_rectangle_menu/>
         <sp_rectangle_menu_item/>
         <sys_class_name>sp_rectangle_menu_item</sys_class_name>
         <sys_created_by>williamsbr.local</sys_created_by>

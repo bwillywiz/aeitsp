@@ -12,13 +12,13 @@
         <kb_article/>
         <kb_category/>
         <kb_topic/>
-        <label>HR Page</label>
+        <label>EIS</label>
         <order>300</order>
         <record_script/>
         <sc_cat_item/>
         <sc_category/>
         <short_description/>
-        <sp_page display_value="ae_it_hr_portal">ae70dff9dbe6ff0018159c29db96196d</sp_page>
+        <sp_page display_value="aeit_index">14effc9fdb16f30018159c29db961995</sp_page>
         <sp_rectangle_menu/>
         <sp_rectangle_menu_item display_value="IT Divisions">5ef19f7ddbe6ff0018159c29db9619d6</sp_rectangle_menu_item>
         <sys_class_name>sp_rectangle_menu_item</sys_class_name>
@@ -26,15 +26,15 @@
         <sys_created_on>2019-07-10 23:21:39</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>e164dffddbe6ff0018159c29db961965</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>HR Page</sys_name>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>EIS</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_rectangle_menu_item_e164dffddbe6ff0018159c29db961965</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-10 23:59:32</sys_updated_on>
+        <sys_updated_on>2019-07-11 19:57:47</sys_updated_on>
         <table/>
         <type>page</type>
         <url/>

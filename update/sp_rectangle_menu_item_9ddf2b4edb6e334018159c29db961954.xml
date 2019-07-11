@@ -12,8 +12,8 @@
         <kb_article/>
         <kb_category/>
         <kb_topic/>
-        <label>ADI | DBA | Web Services</label>
-        <order>50</order>
+        <label>PMO</label>
+        <order>600</order>
         <record_script/>
         <sc_cat_item/>
         <sc_category/>
@@ -23,22 +23,22 @@
         <sp_rectangle_menu_item display_value="IT Divisions">5ef19f7ddbe6ff0018159c29db9619d6</sp_rectangle_menu_item>
         <sys_class_name>sp_rectangle_menu_item</sys_class_name>
         <sys_created_by>williamsbr.local</sys_created_by>
-        <sys_created_on>2019-07-10 23:21:08</sys_created_on>
+        <sys_created_on>2019-07-11 20:00:31</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>164493fddbe6ff0018159c29db96197c</sys_id>
-        <sys_mod_count>5</sys_mod_count>
-        <sys_name>ADI | DBA | Web Services</sys_name>
+        <sys_id>9ddf2b4edb6e334018159c29db961954</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>PMO</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
-        <sys_update_name>sp_rectangle_menu_item_164493fddbe6ff0018159c29db96197c</sys_update_name>
+        <sys_update_name>sp_rectangle_menu_item_9ddf2b4edb6e334018159c29db961954</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-11 19:54:52</sys_updated_on>
+        <sys_updated_on>2019-07-11 20:00:31</sys_updated_on>
         <table/>
         <type>page</type>
         <url/>
         <url_target/>
     </sp_rectangle_menu_item>
-    <sys_translated_text action="delete_multiple" query="documentkey=164493fddbe6ff0018159c29db96197c"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=9ddf2b4edb6e334018159c29db961954"/>
 </record_update>
