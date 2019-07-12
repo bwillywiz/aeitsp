@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {  /* widget controller */  var c = this;}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>#css-table {
+	display: table;
+	background-color:none; 
+	width: 100%; 
+	margin-top: 5px; 
+	margin-bottom: 50px; 
+	margin-left: auto; 
+	margin-right: auto;
+	clear: both;}	
+
+fieldset { 
+  display: block;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  border: 1px groove (internal value);
+}
+
+legend {
+	font-family: Calibri;
+	font-size: 1.5em;
+	color: blue;
+    font-weight: semi-bold;
+	text-decoration:none;}
+
+table.order_table {
+  border: 0px solid #000000;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.order_table td, table.order_table th {
+  padding: 3px 2px;
+}
+table.order_table tbody td {
+  font-size: 13px;
+  color: #020202;
+}
+table.order_table thead {
+  }
+table.order_table thead th {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+}
+table.order_table tfoot {
+  font-weight: bold;
+}
+
+td.border_bottom {
+  border-bottom:1pt solid black;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>requisition_form</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Requisition Form</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-12 18:16:08</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>4ea1282edbe2b34018159c29db9619ce</sys_id>
+        <sys_mod_count>134</sys_mod_count>
+        <sys_name>Requisition Form</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_4ea1282edbe2b34018159c29db9619ce</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-12 22:13:13</sys_updated_on>
+        <template><![CDATA[<div>
+  <h1><p style="text-align:center">REQUISITION FORM   **** MOCK-UP ****</p></h1>
+  <fieldset style="align:center; border:1px solid #999; border-radius:8px;">
+  <legend style="text-align:center; width:125px;">REQUISITION</legend>
+    <div id="css-table">
+      	<!-- Requisition Info Section -->
+        <div style="display: table-cell; vertical-align: top; text-align: left; width: 100%;">
+        <div style="display: table-cell; vertical-align: top; text-align: left; width: 25%;">
+        <fieldset style="padding:10px; width:350px; border:1px solid #999; border-radius:8px;">
+        <legend style="width:150px;">Requisition Info</legend>
+        <label for="req_num" style="width:30px">NO.:</label>
+				<input type="text" name="req_num" style="width:150px" /><br>
+				<label for="doc_id" style="width:100px">DOCUMENT ID#:</label>
+				<input type="text" name="doc_id" style="width:150px"/><br>
+        <label style="width:250px"><input type="radio" name="petty_cash" value="petty_cash">&nbsp;&nbsp;PETTY CASH</label><br>
+        <label style="width:250px"><input type="radio" name="purchase_over25K" value="purchased_over25K">&nbsp;&nbsp;PURCHASE GREATER THAN $25K (RQS)</label><br>
+        <label style="width:250px"><input type="radio" name="purchase_under25K" value="purchased_under25K">&nbsp;&nbsp;PURCHASE LESS THAN $25K (PO)</label>
+        <label style="width:250px"><input type="radio" name="purchase_no_po" value="purchased_no_po">&nbsp;&nbsp;PURCHASE WITHOUT PO (GAX)</label>
+        <label style="width:280px"><input type="radio" name="release_contract" value="release_contract">&nbsp;&nbsp;RELEASE CONTRACT - ENCUMBERANCE (DO)</label>
+        <label for="contract_num" style="width:100px">CONTRACT NO#:</label>
+				<input type="text" name="contract_num" style="width:150px" /><br>
+        <label style="width:250px"><input type="radio" name="price_svc_agreement" value="price_svc_agreement">&nbsp;&nbsp;PRICE/SVC. AGREEMENT (RQM)</label><br>
+        <label for="purpose" style="width:60px">PURPOSE:</label>
+        <input type="text" name="purpose" style="width:150px" />
+        </fieldset></div></div>
+      
+        <div style="display: table-cell; vertical-align: top; text-align: left; width: 100%;">
+        <div style="display: table-cell; vertical-align: top; text-align: left; width: 25%;">
+        <fieldset style="padding:10px; width:400px; border:1px solid #999; border-radius:8px;">
+        <legend style="width:150px;">Requester Info</legend>
+          <label for="requester" style="width:80px">REQUESTER:</label>
+				<input type="text" name="requester" style="width:150px" /><br>
+        <label for="phoneNum" style="width:80px">PHONE#:</label>
+        <input type="text" name="phoneNum" style="width:150px" id="phone" placeholder="(***) ***-****" required="required" title="e.g (***) ***-****" pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{4}$"/><br>
+				<label for="req_date" style="width:120px">DATE REQUESTED:</label>
+				<input type="date" name="req_date" style="width:130px"/><br>
+				<label for="date_needed" style="width:120px">DATE NEEDED:</label>
+				<input type="date" name="date_needed" style="width:130px"/><br>
+				<label for="delivery_addy" style="width:140px">DELIVERY ADDRESS:</label>
+				<input type="text" name="delivery_addy" style="width:200px"/><br>
+        </fieldset></div></div>
+      
+    		<div style="display: table-cell; vertical-align: top; text-align: left; width: 100%;">
+        <div style="display: table-cell; vertical-align: top; text-align: left; width: 25%;">
+      	<fieldset style="padding:10px; width:350px; border:1px solid #999; border-radius:8px;">
+    		<legend style="width:115px;">Vendor Info</legend>
+     		<label for="code" style="width:80px">CODE:</label>
+				<input type="text" name="code" style="width:150px" /><br>
+				<label for="name" style="width:80px">NAME:</label>
+				<input type="text" name="name" style="width:150px"/><br>
+				<label for="address" style="width:80px">ADDRESS:</label>
+				<input type="text" name="address" style="width:150px"/><br>
+				<label for="contact" style="width:80px">CONTACT:</label>
+				<input type="text" name="contact" style="width:150px"/><br>
+        <label for="phoneNum" style="width:80px">Phone#:</label>
+        <input type="text" name="phoneNum" style="width:150px" id="phone" placeholder="(***) ***-****" required="required" title="e.g (***) ***-****" pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{4}$"/>
+        </fieldset></div></div>
+    </div>
+  </fieldset>
+  <fieldset style="align:center; border:1px solid #999; border-radius:8px;">
+  <legend style="text-align:center; width:225px;">ORDERING INFORMATION</legend>
+    <table class="order_table">
+        <thead>
+        <tr>
+        <th>ITEM DESCRIPTION</th>
+            <th>COMMODITY CODE</th>
+            <th>ITEM CODE</th>
+            <th>QUANTITY</th>
+            <th>UNIT PRICE</th>
+            <th>EXTENDED PRICE</th>
+            <th>ACCT LINE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        </tr>
+        <tr>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        </tr>
+        <tr>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        </tr>
+        <tr>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        </tr>
+        <tr>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        <td><input type="text" name="requester" style="width:150px" /></td>
+        </tr>
+        </tbody>
+        </table>
+        <p>
+        <label for="gtotal" style="width:80px">GRAND TOTAL:</label>
+        <input type="text" name="gtotal" style="width:150px" /></p>
+  </fieldset>
+  <fieldset style="align:center; border:1px solid #999; border-radius:8px;">
+  <legend style="text-align:center; width:250px;">ACCOUNTING INFORMATION</legend>
+    <table class="order_table">
+        <thead>
+        <tr>
+         <th>ACCT LINE</th>
+          <th>FUND</th>
+          <th>DEPT</th>
+          <th>UNIT</th>
+          <th>OBJ</th>
+          <th>ACTIVITY (FERC)</th>
+          <th>REPT CODE (CIP PHASE)</th>
+          <th>TASK/WORK ORDER</th>
+          <th>PROGRAM (GRANTS)</th>
+          <th>PROGRAM PERIOD</th>
+          <th>BSA</th>
+          <th>TOTAL</th> 
+        </tr>
+        </thead>
+      	<tbody>
+        <tr>
+          <td><ol><li></li></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          </tr>
+          <tr>
+          <td><ol><li value="2"></li></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+         	<td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          </tr>
+          <tr>
+          <td><ol><li value="3"></li></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          </tr>
+          <tr>
+          <td><ol><li value="4"></li></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          </tr>
+          <tr>
+          <td><ol><li value="5"></li></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+          <td><input type="text" name="requester" style="width:50px" /></td>
+          <td><input type="text" name="requester" style="width:120px" /></td>
+        </tr>
+        </tbody>
+        </table>
+  	</fieldset>
+    <fieldset style="align:center; border:1px solid #999; border-radius:8px;">
+  <legend style="text-align:center; width:120px;">APPROVALS</legend>
+    <table class="order_table">
+        <thead>
+        <tr>
+         <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+       </tr>
+        </thead>
+      	<tbody>
+
+        <tr>  
+          <td><input type="text" name="fiscal_sig" style="width:250px" /><br>
+          <label for="fiscal_sig" style="width:120px">FISCAL</label></td>
+          <td><input type="text" name="fiscal_date" style="width:75px" /><br>
+          <label for="fiscal_date" style="width:120px">DATE</label></td>
+          <td><input type="text" name="fiscal_sig" style="width:250px" /><br>
+          <label for="proc_mgr_sig" style="width:120px">PROCESS MANAGER</label></td>
+          <td><input type="text" name="proc_mgr_sig" style="width:75px" /><br>
+          <label for="proc_mgr_date" style="width:120px">DATE</label></td>
+          <td><input type="text" name="fiscal_sig" style="width:250px" /><br>
+          <label for="vp_dir_sig" style="width:230px">VICE PRESIDENT/DIRECTOR (IF REQUIRED)</label></td>
+          <td><input type="text" name="vp_dir_date" style="width:75px" /><br>
+          <label for="vp_dir_date" style="width:120px">DATE</label></td>
+          
+      </tr>
+        </tbody>
+        </table>
+</fieldset><br>
+<p align="center" style="padding: 0 0 0 55px"><input type="submit" value="Submit" style="width:130px"  /></p> 
+</div>]]></template>
+    </sp_widget>
+</record_update>

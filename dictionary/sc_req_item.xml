@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="hasLabels=true,hasWorkflow=true" audit="true" create_roles="catalog_admin" extends="task" label="Requested Item" max_length="40" name="sc_req_item" sizeclass="41931" text_index="true" type="collection">
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Purchase Options" max_length="40" name="x_aue_ae_it_servic_u_choice_2" type="string">
+            <choice/>
+        </element>
+        <element label="New Field Name" max_length="80" name="x_aue_ae_it_servic_u_field_name_3" type="field_name"/>
+        <element label="REQUISITION" max_length="65536" name="x_aue_ae_it_servic_u_requisition" type="html"/>
+    </element>
+</database>

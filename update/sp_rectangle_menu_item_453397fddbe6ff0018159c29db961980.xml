@@ -18,7 +18,7 @@
         <sc_cat_item/>
         <sc_category/>
         <short_description/>
-        <sp_page display_value="ae_it_services_landing">7ce5d5addbaa7f0018159c29db9619ef</sp_page>
+        <sp_page display_value="ae_it_ctsm_services_landing">7ce5d5addbaa7f0018159c29db9619ef</sp_page>
         <sp_rectangle_menu/>
         <sp_rectangle_menu_item display_value="IT Divisions">5ef19f7ddbe6ff0018159c29db9619d6</sp_rectangle_menu_item>
         <sys_class_name>sp_rectangle_menu_item</sys_class_name>

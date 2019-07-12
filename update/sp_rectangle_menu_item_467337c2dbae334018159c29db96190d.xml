@@ -18,7 +18,7 @@
         <sc_cat_item/>
         <sc_category/>
         <short_description/>
-        <sp_page display_value="ae_it_services_landing">7ce5d5addbaa7f0018159c29db9619ef</sp_page>
+        <sp_page display_value="ae_it_bqm_portal">cf3053f9dbe6ff0018159c29db961982</sp_page>
         <sp_rectangle_menu/>
         <sp_rectangle_menu_item display_value="IT Divisions">5ef19f7ddbe6ff0018159c29db9619d6</sp_rectangle_menu_item>
         <sys_class_name>sp_rectangle_menu_item</sys_class_name>
@@ -26,7 +26,7 @@
         <sys_created_on>2019-07-11 20:16:08</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>467337c2dbae334018159c29db96190d</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>BQM</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
@@ -34,7 +34,7 @@
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_rectangle_menu_item_467337c2dbae334018159c29db96190d</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-11 20:16:08</sys_updated_on>
+        <sys_updated_on>2019-07-12 14:01:35</sys_updated_on>
         <table/>
         <type>page</type>
         <url/>

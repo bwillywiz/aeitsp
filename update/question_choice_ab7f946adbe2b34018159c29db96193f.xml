@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice">
+    <question_choice action="INSERT_OR_UPDATE">
+        <misc>0</misc>
+        <order>150</order>
+        <question display_value="Purchase Options">2b0f1c66dbe2b34018159c29db961911</question>
+        <rec_misc>0</rec_misc>
+        <sys_class_name>question_choice</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-12 18:06:41</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ab7f946adbe2b34018159c29db96193f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>PURCHASE &gt; $25K (RQS)</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>question_choice_ab7f946adbe2b34018159c29db96193f</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-12 18:06:41</sys_updated_on>
+        <text>PURCHASE &gt; $25K (RQS)</text>
+        <u_reference_1/>
+        <value>purchase_25k_rqs</value>
+    </question_choice>
+    <fx_price action="delete_multiple" query="id=ab7f946adbe2b34018159c29db96193f"/>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="USD">USD</currency>
+        <field>misc</field>
+        <id>ab7f946adbe2b34018159c29db96193f</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-12 18:06:41</sys_created_on>
+        <sys_id>2f7f946adbe2b34018159c29db961940</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-12 18:06:41</sys_updated_on>
+        <table>question_choice</table>
+        <type>calculated</type>
+    </fx_price>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="USD">USD</currency>
+        <field>rec_misc</field>
+        <id>ab7f946adbe2b34018159c29db96193f</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-12 18:06:41</sys_created_on>
+        <sys_id>e37f946adbe2b34018159c29db961940</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-12 18:06:41</sys_updated_on>
+        <table>question_choice</table>
+        <type>calculated</type>
+    </fx_price>
+</record_update>

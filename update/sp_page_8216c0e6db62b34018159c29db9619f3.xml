@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <css>main.page, main.body {&#13;
+  height: 99vh;&#13;
+  min-height: 100%;&#13;
+  padding-top: 0px !important;&#13;
+}&#13;
+&#13;
+section.page {&#13;
+  background-image: url('sp-landing-back.jpg');&#13;
+  background-position: center center;&#13;
+  background-size: cover;&#13;
+  background-repeat: no-repeat;&#13;
+  background-color: #3A3F50;&#13;
+}&#13;
+section.page main.body:before {&#13;
+  display: block;&#13;
+  background-color: #3A3F50;&#13;
+  opacity: 0.75;&#13;
+}&#13;
+section.page, main.body {&#13;
+    padding-top: 0px !important;&#13;
+}&#13;
+&#13;
+* {&#13;
+  box-sizing: border-box;&#13;
+}&#13;
+&#13;
+input[type=text], select, textarea {&#13;
+  width: 100%;&#13;
+  padding: 12px;&#13;
+  border: 1px solid #ccc;&#13;
+  border-radius: 4px;&#13;
+  resize: vertical;&#13;
+}&#13;
+&#13;
+label {&#13;
+  padding: 12px 12px 12px 0;&#13;
+  display: inline-block;&#13;
+}&#13;
+&#13;
+input[type=submit] {&#13;
+  background-color: #4CAF50;&#13;
+  color: white;&#13;
+  padding: 12px 20px;&#13;
+  border: none;&#13;
+  border-radius: 4px;&#13;
+  cursor: pointer;&#13;
+  float: right;&#13;
+}&#13;
+&#13;
+input[type=submit]:hover {&#13;
+  background-color: #45a049;&#13;
+}&#13;
+&#13;
+.container {&#13;
+  border-radius: 5px;&#13;
+  background-color: #f2f2f2;&#13;
+  padding: 20px;&#13;
+}&#13;
+&#13;
+.col-25 {&#13;
+  float: left;&#13;
+  width: 25%;&#13;
+  margin-top: 6px;&#13;
+}&#13;
+&#13;
+.col-75 {&#13;
+  float: left;&#13;
+  width: 75%;&#13;
+  margin-top: 6px;&#13;
+}&#13;
+&#13;
+/* Clear floats after the columns */&#13;
+.row:after {&#13;
+  content: "";&#13;
+  display: table;&#13;
+  clear: both;&#13;
+}&#13;
+&#13;
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */&#13;
+@media screen and (max-width: 600px) {&#13;
+  .col-25, .col-75, input[type=submit] {&#13;
+    width: 100%;&#13;
+    margin-top: 0;&#13;
+  }&#13;
+}</css>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <id>ae_it_ctsm_services_itsm_landing</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles/>
+        <short_description/>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-12 16:15:43</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>8216c0e6db62b34018159c29db9619f3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ae_it_ctsm_services_itsm_landing</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_page_8216c0e6db62b34018159c29db9619f3</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-12 16:15:43</sys_updated_on>
+        <title>AE IT ITSM Page</title>
+    </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=8216c0e6db62b34018159c29db9619f3"/>
+</record_update>

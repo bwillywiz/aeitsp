@@ -16,7 +16,7 @@
         <short_description/>
         <size>md</size>
         <sp_column display_value="1">dceffc9fdb16f30018159c29db9619b2</sp_column>
-        <sp_page display_value="ae_it_services_landing">7ce5d5addbaa7f0018159c29db9619ef</sp_page>
+        <sp_page display_value="ae_it_ctsm_services_landing">7ce5d5addbaa7f0018159c29db9619ef</sp_page>
         <sp_widget display_value="Ask IT Icon Link">d32df96ddb6e7f0018159c29db9619ca</sp_widget>
         <sys_class_name>sp_instance_link</sys_class_name>
         <sys_created_by>williamsbr.local</sys_created_by>
