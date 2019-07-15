@@ -44,10 +44,10 @@
         <docs/>
         <field_list/>
         <has_preview>true</has_preview>
-        <id>aeit_bqm_breakcrumbs</id>
+        <id>aeit_ctsm_breakcrumbs</id>
         <internal>false</internal>
         <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>AE IT BQM breadcrumbs</name>
+        <name>AE IT CTSM breadcrumbs</name>
         <option_schema/>
         <public>false</public>
         <roles/>
@@ -58,15 +58,15 @@
         <sys_created_on>2019-07-12 16:48:08</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>748d84eedb62b34018159c29db96194b</sys_id>
-        <sys_mod_count>8</sys_mod_count>
-        <sys_name>AE IT BQM breadcrumbs</sys_name>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>AE IT CTSM breadcrumbs</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_widget_748d84eedb62b34018159c29db96194b</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-12 17:36:03</sys_updated_on>
+        <sys_updated_on>2019-07-15 20:25:45</sys_updated_on>
         <template><![CDATA[<ul class="nav nav-pills nav-sm" aria-label="${Page breadcrumbs}" role="navigation">
   <li role="presentation">
     <span><a ng-href="?id={{portal.homepage_dv}}">${Home}</a>      
@@ -83,19 +83,15 @@
       <i aria-hidden="true" ng-if="!$last" class="fa fa-chevron-right"></i></span>
   </li>
   <li>
-    <span><a ng-href="?id=ae_it_bqm_portal">${BQM}</a>
+    <span><a ng-href="?id=ae_it_ctsm_services_landing">${CTSM}</a>
       <i aria-hidden="true" ng-if="!$last" class="fa fa-chevron-right"></i></span>
   </li>
   <li>
-    <span><a ng-href="?id=ae_it_bqm_cs_landing">${Contractor Staffing}</a>
+    <span><a ng-href="?id=ae_it_ctsm_services_itsm_landing">${IT Service Management}</a>
       <i aria-hidden="true" ng-if="!$last" class="fa fa-chevron-right"></i></span>
   </li>
   <li>
-    <span><a ng-href="?id=ae_it_bqm_svt_landing">${Server Validation &amp; Testing}</a>
-      <i aria-hidden="true" ng-if="!$last" class="fa fa-chevron-right"></i></span>
-  </li>
-  <li>
-    <span><a ng-href="?id=ae_it_bqm_vam_landing">${Vendor &amp; Asset Management}</a>
+    <span><a ng-href="?id=ae_it_uepm_portal_page">${Unified Equipment Protection &amp; Management}</a>
       <i aria-hidden="true" ng-if="!$last" class="fa fa-chevron-right"></i></span>
   </li>
 </ul>]]></template>

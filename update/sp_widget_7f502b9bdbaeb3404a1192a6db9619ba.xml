@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function ($scope, spUtil, $rootScope, $location, $timeout, $window) {
+	$scope.hideItemWidget = !$scope.data.category_id;
+	if ($scope.data.category) {
+		if (!$scope.data.categories)
+			$scope.data.categories = [];
+			$scope.data.categories.forEach(function(category, index, categories){
+			categories[index].url = category.url + '&catalog_id=' + $scope.data.catalog_id;
+		});
+		if ($scope.data.sc_catalog)
+			$scope.data.categories.unshift({label: $scope.data.sc_catalog, url: '?id=' + $scope.data.sc_category_page + '&catalog_id=' + $scope.data.catalog_id});
+		if ($scope.data.show_popular_item) {
+			if ($scope.data.all_catalog_msg)
+				$scope.data.categories.unshift({label: $scope.data.all_catalog_msg, url: '?id=' + $scope.data.sc_category_page + '&catalog_id=-1'});
+			else
+				$scope.data.categories.push({label: $scope.data.all_cat_msg, url: '#'});
+		} else {
+			if ($scope.data.all_catalog_msg) {
+				$scope.data.categories.unshift({label: $scope.data.all_catalog_msg, url: '?id=' + $scope.data.sc_category_page + '&catalog_id=-1'});
+			}
+			$scope.data.categories.push({label: $scope.data.category.title, url: '#'});
+		}
+		$timeout(function() {
+				$rootScope.$broadcast('sp.update.breadcrumbs', $scope.data.categories);
+		});
+		spUtil.setSearchPage('sc');
+	}
+	$scope.showCategories =  function() {
+		$scope.hideItemWidget = true;
+		$rootScope.$broadcast("$sp.service_catelog.show.categories_widget");
+	}
+	
+	var listenerForCatItems = $scope.$on("$sp.service_catelog.show.items_widget", function() {
+		$scope.hideItemWidget = false;
+	});
+	/*=============== Begin link handling ===============*/
+	
+	$scope.changeView = function (view) {
+		spUtil.setPreference('catalog-item-list-view', view)
+		$scope.view = view;
+	}
+	
+	spUtil.getPreference('catalog-item-list-view', function(value) {
+		$scope.view = value || 'card';
+	});
+	
+	$scope.isTouchDevice = function(){
+		return ('ontouchstart' in $window);
+	}
+	
+	$scope.loadMore = function (){
+		$scope.data.new_limit = $scope.data.limit + ($scope.options.limit_item || 9);
+		$scope.stopLoader =  false;
+		$scope.server.update().then(function () {
+			var old_limit = $scope.data.limit - ($scope.options.limit_item || 9);
+			$scope.data.items[old_limit].highlight = true;
+			$scope.stopLoader =  true;
+		});
+	}
+	
+	$scope.onClick = function($event, item) {
+		var lp = getLinkParts(item);
+		if (typeof lp == "string")
+			return; // can't intercept/redirect external content item
+		$event.stopPropagation();
+		$event.preventDefault();
+		var evt = {item: item, search: lp};
+		// This will let a wrapper widget intercept and redirect somewhere else
+		$scope.$emit($scope.options.click_event_name, evt);
+	};
+
+	function getLinkParts(item) {
+		if (item.sys_class_name == 'sc_cat_item_content' && item.content_type == 'external')
+			return item.url;
+		
+		return {
+			id: item.page,
+			sys_id: item.content_type == 'kb' ? item.kb_article : item.sys_id,
+			sysparm_category: $scope.data.category_id
+		};
+	}
+
+	$scope.getItemHREF = function(item) {
+		var lp = getLinkParts(item);
+		if (typeof lp == "string")
+			return lp;
+		return "?id=" + lp.id + "&sys_id=" + lp.sys_id + "&sysparm_category=" + $scope.data.category_id + ($scope.data.catalog_id ? "&catalog_id=" + $scope.data.catalog_id : "");
+	}
+	
+	var unregister = $rootScope.$on($scope.options.click_event_name, function($event, o) {
+		if ("url" in o)
+			$location.href = o.url;
+		else
+			$location.search(o.search);
+	});
+	var mql;
+	
+	if ($window.matchMedia) {
+		mql = $window.matchMedia('screen and (max-width: 768px)');
+    mql.addListener(handleMatchMedia);
+    handleMatchMedia(mql);
+	}
+	
+	function handleMatchMedia(mql) {
+			if (!mql.matches) {
+        spUtil.getPreference('catalog-item-list-view', function(value) {
+					$scope.view = value || 'card';
+					$scope.isMobile = false;
+				});
+			}
+			else {
+				$timeout(function() {
+					$scope.view = 'card';
+					$scope.isMobile = true;
+				})
+			}
+	}
+	$scope.$on("$destroy", function() {
+		unregister();
+		listenerForCatItems();
+		if (mql)
+			mql.removeListener(handleMatchMedia);
+	});
+	
+	$scope.startItemList = function()  {
+		$scope.stopLoader = true;
+	}
+	/*=============== End link handling ===============*/
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.toggle {
+  color: $dropdown-link-disabled-color;
+  i:not(.active):hover {
+	  color: $list-group-link-heading-color;
+  }
+}
+
+.fa.active {
+  color: $primary;
+}
+
+.item-table {
+  background-color: #fff;
+   tr {
+     th {
+       padding: 16px 10px;
+     }
+     td {
+       padding: 16px 10px;
+       border: none;
+     }
+   }
+}
+
+.btn-loadmore {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>bqm_categories</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>BQM Categories</name>
+        <option_schema>[{"name":"click_event_name","default_value":"$sp.cat_item_list.click","section":"other","label":"Click event name","type":"string"},{"hint":"Number of items to display per page","name":"limit_item","default_value":"15","section":"other","label":"Number of items per page","type":"integer"},{"hint":"Show items from child categories along with the items of the present category","name":"show_items_from_child","section":"other","default_value":"false","label":"Show items from Child Categories","type":"boolean"},{"hint":"Popular Items that has been used","name":"popular_items_created","section":"Data","default_value":"6","label":"Popular Items used in","type":"choice","choices":[{"label":"Last 3 months","value":"3"},{"label":"Last 6 months","value":"6"},{"label":"Last 12 months","value":"12"},{"label":"Life time (Has performance implications)","value":"0"}]}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	data.category_id = $sp.getParameter("sys_id");
+	data.catalog_id = $sp.getParameter("catalog_id") ? $sp.getParameter("catalog_id") + "" : "-1";
+	var catalogsInPortal = ($sp.getCatalogs().value + "").split(",");
+	var isCatalogAccessibleViaPortal = data.catalog_id == -1 ? true : false;
+	catalogsInPortal.forEach(function(catalogSysId) {
+		if (data.catalog_id == catalogSysId) {
+			isCatalogAccessibleViaPortal = true;
+		}
+	})	
+	if(!isCatalogAccessibleViaPortal) {
+		data.error = gs.getMessage("You do not have permission to see this catalog");
+		return;		
+	}
+	var catalogDisplayValue;
+	if (data.catalog_id && data.catalog_id !== "-1") {
+		var catalogObj = new sn_sc.Catalog(data.catalog_id);
+		if (catalogObj) {
+			if (!catalogObj.canView()) {
+				data.error = gs.getMessage("You do not have permission to see this catalog");
+				return;
+			}
+			catalogDisplayValue = catalogObj.getTitle();
+		}
+	}
+	if (options && options.sys_id)
+		data.category_id = options.sys_id;
+	data.showPrices = $sp.showCatalogPrices();
+	data.sc_catalog_page = $sp.getDisplayValue("sc_catalog_page") || "sc_home";
+	data.sc_category_page = $sp.getDisplayValue("sc_category_page") || "sc_category";
+	catalogDisplayValue = catalogDisplayValue ? catalogDisplayValue : $sp.getCatalogs().displayValue + "";
+	var catalogIDs = (data.catalog_id && data.catalog_id !== "-1") ? data.catalog_id : $sp.getCatalogs().value + "";
+	var catalogArr = catalogDisplayValue.split(",");
+	var catalogIDArr = catalogIDs.split(",");
+	data.sc_catalog = catalogArr.length > 1 ? "" : catalogArr[0];
+	
+	data.show_more = false;
+	if (GlideStringUtil.nil(data.category_id)) {
+		 data.items = getPopularItems();
+		 data.show_popular_item = true;
+		 data.all_catalog_msg = (($sp.getCatalogs().value + "").split(",")).length > 1 ? gs.getMessage("All Catalogs") : "";
+		 data.all_cat_msg = gs.getMessage("All Categories");
+		 data.category = {title: gs.getMessage("Popular Items"),
+									 description: ''};
+		return;
+	}
+	
+	data.show_popular_item = false;
+	// Does user have permission to see this category?
+	var categoryId = '' + data.category_id;
+	var categoryJS = new sn_sc.CatCategory(categoryId);
+	if (!categoryJS.canView()) {
+		data.error = gs.getMessage("You do not have permission to see this category");
+		return;
+	}
+	data.category = {title: categoryJS.getTitle(),
+									 description: categoryJS.getDescription()};
+    
+	var catalog = $sp.getCatalogs().value;
+	
+	data.items = [];
+	var itemsInPage = options.limit_item || 9;
+
+	data.limit = itemsInPage;
+	if (input && input.new_limit)
+		data.limit = input.new_limit;
+	if (input && input.items) {
+		data.items = input.items.slice();//Copy the input array
+	}
+
+	if (input && input.startWindow) {
+		data.endWindow = input.endWindow;
+	}
+	else {
+		data.startWindow = 0;
+		data.endWindow = 0;
+	}
+	
+	while (data.items.length < data.limit + 1) {
+		data.startWindow = data.endWindow;
+		data.endWindow = data.endWindow + itemsInPage;
+		var itemGR = queryItems(catalog, categoryId, data.startWindow, data.endWindow);
+		if (!itemGR.hasNext())
+			break;
+		fetchItemDetails(itemGR, data.items);
+	}
+
+	if (data.items.length > data.limit)
+			data.show_more = true;
+	
+	data.more_msg = gs.getMessage(" Showing {0} items", data.limit);
+    
+	data.categories = [];
+	while(categoryJS && categoryJS.getParent()) {
+		var parentId =  categoryJS.getParent();
+		categoryJS = new sn_sc.CatCategory(parentId);
+		var category = {
+			label: categoryJS.getTitle(),
+			url: '?id='+data.sc_category_page+'&sys_id=' + parentId
+		};
+		data.categories.unshift(category);
+	}
+	
+	data.all_catalog_msg = (($sp.getCatalogs().value + "").split(",")).length > 1 ? gs.getMessage("All Catalogs") : "";
+	
+	function fetchItemDetails(itemRecord, items) {
+		while (itemRecord.next()) {
+				var catalogItemJS = new sn_sc.CatItem(itemRecord.getUniqueValue());
+				if (!catalogItemJS.canView())
+					continue;
+
+				var catItemDetails = catalogItemJS.getItemSummary();
+				var item = {};
+				item.name = catItemDetails.name;
+				item.short_description = catItemDetails.short_description;
+				item.picture = catItemDetails.picture;
+				item.price = catItemDetails.price;
+				item.sys_id = catItemDetails.sys_id;
+				item.hasPrice = catItemDetails.show_price;
+				item.page = 'sc_cat_item';
+				item.type = catItemDetails.type;
+				item.order = catItemDetails.order;
+				item.sys_class_name = catItemDetails.sys_class_name;
+				if (item.type == 'order_guide') {
+					item.page = 'sc_cat_item_guide';
+				} else if (item.type == 'content_item') {
+					item.content_type = catItemDetails.content_type;
+					item.url = catItemDetails.url;
+					if (item.content_type == 'kb') {
+						item.kb_article = catItemDetails.kb_article;
+						item.page = 'kb_article';
+					} else if (item.content_type == 'external') {
+						item.target = '_blank';
+					}
+				}
+				items.push(item);
+			}
+	}
+	
+	function queryItems(catalog, categoryId, startWindow, endWindow) {
+			var scRecord = new sn_sc.CatalogSearch().search(catalog, categoryId, '', false, options.show_items_from_child != 'true');
+			scRecord.addQuery('sys_class_name', 'NOT IN', 'sc_cat_item_wizard');
+			scRecord.addEncodedQuery('hide_sp=false^ORhide_spISEMPTY');
+			scRecord.chooseWindow(startWindow, endWindow);
+			scRecord.orderBy('order');
+			scRecord.orderBy('name');
+			scRecord.query();
+			return scRecord;
+	}
+	
+	function getPopularItems () {
+			var limit = 6;	
+			var items = [];
+			var allowedItems = getAllowedCatalogItems();
+		
+			var createdQuery = '';
+		  if (options.popular_items_created == 3)
+				createdQuery = 'sys_created_onONLast 3 months@javascript:gs.beginningOfLast3Months()@javascript:gs.endOfLast3Months()^';
+			else if (options.popular_items_created == 6)
+				createdQuery = 'sys_created_onONLast 6 months@javascript:gs.beginningOfLast6Months()@javascript:gs.endOfLast6Months()^';
+			else if (options.popular_items_created == 12)
+				createdQuery = 'sys_created_onONLast 12 months@javascript:gs.beginningOfLast12Months()@javascript:gs.endOfLast12Months()^';
+		
+			var count = new GlideAggregate('sc_req_item');
+			count.addAggregate('COUNT','cat_item');
+			count.groupBy('cat_item.sys_id');
+			count.addQuery('cat_item.sys_class_name', 'NOT IN', 'sc_cat_item_guide,sc_cat_item_wizard,sc_cat_item_content');
+			count.addQuery('cat_item', "IN", allowedItems);
+			count.addQuery('cat_item.visible_standalone','true');
+			count.addEncodedQuery(createdQuery + 'cat_item.hide_sp=false^ORcat_item.hide_spISEMPTY');
+			count.orderByAggregate('COUNT', 'cat_item');
+			count.query();
+			while (count.next() && items.length < limit) {
+				var catalogItemJS = new sn_sc.CatItem(count.getValue("cat_item.sys_id"));
+					if (!catalogItemJS.canView() || !catalogItemJS.isVisibleServicePortal())
+						continue;
+				var item = {};
+				var catItemDetails = catalogItemJS.getItemSummary();
+				
+				item.order = 0 - count.getAggregate('COUNT', 'cat_item');
+				item.name = catItemDetails.name;
+				item.short_description = catItemDetails.short_description;
+				item.picture = catItemDetails.picture;
+				item.price = catItemDetails.price;
+				item.sys_id = catItemDetails.sys_id;
+				item.hasPrice = item.price != 0;
+				item.page = 'sc_cat_item';
+				items.push(item);
+			}
+			var producers = 0;
+			count = new GlideAggregate('sc_item_produced_record');
+			count.addQuery('producer', "IN", allowedItems);
+			count.addEncodedQuery(createdQuery + 'producer.hide_sp=false^ORproducer.hide_spISEMPTY');
+			count.addAggregate('COUNT', 'producer');
+			count.addQuery('producer.visible_standalone','true');
+			count.groupBy('producer.sys_id');
+			count.orderByAggregate('COUNT', 'producer');
+			count.query();
+			while (count.next() && producers < limit) {
+					var catalogItemJS = new sn_sc.CatItem(count.getValue('producer.sys_id'));
+					if (!catalogItemJS.canView() || !catalogItemJS.isVisibleServicePortal())
+						continue;
+					var catItemDetails = catalogItemJS.getItemSummary();
+					var item = {};
+					item.order = 0 - count.getAggregate('COUNT', 'producer');
+					item.name = catItemDetails.name;
+					item.short_description = catItemDetails.short_description;
+					item.picture = catItemDetails.picture;
+					item.price = catItemDetails.price;
+				  item.hasPrice = item.price != 0;
+					item.sys_id = catItemDetails.sys_id;
+					item.page = 'sc_cat_item';
+					items.push(item);
+					producers++;
+			}
+			return items;
+	}
+	
+	function getAllowedCatalogItems () {
+		var allowedItems = [];
+		catalogIDArr.forEach(function(catalogID) {
+			var catalogObj = new sn_sc.Catalog(catalogID);
+			var catItemIds = catalogObj.getCatalogItemIds();
+			for(var i=0; i<catItemIds.length; i++) {
+				if (!allowedItems.includes(catItemIds[i] + ''))
+					 allowedItems.push(catItemIds[i] + '');
+			}
+		});
+		return allowedItems;
+	}
+	
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-15 16:04:49</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>7f502b9bdbaeb3404a1192a6db9619ba</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>BQM Categories</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_7f502b9bdbaeb3404a1192a6db9619ba</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-15 16:04:49</sys_updated_on>
+        <template><![CDATA[<div class="m-t-sm " ng-class="{'hidden-xs' : hideItemWidget, 'm-l-sm': !isMobile}">
+  <h4 ng-if="data.error">{{data.error}}</h4>
+  <div ng-init="spSearch.targetCatalog()">
+    <div class="row">
+      <div class="col-xs-9">
+        	<a ng-click="showCategories()" class="visible-xs m-b-sm pointer" aria-label="${All Categories}">
+            <i class="fa fa-chevron-left m-r-xs"></i> ${All Categories}
+        	</a>
+          <h1 class="h4 m-t-none break-word" aria-label="{{data.category}} ${Category}">{{::data.category.title}}</h1>
+        	<p class="hidden-xs break-word">
+            {{::data.category.description}}
+          </p>
+      </div>
+      <div class="col-xs-3" ng-if="!isMobile">
+        <div class="pull-right padder-t-sm text-lg toggle" ng-show="!data.error && data.items.length > 0">
+          <i class="fa fa-th" ng-click="changeView('card')" aria-label="${Card View}" ng-class="{'active' : view == 'card'}" uib-tooltip="${Card View}" tooltip-placement="top" tooltip-enable="!isTouchDevice()" tooltip-append-to-body="true" aria-label="${Card View}" tabindex="0"></i>
+          <span class="m-l-sm m-r-sm "> | </span>
+          <i class="fa fa-list-ul" ng-click="changeView('grid')" aria-label="${Grid View}" ng-class="{'active' : view == 'grid'}" uib-tooltip="${Grid View}" tooltip-placement="top" tooltip-enable="!isTouchDevice()" tooltip-append-to-body="true" aria-label="${Grid View}" tabindex="0"></i>
+        </div>
+       </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-md-4" ng-if="!data.items.length && !data.error">
+        ${No items in category}
+      </div>
+      <table class="table table-striped item-table" ng-if="view == 'grid' && data.items.length > 0">
+        <thead>
+          <tr>
+            <th>${Item}</th>
+            <th>${Description}</th>
+            <th ng-if="data.showPrices">${Price}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in data.items | orderBy: 'order' | limitTo: data.limit track by item.sys_id" ng-click="onClick($event, item)" ng-init="startItemList()">
+            <td>
+              <img ng-src="{{::item.picture}}?t=small" ng-if="item.picture" alt="{{::item.name}}" class="m-r-sm m-b-sm item-image pull-left"/>
+              <div class="break-word">
+                <a target="{{::item.target}}" ng-href="{{::getItemHREF(item)}}" sn-focus="{{::item.highlight}}"> {{::item.name}}<span ng-if="item.content_type == 'external'" aria-label="${External Link}"> ➚</span> </a>
+              </div>
+            </td>
+            <td class="break-word">{{::item.short_description}}</td>
+            <td>{{::item.price}}</td>
+          </tr>
+        </tbody>
+      </table> 
+      <div ng-if="view == 'card'">
+      	<div class="col-sm-6 col-md-4" ng-repeat="item in data.items | orderBy: 'order' | limitTo: data.limit track by item.sys_id" ng-init="startItemList()">
+        <div class="panel panel-{{::options.color}} b">
+          <a target="{{::item.target}}" ng-href="{{::getItemHREF(item)}}" ng-click="onClick($event, item)" class="panel-body block" sn-focus="{{::item.highlight}}">
+            <div class="overflow-100">
+              <h2 class="h4 m-t-none m-b-xs text-overflow-ellipsis" title="{{::item.name}}" style="padding-bottom:1px">{{::item.name}}<span ng-if="item.content_type == 'external'" aria-label="${External Link}"> ➚</span></h2>
+              <img ng-src="{{::item.picture}}?t=small" ng-if="item.picture" alt="{{::item.name}}" class="m-r-sm m-b-sm item-image pull-left" />
+              <div class="text-muted item-short-desc break-word">{{::item.short_description}}</div>
+            </div>
+          </a>
+          <div aria-hidden="true" class="panel-footer">
+            <a aria-hidden="true" ng-if="item.sys_class_name != 'sc_cat_item_content' || item.content_type == 'kb' || item.content_type == 'literal'" ng-click="onClick($event, item)" ng-href="{{getItemHREF(item)}}" class="pull-left text-muted" tabindex="-1">${View Details}</a>
+            <a aria-hidden="true" ng-if="item.sys_class_name == 'sc_cat_item_content' && item.content_type == 'external'" ng-click="onClick($event, item)" ng-href="{{getItemHREF(item)}}" target="_blank" class="pull-left text-muted" tabindex="-1">${View Details}</a>
+            <span ng-if="data.showPrices && item.hasPrice" class="pull-right item-price font-bold">{{::item.price}}</span> &nbsp;
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="text-a-c" ng-if="!stopLoader && data.items.length > 0 && !data.error">
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+			<span class="sr-only">${Loading...}</span>
+    </div>
+    <div ng-if="data.show_more && !show_popular_item">
+      	<div class="text-a-c">
+          {{data.more_msg}}
+      	</div>
+        <button class="m-t-xs btn btn-default btn-loadmore" ng-click="loadMore()">
+          ${Show More}
+        </button>
+      </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

@@ -26,7 +26,7 @@
         <mobile_picture/>
         <mobile_picture_type>use_desktop_picture</mobile_picture_type>
         <model/>
-        <name>Requisition</name>
+        <name>BQM CS Requisition Order Guide</name>
         <no_attachment_v2>false</no_attachment_v2>
         <no_cart>false</no_cart>
         <no_cart_v2>true</no_cart_v2>
@@ -47,7 +47,7 @@
         <price>0</price>
         <recurring_frequency/>
         <recurring_price>0</recurring_price>
-        <request_method/>
+        <request_method>submit</request_method>
         <roles/>
         <sc_catalogs/>
         <sc_ic_item_staging/>
@@ -61,15 +61,15 @@
         <sys_created_on>2019-07-12 18:00:46</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>e0fd502adbe2b34018159c29db9619d6</sys_id>
-        <sys_mod_count>1</sys_mod_count>
-        <sys_name>Requisition</sys_name>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>BQM CS Requisition Order Guide</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sc_cat_item_guide_e0fd502adbe2b34018159c29db9619d6</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-12 18:00:46</sys_updated_on>
+        <sys_updated_on>2019-07-15 15:56:31</sys_updated_on>
         <template/>
         <two_step>false</two_step>
         <type>item</type>

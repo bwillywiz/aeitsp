@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="item_option_new_set">
+    <item_option_new_set action="INSERT_OR_UPDATE">
+        <create_roles/>
+        <description/>
+        <display_title>false</display_title>
+        <internal_name>u_bqm_cs_ordering_info</internal_name>
+        <layout>normal</layout>
+        <name>BQM CS Ordering Info</name>
+        <order>100</order>
+        <read_roles/>
+        <sys_class_name>item_option_new_set</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-15 16:34:13</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>be07a753dbeeb3404a1192a6db9619ed</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>BQM CS Ordering Info</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>item_option_new_set_be07a753dbeeb3404a1192a6db9619ed</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-15 16:34:13</sys_updated_on>
+        <title>BQM CS Ordering Info</title>
+        <type>one_to_many</type>
+        <write_roles/>
+    </item_option_new_set>
+</record_update>

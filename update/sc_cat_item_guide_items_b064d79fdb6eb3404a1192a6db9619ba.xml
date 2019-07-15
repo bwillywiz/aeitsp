@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_guide_items">
+    <sc_cat_item_guide_items action="INSERT_OR_UPDATE">
+        <condition/>
+        <guide display_value="BQM CS Requisition Order Guide">e0fd502adbe2b34018159c29db9619d6</guide>
+        <ignore_mandatory_eval>false</ignore_mandatory_eval>
+        <item display_value="BQM CS Ordering Information">07f2535fdb6eb3404a1192a6db96196f</item>
+        <order/>
+        <quantity>1</quantity>
+        <requested_by/>
+        <requested_for/>
+        <show_quantity>false</show_quantity>
+        <sys_class_name>sc_cat_item_guide_items</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-15 15:12:46</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>b064d79fdb6eb3404a1192a6db9619ba</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>07f2535fdb6eb3404a1192a6db96196f</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sc_cat_item_guide_items_b064d79fdb6eb3404a1192a6db9619ba</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-15 15:12:46</sys_updated_on>
+        <use_sc_layout>true</use_sc_layout>
+    </sc_cat_item_guide_items>
+</record_update>

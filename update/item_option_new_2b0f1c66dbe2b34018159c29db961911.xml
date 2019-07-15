@@ -2,7 +2,7 @@
     <item_option_new action="INSERT_OR_UPDATE">
         <active>true</active>
         <attributes/>
-        <cat_item display_value="Requisition">e0fd502adbe2b34018159c29db9619d6</cat_item>
+        <cat_item display_value="BQM CS Requisition Order Guide">e0fd502adbe2b34018159c29db9619d6</cat_item>
         <category/>
         <choice_direction>down</choice_direction>
         <choice_field/>

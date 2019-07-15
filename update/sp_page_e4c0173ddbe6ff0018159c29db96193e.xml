@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
     <sp_page action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <css/>
+        <css>main.page, main.body {&#13;
+  height: 99vh;&#13;
+  min-height: 100%;&#13;
+  padding-top: 0px !important;&#13;
+}&#13;
+&#13;
+section.page {&#13;
+  background-image: url('sp-landing-back.jpg');&#13;
+  background-position: center center;&#13;
+  background-size: cover;&#13;
+  background-repeat: no-repeat;&#13;
+  background-color: #3A3F50;&#13;
+}&#13;
+section.page main.body:before {&#13;
+  display: block;&#13;
+  background-color: #3A3F50;&#13;
+  opacity: 0.75;&#13;
+}&#13;
+section.page, main.body {&#13;
+    padding-top: 0px !important;&#13;
+}</css>
         <draft>false</draft>
         <dynamic_title_structure/>
-        <id>ae_it_edge_device_portal_page</id>
+        <id>ae_it_uepm_portal_page</id>
         <internal>false</internal>
         <public>false</public>
         <roles/>
@@ -14,16 +34,16 @@
         <sys_created_on>2019-07-10 23:05:44</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>e4c0173ddbe6ff0018159c29db96193e</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>ae_it_edge_device_portal_page</sys_name>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>ae_it_uepm_portal_page</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_page_e4c0173ddbe6ff0018159c29db96193e</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-10 23:05:44</sys_updated_on>
-        <title>AE IT Edge Device Portal Page</title>
+        <sys_updated_on>2019-07-15 17:38:16</sys_updated_on>
+        <title>AE IT UEPM Portal Page</title>
     </sp_page>
     <sys_translated_text action="delete_multiple" query="documentkey=e4c0173ddbe6ff0018159c29db96193e"/>
 </record_update>
