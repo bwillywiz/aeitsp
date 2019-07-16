@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+	
+	var c = this;
+	
+	c.addItem = function() {
+		c.server.update().then(function(response){
+			c.data = {};
+		})
+	}
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>ae_it_add_task</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>AE IT Add Task</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  
+	if (!input)
+		return;
+	
+	var gr = new GlideRecord('x_aue_ae_it_servic_u_task_test');
+	gr.initialize();
+	gr.u_name = input.name;
+	gr.u_short_description = input.short_description;
+	gr.insert();
+})();
+
+/* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-15 21:30:36</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>b7ea6c2bdbe2f3404a1192a6db9619ef</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>AE IT Add Task</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_b7ea6c2bdbe2f3404a1192a6db9619ef</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-15 23:21:46</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default">
+  <div class="panel-heading">
+    Add A Task  
+  <div class="panel-body">
+    <div class="form-group">
+      <label>Title</label>
+      <input class="form-control" ng-model="c.data.name">                                     
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input class="form-control" ng-model="c.data.short_description">
+    </div>
+    <div class="form-group">
+      <input class="btn btn-primary btn-block" ng-click="c.addItem()" type="submit" value="Add">
+    </div>
+   </div>
+    </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

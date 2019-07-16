@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
+    <sp_rel_widget_clone action="INSERT_OR_UPDATE">
+        <child display_value="AE IT  Catalog Content">0881e523dbeeb74018159c29db96191a</child>
+        <cloned>2019-07-16 01:29:00</cloned>
+        <last_validated>2019-07-16 01:29:00</last_validated>
+        <parent display_value="Catalog Content">f2384e2047101200ba13a5554ee490ce</parent>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;sp_widget&gt;&lt;category&gt;sc&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function($scope, $location) {
+	var c = this;
+	/*=============== Begin link handling ===============*/
+	$scope.onClick = function($event, item) {
+		var lp = getLinkParts(item);
+		if (typeof lp == "string")
+			return; // can't intercept/redirect external content item
+		
+		$event.stopPropagation();
+		$event.preventDefault();
+		var evt = {item: item, search: lp};
+
+		// This will let a wrapper widget intercept and redirect somewhere else
+		$scope.$emit($scope.options.click_event_name, evt);
+	};
+
+	function getLinkParts(item) {
+		if (item.sys_class_name == 'sc_cat_item_content' &amp;&amp; item.content_type == 'external')
+			return item.url;
+
+		return {id: item.page, sys_id: item.sys_id};
+	}
+
+	$scope.getItemHREF = function(item) {
+		var lp = getLinkParts(item);
+		if (typeof lp == "string")
+			return lp;
+
+		return "?id=" + lp.id + "&amp;sys_id=" + lp.sys_id;
+	}
+
+	var unregister = $rootScope.$on($scope.options.click_event_name, function($event, o) {
+		if ("url" in o)
+			$location.href = o.url;
+		else
+			$location.search(o.search);
+	});
+
+	$scope.$on("$destroy", function() {
+		unregister();
+	});
+	/*=============== End link handling ===============*/
+	
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css/&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs display_value="Catalog Content"&gt;04bdcb60d731120023c84f80de6103b3&lt;/docs&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;sc-cat-content&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link/&gt;&lt;name&gt;Catalog Content&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {
+	var cat = $sp.getParameter('sc_catalog');
+	if (!cat)
+		cat = $sp.getValue("sc_catalog");  // portal catalog
+	var gr = new GlideRecord('sc_catalog');
+	gr.get(cat);
+	data.cat = cat;
+	data.title = gr.getDisplayValue("title");
+	data.categories = getCategories(cat);
+	data.items = getItems(cat);
+	data.sc_category_page = $sp.getDisplayValue("sc_category_page") || "sc_category";
+	addItemsToCategories(data.categories, data.items);
+
+	function getItems(cat) {
+		var gr = new GlideRecord('sc_cat_item');
+		gr.addQuery('sc_catalogs', cat);
+		gr.addQuery('sys_class_name', 'NOT IN', 'sc_cat_item_wizard');
+		gr.addEncodedQuery('hide_sp=false^ORhide_spISEMPTY');
+		gr.addActiveQuery();
+		gr.orderBy('order');
+		gr.orderBy('name');
+		gr.query();
+		var items = [];
+		while (gr.next()) {
+			var catalogItemJS = new sn_sc.CatItem(gr.getUniqueValue() + '');
+			
+			if (!catalogItemJS.canView())
+						continue;
+			
+			var catItemDetails = catalogItemJS.getItemSummary();
+
+			var item = {};
+			item.name = catItemDetails.name;
+			item.short_description = catItemDetails.short_description;
+			item.picture = catItemDetails.picture;
+			item.price = catItemDetails.price;
+			item.sys_id = catItemDetails.sys_id;
+			item.hasPrice = catItemDetails.show_price;
+			item.type = catItemDetails.type;
+			item.order = catItemDetails.order;
+			item.category = catItemDetails.category.sys_id;
+			item.sys_class_name = catItemDetails.sys_class_name;
+			
+			item.page = 'sc_cat_item';
+			
+			if (item.type == 'order_guide') {
+				item.page = 'sc_cat_item_guide';
+			} else if (item.type == 'content_item') {
+				item.content_type = catItemDetails.content_type;
+				item.url = catItemDetails.url;
+				if (item.content_type == 'kb') {
+					item.kb_article = catItemDetails.kb_article;
+					item.page = 'kb_article';
+					item.sys_id = item.kb_article;
+				} else if (item.content_type == 'external') {
+					item.target = '_blank';
+				}
+			}
+			items[catItemDetails.sys_id] = item;
+		}
+		return items;
+	}
+
+	function getCategories(cat) {
+		var gr = new GlideRecord('sc_category');
+		gr.addQuery('sc_catalog', cat);
+		gr.addActiveQuery();
+		gr.addQuery("sys_class_name", "sc_category");
+		gr.orderBy('title');
+		gr.query();
+		var cats = [];
+		while (gr.next()) {
+			var categoryJS = new sn_sc.CatCategory(gr.getUniqueValue() + '');
+			if (!categoryJS.canView())
+				continue;
+
+			var c = {};
+			$sp.getRecordValues(c,gr,'sys_id,title,parent');
+			cats.push(c);
+		}
+		return cats;
+	}
+
+	function addItemsToCategories(cats, itemDetails) {
+		cats.forEach(function(cat) {
+			cat.items = [];
+			var itemIDs = [];
+			itemIDs = new sn_sc.CatCategory(cat.sys_id + '').getItemIds();
+			itemIDs.forEach(function(itemID) {
+				if (itemDetails[itemID])
+					cat.items.push(itemDetails[itemID]);
+			});
+		});
+	}
+})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;true&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2015-12-09 23:08:46&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;f2384e2047101200ba13a5554ee490ce&lt;/sys_id&gt;&lt;sys_mod_count&gt;93&lt;/sys_mod_count&gt;&lt;sys_name&gt;Catalog Content&lt;/sys_name&gt;&lt;sys_package display_value="Service Portal - Service Catalog" source="com.glide.service-portal.service-catalog"&gt;a8a342f7db4513006df59c29db96198f&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_f2384e2047101200ba13a5554ee490ce&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2018-12-12 15:50:02&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div ng-repeat="c in ::data.categories" ng-if="::c.items.length"&gt;
+  &lt;div class="h4"&gt;&lt;a ng-href="?id={{::data.sc_category_page}}&amp;sys_id={{::c.sys_id}}"&gt;{{::c.title}}&lt;/a&gt;&lt;/div&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-sm-6 col-md-4" ng-repeat="item in ::c.items"&gt;
+      &lt;div class="panel panel-{{::options.color}} b"&gt;
+        &lt;a target="{{::item.target}}" ng-href="{{::getItemHREF(item)}}" ng-click="onClick($event, item)" class="panel-body block"&gt;
+          &lt;div class="overflow-100"&gt;
+            &lt;h4 class="m-t-none m-b-xs"&gt;{{::item.name}}&lt;span ng-if="item.content_type == 'external'" aria-label="${External Link}"&gt; ➚&lt;/span&gt;&lt;/h4&gt;
+            &lt;img ng-src="{{::item.picture}}" ng-if="::item.picture" alt="{{::item.name}}" class="m-r-sm m-b-sm item-image pull-left" /&gt;
+            &lt;div class="text-muted item-short-desc"&gt;{{::item.short_description}}&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;</payload>
+        <sys_class_name>sp_rel_widget_clone</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-16 01:29:00</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>8881e523dbeeb74018159c29db96191d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>0881e523dbeeb74018159c29db96191a</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_rel_widget_clone_8881e523dbeeb74018159c29db96191d</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-16 01:29:00</sys_updated_on>
+    </sp_rel_widget_clone>
+</record_update>

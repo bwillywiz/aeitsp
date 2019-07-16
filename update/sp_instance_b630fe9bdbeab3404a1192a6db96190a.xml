@@ -17,7 +17,7 @@
         <sys_created_on>2019-07-15 12:34:30</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>b630fe9bdbeab3404a1192a6db96190a</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name/>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
@@ -25,10 +25,15 @@
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_instance_b630fe9bdbeab3404a1192a6db96190a</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-15 12:34:30</sys_updated_on>
+        <sys_updated_on>2019-07-16 01:56:24</sys_updated_on>
         <title/>
         <url/>
-        <widget_parameters/>
+        <widget_parameters><![CDATA[{
+	"html": {
+		"value": "<p><br data-mce-bogus=\"1\"></p>",
+		"displayValue": ""
+	}
+}]]></widget_parameters>
     </sp_instance>
     <sys_translated_text action="delete_multiple" query="documentkey=b630fe9bdbeab3404a1192a6db96190a"/>
 </record_update>

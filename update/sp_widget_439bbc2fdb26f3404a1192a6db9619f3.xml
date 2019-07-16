@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+	
+	var c = this;
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>ae_it_task_list</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>AE IT Task List</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  
+	data.tasks = [];
+	
+	var gr = new GlideRecord('x_aue_ae_it_servic_u_task_test');
+	gr.query();
+	while(gr.next()){
+		
+		var task = {};
+		task.name = gr.getDisplayValue('u_name');
+		task.short_description = gr.getDisplayValue('u_short_description');
+		task.complete = gr.getDisplayValue('u_complete');
+		task.sys_id = gr.getUniqueValue();
+		data.tasks.push(task);
+		
+	}
+})();
+
+/* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-15 22:43:27</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>439bbc2fdb26f3404a1192a6db9619f3</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>AE IT Task List</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_439bbc2fdb26f3404a1192a6db9619f3</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-15 23:19:43</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default">
+  <div class="panel-heading">
+    Active Tasks Listing
+  </div>
+    <div class="list-group">
+      <a class="list-group-item" ng-repeat="task in c.data.tasks">
+        <input class="pull-left" type="radio">
+        <div class="m-l-lg">
+          <i aria-hidden="true" class="fa fa-chevron-right"></i>
+          <b class="text-primary">{{task.name}}</b><br>
+          {{task.short_description}}
+        </div>
+      </a>
+  </div>
+  <div ng-if="c.data.tasks.length == 0" class="b-t wrapper text-center">
+    No Tasks
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

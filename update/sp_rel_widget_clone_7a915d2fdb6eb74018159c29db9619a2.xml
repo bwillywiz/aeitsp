@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
+    <sp_rel_widget_clone action="INSERT_OR_UPDATE">
+        <child display_value="AE IT CTSM ITSM breadcrumbs">7691d52fdb6eb74018159c29db9619a5</child>
+        <cloned>2019-07-12 16:48:08</cloned>
+        <last_validated>2019-07-12 16:48:08</last_validated>
+        <parent display_value="breadcrumbs">0fb269305b3212000d7ec7ad31f91ae2</parent>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;sp_widget&gt;&lt;category&gt;standard&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function($scope, $rootScope, spUtil) {
+	var c = this;
+	c.expanded = !spUtil.isMobile();
+	c.expand = function() {
+		c.expanded = true;
+	};
+
+	var deregister = $rootScope.$on("sp.update.breadcrumbs", function(e, list) {
+		c.breadcrumbs = list;
+	});
+
+	$scope.$on('$destroy', function(){
+		deregister();
+	});
+
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;.nav {
+  li {
+    padding: 10px 7px;
+
+    &amp;gt; span {
+      &amp;gt; a {
+          display: inline;
+      }
+
+      &amp;gt; i {
+          padding-left: 15px;
+      }
+    }
+  }
+}
+
+.a-disabled {
+  cursor: default;
+  color: $sp-disabled-breadcrumb;
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;breadcrumbs&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link/&gt;&lt;name&gt;breadcrumbs&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script/&gt;&lt;servicenow&gt;true&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2016-04-12 21:39:53&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;0fb269305b3212000d7ec7ad31f91ae2&lt;/sys_id&gt;&lt;sys_mod_count&gt;38&lt;/sys_mod_count&gt;&lt;sys_name&gt;breadcrumbs&lt;/sys_name&gt;&lt;sys_package display_value="Service Portal - Core" source="com.glide.service-portal"&gt;7943ae2adbceba40381c71bdbf9619f5&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_0fb269305b3212000d7ec7ad31f91ae2&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2018-10-01 23:06:37&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;ul class="nav nav-pills nav-sm" aria-label="${Page breadcrumbs}" role="navigation"&gt;
+  &lt;li role="presentation"&gt;
+    &lt;span&gt;&lt;a ng-href="?id={{portal.homepage_dv}}"&gt;${Home}&lt;/a&gt;
+      &lt;i aria-hidden="true" class="fa fa-chevron-right"&gt;&lt;/i&gt;&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li ng-if="!c.expanded &amp;amp;&amp;amp; c.breadcrumbs &amp;amp;&amp;amp; c.breadcrumbs.length &gt; 2" role="presentation"&gt;
+    &lt;span&gt;&lt;a ng-click="c.expand()"&gt;&lt;i class="fa fa-ellipsis-h" aria-hidden="true"&gt;&lt;/i&gt;&lt;/a&gt;
+      &lt;i aria-hidden="true" class="fa fa-chevron-right"&gt;&lt;/i&gt;&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li ng-if="!c.breadcrumbs" role="presentation"&gt;&lt;span&gt;&lt;a style="display: inline;" href&gt;{{page.title}}&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li ng-if="c.expanded || ((c.breadcrumbs.length &gt; 2  &amp;amp;&amp;amp; $index &gt; c.breadcrumbs.length-3) || (c.breadcrumbs.length &lt;= 2))" ng-repeat="item in c.breadcrumbs track by $index" role="presentation"&gt;
+    &lt;span&gt;&lt;a ng-if="!$last" ng-href="{{item.url}}"&gt;{{item.label}}&lt;/a&gt;
+      &lt;a class="a-disabled" ng-if="$last"&gt;{{item.label}}&lt;/a&gt;
+      &lt;i aria-hidden="true" ng-if="!$last" class="fa fa-chevron-right"&gt;&lt;/i&gt;&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;</payload>
+        <sys_class_name>sp_rel_widget_clone</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-16 00:19:34</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>7a915d2fdb6eb74018159c29db9619a2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>7691d52fdb6eb74018159c29db9619a5</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_rel_widget_clone_7a915d2fdb6eb74018159c29db9619a2</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-16 00:19:34</sys_updated_on>
+    </sp_rel_widget_clone>
+</record_update>

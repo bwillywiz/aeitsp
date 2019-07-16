@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="U Task Test" max_length="40" name="x_aue_ae_it_servic_u_task_test" type="collection">
+        <element label="Complete" max_length="10" name="u_complete" type="boolean"/>
+        <element label="Name" max_length="100" name="u_name" type="string"/>
+        <element label="Short description" max_length="200" name="u_short_description" type="string"/>
+    </element>
+</database>

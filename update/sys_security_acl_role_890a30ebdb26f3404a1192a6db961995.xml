@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-15 22:36:29</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>890a30ebdb26f3404a1192a6db961995</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_aue_ae_it_servic_u_task_test.x_aue_ae_it_servic.u_task_test_user</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_security_acl display_value="x_aue_ae_it_servic_u_task_test">c50a30ebdb26f3404a1192a6db961992</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_890a30ebdb26f3404a1192a6db961995</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-15 22:36:29</sys_updated_on>
+        <sys_user_role display_value="x_aue_ae_it_servic.u_task_test_user" name="x_aue_ae_it_servic.u_task_test_user">5f55b427db26f3404a1192a6db9619bf</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>

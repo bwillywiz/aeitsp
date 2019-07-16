@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color/>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>3</order>
+        <roles/>
+        <short_description/>
+        <size/>
+        <sp_column display_value="1">57ae112fdbaeb74018159c29db9619ee</sp_column>
+        <sp_widget display_value="Typeahead Search">fa20ec02cb31020000f8d856634c9ce9</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-16 01:00:10</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>65ead5e7dbaeb74018159c29db9619fc</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>Type your question here...</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_instance_65ead5e7dbaeb74018159c29db9619fc</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-16 01:37:21</sys_updated_on>
+        <title>Type your question here...</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"title": {
+		"value": "Type your question here...",
+		"displayValue": "Type your question here..."
+	},
+	"color": {
+		"value": "",
+		"displayValue": ""
+	},
+	"glyph": {
+		"value": "",
+		"displayValue": ""
+	},
+	"size": {
+		"value": "",
+		"displayValue": ""
+	},
+	"limit": {
+		"value": null,
+		"displayValue": ""
+	},
+	"contextual_search_sources": {
+		"value": "",
+		"displayValue": ""
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=65ead5e7dbaeb74018159c29db9619fc"/>
+</record_update>

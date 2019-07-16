@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
     <sp_page action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <css/>
+        <css>main.page, main.body {
+  height: 99vh;
+  min-height: 100%;
+  padding-top: 0px !important;
+}
+
+section.page {
+  background-image: url('sp-landing-back.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #3A3F50;
+}
+section.page main.body:before {
+  display: block;
+  background-color: #3A3F50;
+  opacity: 0.75;
+}
+section.page, main.body {
+    padding-top: 0px !important;
+}
+</css>
         <draft>false</draft>
         <dynamic_title_structure/>
         <id>aeit_accounts_access</id>
@@ -14,7 +35,7 @@
         <sys_created_on>2019-07-09 19:23:45</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>8f54516ddbaa7f0018159c29db9619f9</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>aeit_accounts_access</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
@@ -22,7 +43,7 @@
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_page_8f54516ddbaa7f0018159c29db9619f9</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-09 19:28:28</sys_updated_on>
+        <sys_updated_on>2019-07-16 01:22:04</sys_updated_on>
         <title>AE IT Accounts and Access</title>
     </sp_page>
     <sys_translated_text action="delete_multiple" query="documentkey=8f54516ddbaa7f0018159c29db9619f9"/>
