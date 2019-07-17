@@ -167,8 +167,8 @@ a.color_box .fa {
         <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
         <name>BQM CS Icon Link</name>
         <option_schema>[{"name":"link_template","section":"Presentation","label":"Template","type":"choice","choices":[{"label":"Top Icon","value":"Top Icon"},{"label":"Circle Icon","value":"Circle Icon"},{"label":"Color Box","value":"Color Box"}]}]</option_schema>
-        <public>true</public>
-        <roles/>
+        <public>false</public>
+        <roles>x_aue_ae_it_servic.bqm_user_portal_acces</roles>
         <script><![CDATA[(function(){
 	var gr = $sp.getInstanceRecord();
 	data.href = $sp.getMenuHREF(gr);
@@ -180,7 +180,7 @@ a.color_box .fa {
         <sys_created_on>2019-07-15 17:25:41</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>94e2bf9fdbeeb3404a1192a6db961900</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>BQM CS Icon Link</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
@@ -188,7 +188,7 @@ a.color_box .fa {
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_widget_94e2bf9fdbeeb3404a1192a6db961900</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-15 17:26:33</sys_updated_on>
+        <sys_updated_on>2019-07-16 15:42:50</sys_updated_on>
         <template><![CDATA[<div class="iconlink" ng-class="{'high-contrast': accessibilityModeEnabled}">
   <!--// Top Icon -->
   <a ng-if="::(options.link_template == 'Top Icon' || !options.link_template)" ng-href="{{::data.href}}" class="top_icon {{::options.class_name}}" target="{{::data.target}}">
