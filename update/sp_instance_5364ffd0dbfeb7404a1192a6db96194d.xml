@@ -2,7 +2,7 @@
     <sp_instance action="INSERT_OR_UPDATE">
         <active>true</active>
         <class_name/>
-        <color>default</color>
+        <color>primary</color>
         <css/>
         <glyph/>
         <id/>
@@ -10,30 +10,34 @@
         <roles/>
         <short_description/>
         <size>md</size>
-        <sp_column display_value="1">9bc4d02edba2b34018159c29db9619ad</sp_column>
-        <sp_widget display_value="HTML">8679ef89cb21120000f8d856634c9c4f</sp_widget>
+        <sp_column display_value="1">25b4ff14dbfeb7404a1192a6db96198d</sp_column>
+        <sp_widget display_value="link-button">abc50de6d702120023c84f80de61036a</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>williamsbr.local</sys_created_by>
-        <sys_created_on>2019-07-12 17:20:02</sys_created_on>
+        <sys_created_on>2019-07-18 20:06:22</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>80d458aadba2b34018159c29db961965</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_id>5364ffd0dbfeb7404a1192a6db96194d</sys_id>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name/>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
-        <sys_update_name>sp_instance_80d458aadba2b34018159c29db961965</sys_update_name>
+        <sys_update_name>sp_instance_5364ffd0dbfeb7404a1192a6db96194d</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-18 20:00:19</sys_updated_on>
+        <sys_updated_on>2019-07-18 20:16:14</sys_updated_on>
         <title/>
         <url/>
         <widget_parameters><![CDATA[{
-	"html": {
-		"value": "<h1 class=\"text-white text-4x\" style=\"text-align: center;\" data-mce-style=\"text-align: center;\">${Contractor Staffing Services}</h1>",
-		"displayValue": "<h1 class=\"text-white text-4x\" style=\"text-align: center;\">${Contractor Staffing Services}</h1>"
+	"href": {
+		"value": "?id=bqm_csr_form_landing",
+		"displayValue": "?id=bqm_csr_form_landing"
+	},
+	"button_text": {
+		"value": "Submit a DIR Contractor Staffing Request Form",
+		"displayValue": "Submit a DIR Contractor Staffing Request Form"
 	}
 }]]></widget_parameters>
     </sp_instance>
-    <sys_translated_text action="delete_multiple" query="documentkey=80d458aadba2b34018159c29db961965"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=5364ffd0dbfeb7404a1192a6db96194d"/>
 </record_update>
