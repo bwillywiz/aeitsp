@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cs_topic">
+    <sys_cs_topic action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <applicability/>
+        <cb_topic_id display_value="">c3d0f3efdbad08d018159c29db9619ce</cb_topic_id>
+        <definition>{"id":"c3d0f3efdbad08d018159c29db9619ce","name":"Enroll Reset Password","vendor_id":"c2f0b8f187033200246ddd4c97cb0bb9","description":"Enroll Reset Password","category":"","key_phrases":["Reset Password","password","Password","reset","locked out"],"variables":[{"name":"__segment_trigger_63edd23fb1aa46c8941cf5cfd4fabcb7_done","type":"java.lang.Object","init_value":"false"},{"name":"previous_graph_node","type":"java.lang.Object"}],"fields":[{"type":"Boolean","name":"RootDecisionBranch_0bd07f6bb5ad08d0bacd89ff6c86b72d","unique":false,"default_value":"true","key_phrases":[],"static_enum_list":[]},{"type":"String","name":"__silent_TerminateGoal_cd25e656a4f14b4c88cd6117aa30b21f","unique":false,"key_phrases":[],"static_enum_list":[]},{"type":"String","name":"__silent_Decision_RootDecision_87d07f6b6bad08d06cab7a4b41961e2d","unique":false,"key_phrases":[],"static_enum_list":[]},{"type":"String","name":"__silent_StartGoal_fd60773fd1c8432fb8953cbf697ce3ba","unique":false,"key_phrases":[],"static_enum_list":[]},{"type":"String","name":"__silent_Branch_RootDecisionBranch_c7d07f6b72ad08d0b4024cab4101642d","unique":false,"key_phrases":[],"static_enum_list":[]},{"type":"Reference","table_name":"sys_user","name":"user","unique":false,"key_phrases":[],"static_enum_list":[]}],"actions":[],"tasks":[{"type":"Consumer to system","show_as_button":true,"name":"primary","description":"primary","applicability":"vaVars.__segment_trigger_63edd23fb1aa46c8941cf5cfd4fabcb7_done==false","mode":"Qmode","key_phrases":[],"greeting_msg":"vaInputs.initialize(\"user\");vaInputs.initialize(\"RootDecisionBranch_0bd07f6bb5ad08d0bacd89ff6c86b72d\");vaInputs.initialize(\"__silent_StartGoal_fd60773fd1c8432fb8953cbf697ce3ba\");vaInputs.initialize(\"__silent_Decision_RootDecision_87d07f6b6bad08d06cab7a4b41961e2d\");vaInputs.initialize(\"__silent_Branch_RootDecisionBranch_c7d07f6b72ad08d0b4024cab4101642d\");vaInputs.initialize(\"__silent_TerminateGoal_cd25e656a4f14b4c88cd6117aa30b21f\");null;","fields":[{"name":"__silent_Decision_RootDecision_87d07f6b6bad08d06cab7a4b41961e2d","direction":"Input","required":true,"prompt_msg":"vaVars.previous_graph_node=\"RootDecision_for_goal_primary___RootDecision_87d07f6b6bad08d06cab7a4b41961e2d\";vaInputs.__silent_Decision_RootDecision_87d07f6b6bad08d06cab7a4b41961e2d=true;null;","confirm_msg_on_default_value":{"msg":"","val_for_confirm":true},"acknowledge_msg":"vaVars.previous_graph_node=\"RootDecision_for_goal_primary___RootDecision_87d07f6b6bad08d06cab7a4b41961e2d\";vaInputs.RootDecisionBranch_0bd07f6bb5ad08d0bacd89ff6c86b72d=true;null;"},{"name":"__silent_Branch_RootDecisionBranch_c7d07f6b72ad08d0b4024cab4101642d","applicable":"vaVars.previous_graph_node==\"RootDecision_for_goal_primary___RootDecision_87d07f6b6bad08d06cab7a4b41961e2d\" &amp;&amp; ((vaInputs.RootDecisionBranch_0bd07f6bb5ad08d0bacd89ff6c86b72d.getValue() == true))","direction":"Input","required":true,"prompt_msg":"vaVars.previous_graph_node=\"RootDecisionBranch_c7d07f6b72ad08d0b4024cab4101642d___RootDecisionBranch_c7d07f6b72ad08d0b4024cab4101642d\";vaInputs.__silent_Branch_RootDecisionBranch_c7d07f6b72ad08d0b4024cab4101642d=true;null;","confirm_msg_on_default_value":{"msg":"","val_for_confirm":true},"acknowledge_msg":"vaVars.previous_graph_node=\"RootDecisionBranch_c7d07f6b72ad08d0b4024cab4101642d___RootDecisionBranch_c7d07f6b72ad08d0b4024cab4101642d\";null;"},{"name":"__silent_StartGoal_fd60773fd1c8432fb8953cbf697ce3ba","applicable":"vaVars.previous_graph_node==\"RootDecisionBranch_c7d07f6b72ad08d0b4024cab4101642d___RootDecisionBranch_c7d07f6b72ad08d0b4024cab4101642d\"","direction":"Input","required":true,"prompt_msg":"vaVars.previous_graph_node=\"Start___fd60773fd1c8432fb8953cbf697ce3ba\";vaInputs.__silent_StartGoal_fd60773fd1c8432fb8953cbf697ce3ba=true;null;","confirm_msg_on_default_value":{"msg":"","val_for_confirm":true},"acknowledge_msg":"vaVars.previous_graph_node=\"Start___fd60773fd1c8432fb8953cbf697ce3ba\";null;"},{"name":"__silent_TerminateGoal_cd25e656a4f14b4c88cd6117aa30b21f","applicable":"vaVars.previous_graph_node==\"Start___fd60773fd1c8432fb8953cbf697ce3ba\"","direction":"Input","required":true,"prompt_msg":"vaVars.previous_graph_node=\"End___cd25e656a4f14b4c88cd6117aa30b21f\";vaInputs.__silent_TerminateGoal_cd25e656a4f14b4c88cd6117aa30b21f=true;null;","confirm_msg_on_default_value":{"msg":"","val_for_confirm":true},"acknowledge_msg":"vaVars.previous_graph_node=\"End___cd25e656a4f14b4c88cd6117aa30b21f\";vaVars.__segment_trigger_63edd23fb1aa46c8941cf5cfd4fabcb7_done=true;null;"}],"variables_update":[]}],"roles":[],"active":false,"published":true,"score":0.0,"sys_scope":"d7c8b857db16f30018159c29db96193d","title":"Enroll Reset Password"}</definition>
+        <fields/>
+        <is_system_topic>false</is_system_topic>
+        <key_phrases>Reset Password password Password reset locked out</key_phrases>
+        <metaphone>PSRT RST AT LK</metaphone>
+        <name>Enroll Reset Password</name>
+        <published>true</published>
+        <roles/>
+        <sys_class_name>sys_cs_topic</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-12-12 15:03:43</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>c3d0f3efdbad08d018159c29db9619ce</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Enroll Reset Password</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sys_cs_topic_c3d0f3efdbad08d018159c29db9619ce</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-12-12 15:03:44</sys_updated_on>
+        <title>Enroll Reset Password</title>
+        <vendor display_value="ServiceNow">c2f0b8f187033200246ddd4c97cb0bb9</vendor>
+    </sys_cs_topic>
+    <sys_variable_value action="delete_multiple" query="document_key=c3d0f3efdbad08d018159c29db9619ce"/>
+</record_update>

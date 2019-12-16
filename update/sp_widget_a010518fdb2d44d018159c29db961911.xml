@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope) {
+   /* widget controller */
+   var c = this;
+$scope.getNextSet = function() {
+c.data.current_page = parseInt(c.data.current_page) + 1;
+c.data.action = "nextRecord"
+c.server.update().then(function(r){
+c.data.action = undefined;
+console.log("Response " + JSON.stringify(r));
+console.log("Data objet " + JSON.stringify(c.data));
+
+//c.data.records = r.records;
+});
+}
+
+$scope.getPrevious = function() {
+c.data.current_page = parseInt(c.data.current_page) - 1;
+c.data.action = "nextRecord"
+c.server.update().then(function(r){
+c.data.action = undefined;
+console.log("Response " + JSON.stringify(r));
+console.log("Data objet " + JSON.stringify(c.data));
+
+//c.data.records = r.records;
+});
+}
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+}
+td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+}
+tr:nth-child(even) {
+      background-color: #dddddd;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>incident_listing</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Incident Listing</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+   /* populate the 'data' object */
+   /* e.g., data.table = $sp.getValue('table'); */
+if (!input) {
+data.records = [];
+data.page_size = 5;
+data.count = 5;
+data.current_page = 0;
+var gr = new GlideRecord("incident");
+gr.orderBy("number");
+gr.chooseWindow(data.current_page, data.page_size);
+gr.query();
+while (gr.next()) {
+var obj = {};
+//gs.addInfoMessage("Hello");
+obj.number = gr.getValue("number");
+obj.short_description = gr.getValue("short_description");
+data.records.push(obj);
+}
+}
+if (input && input.action == "nextRecord") {
+data.records = [];
+data.count = 0;
+var startPage = input.current_page * input.page_size;
+var endPage = (input.current_page * input.page_size) + input.page_size
+// gs.addInfoMessage("start " + startPage + " endPage " + endPage);
+var gr1 = new GlideRecord("incident");
+gr1.orderBy("number");
+gr1.chooseWindow(startPage, endPage);
+gr1.query();
+while (gr1.next()) {
+data.count++
+var obj1 = {};
+//gs.addInfoMessage("Hello");
+obj1.number = gr1.getValue("number");
+obj1.short_description = gr1.getValue("short_description");
+data.records.push(obj1);
+}
+return data;
+}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-12-10 14:04:15</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a010518fdb2d44d018159c29db961911</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Incident Listing</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_a010518fdb2d44d018159c29db961911</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-12-10 14:09:07</sys_updated_on>
+        <template><![CDATA[<div>
+<!-- your widget template -->
+   <table>
+       <tr>
+           <th>
+               Number
+           </th>
+           <th>
+               Short Description
+           </th>
+       </tr>
+       <tr ng-repeat="r in c.data.records | limitTo:c.data.page_size">
+       <td></td>
+       <td></td>
+       </tr>
+       </table>
+   <button ng-show="c.data.current_page != 0" ng-click="getPrevious()">
+       Previous
+   </button>
+   <button ng-show="c.data.count >= c.data.page_size" ng-click="getNextSet()">
+       Next
+   </button>
+</div>]]></template>
+    </sp_widget>
+</record_update>

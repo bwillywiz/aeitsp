@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <connect_queue/>
+        <description>Help a developer make a field mandatory</description>
+        <graph>{
+  "graph_api_version": "1.0.10.mp4",
+  "goals": {
+    "d534e8949e01417493e93fe8da0ef198": {
+      "id": "d534e8949e01417493e93fe8da0ef198",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "6739ace52e084a8fb6db273f66bb2474": {
+          "id": "6739ace52e084a8fb6db273f66bb2474",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "value": "We will make a field mandatory",
+            "mode": "simple"
+          }
+        },
+        "ca8cadcb0ca04d11832b8680ae6b5f32": {
+          "id": "ca8cadcb0ca04d11832b8680ae6b5f32",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "67cdd4f947bb4c458544f58d84910ce1": {
+          "id": "67cdd4f947bb4c458544f58d84910ce1",
+          "stepType": "Prompt",
+          "name": "Name of field",
+          "prompt": {
+            "value": "What is the field name?",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "optional": false,
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "8b6eff86775d4aa1a08c39eed54f2c3e"
+        },
+        "a653edd2f5f547a2aab325720170ee6a": {
+          "id": "a653edd2f5f547a2aab325720170ee6a",
+          "stepType": "Prompt",
+          "name": "Name of Table",
+          "prompt": {
+            "value": "Please provide the table name.",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "optional": false,
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "402b2908dab74d1f824aaa5ee582b027"
+        },
+        "9b0dfb82238b44d0b3bffd486786d10e": {
+          "stepType": "ChoicePrompt",
+          "name": "Suggestion or forced",
+          "prompt": {
+            "value": "Should the field be forced to be mandatory, or just a suggestion?",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "optional": false,
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "5b71c37210434d80be7df65a26b8f55d",
+          "id": "9b0dfb82238b44d0b3bffd486786d10e"
+        },
+        "399c1d0e6abb4727b4d2e62f0e23efcc": {
+          "id": "399c1d0e6abb4727b4d2e62f0e23efcc",
+          "stepType": "Decision",
+          "name": "Forced?"
+        },
+        "e1e5f539aa624334b04e46aabd60d703": {
+          "stepType": "ChoicePrompt",
+          "name": "Conditional Forced",
+          "prompt": {
+            "value": "Are there any input methods (API) or conditions in which this field should not be mandatory?",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "optional": false,
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "c5b9b36f82164327bf9fb840930bfcc0",
+          "id": "e1e5f539aa624334b04e46aabd60d703"
+        },
+        "4414cc0ad02f4a03b6281438089e312d": {
+          "id": "4414cc0ad02f4a03b6281438089e312d",
+          "stepType": "Decision",
+          "name": "Conditional Forced"
+        },
+        "d5b7f477a7f849d8b2796363c2cb9e2f": {
+          "id": "d5b7f477a7f849d8b2796363c2cb9e2f",
+          "stepType": "TextOutput",
+          "name": "Mandatory all times",
+          "value": {
+            "value": "You have chosen to make a field mandatory without conditions.",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "69dacff570d44f789d2f174a7af5c834": {
+          "stepType": "ReferenceChoicePrompt",
+          "name": "Field to mandatory",
+          "prompt": {
+            "value": "Please pick the field to make mandatory",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "optional": false,
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "58dac2e42c57415a89009ee57483f071",
+          "id": "69dacff570d44f789d2f174a7af5c834",
+          "mode": "glide_record",
+          "script": "",
+          "noRecordsResponseMsg": {
+            "value": "I found nothing",
+            "mode": "simple"
+          },
+          "condition": {
+            "mode": "glide_query",
+            "value": "sys_name={{vaInputs.name_of_field}}"
+          }
+        },
+        "9820ea09f72240e9bbf80128ae160cac": {
+          "id": "9820ea09f72240e9bbf80128ae160cac",
+          "stepType": "RecordOutput",
+          "name": "Show Dictionary",
+          "variableId": "58dac2e42c57415a89009ee57483f071",
+          "mode": "variable",
+          "tableName": "sys_dictionary",
+          "fields": [
+            "mandatory",
+            "column_label",
+            "name"
+          ],
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "condition": {
+            "mode": "variable",
+            "value": ""
+          }
+        },
+        "8187b7befabf4f248c8a9dfbc03d7860": {
+          "stepType": "ChoicePrompt",
+          "name": "Is your record",
+          "prompt": {
+            "value": "Is this the record you want updated?",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "optional": false,
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "378f0e54e21d4aea9971bf22315cdd87",
+          "id": "8187b7befabf4f248c8a9dfbc03d7860"
+        },
+        "fdbf80e07f3c4b1699544ad99700f9c4": {
+          "id": "fdbf80e07f3c4b1699544ad99700f9c4",
+          "stepType": "Decision",
+          "name": "Your Record"
+        },
+        "b5331affe0954261a40ad7cfd21b83ff": {
+          "id": "b5331affe0954261a40ad7cfd21b83ff",
+          "stepType": "CrudAction",
+          "name": "make mandatory",
+          "template": "mandatory=true",
+          "mode": "update",
+          "record": "58dac2e42c57415a89009ee57483f071",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "variableId": "17f2efa90c10468dbba67638973a4f6d"
+        },
+        "00aea2cfd681456e82f7032a53e99709": {
+          "id": "00aea2cfd681456e82f7032a53e99709",
+          "stepType": "TextOutput",
+          "name": "Goodbye",
+          "value": {
+            "value": "Your field is now mandatory",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "05012369b6864e92b987fb36b8958576": {
+          "stepType": "ChoicePrompt",
+          "name": "Logic in addition to mandatory",
+          "prompt": {
+            "value": "Will you need to manipulate the data in addition to making mandatory?",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "optional": false,
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "70d566ad201f4355ae3b2ddffadb3c33",
+          "id": "05012369b6864e92b987fb36b8958576"
+        },
+        "1f63ae4cb5ae44edbe65471de1779d99": {
+          "id": "1f63ae4cb5ae44edbe65471de1779d99",
+          "stepType": "Decision",
+          "name": "Logic on top"
+        }
+      },
+      "edges": [
+        {
+          "id": "75742df5b6b44fd2b1db89735d11c6a7",
+          "edgeType": "Edge",
+          "source": "6739ace52e084a8fb6db273f66bb2474",
+          "target": "67cdd4f947bb4c458544f58d84910ce1",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f9acd580e3e44affa517e764d7fbdb32",
+          "edgeType": "Edge",
+          "source": "67cdd4f947bb4c458544f58d84910ce1",
+          "target": "a653edd2f5f547a2aab325720170ee6a",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "4ca36a09cbe2476cae5756bd1c7cbd5f",
+          "edgeType": "Edge",
+          "source": "a653edd2f5f547a2aab325720170ee6a",
+          "target": "9b0dfb82238b44d0b3bffd486786d10e",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "897c1ba3b9454ed599cd0f96226a8101",
+          "edgeType": "Edge",
+          "source": "9b0dfb82238b44d0b3bffd486786d10e",
+          "target": "399c1d0e6abb4727b4d2e62f0e23efcc",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "8648a6e362a646168b2c76d865bcdaed",
+          "edgeType": "Branch",
+          "source": "399c1d0e6abb4727b4d2e62f0e23efcc",
+          "target": "e1e5f539aa624334b04e46aabd60d703",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "suggestion_or_forced=forced",
+            "mode": "query"
+          },
+          "label": "Always"
+        },
+        {
+          "id": "5e124ee5b9c74b2e9cafa9753072e200",
+          "edgeType": "Edge",
+          "source": "e1e5f539aa624334b04e46aabd60d703",
+          "target": "4414cc0ad02f4a03b6281438089e312d",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "4c2b7f839fad4f2b915a01f6d78c06f4",
+          "edgeType": "Branch",
+          "source": "4414cc0ad02f4a03b6281438089e312d",
+          "target": "d5b7f477a7f849d8b2796363c2cb9e2f",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "conditional_forced=no",
+            "mode": "query"
+          },
+          "label": "Not Conditional"
+        },
+        {
+          "id": "2ea085e9d26747a58a8c972458465298",
+          "edgeType": "Edge",
+          "source": "d5b7f477a7f849d8b2796363c2cb9e2f",
+          "target": "69dacff570d44f789d2f174a7af5c834",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "e239f63a18a14e2cb8ecb7fdfdad887b",
+          "edgeType": "Edge",
+          "source": "69dacff570d44f789d2f174a7af5c834",
+          "target": "9820ea09f72240e9bbf80128ae160cac",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "891a3b4effc54b25aa41ecd3ed1a88d7",
+          "edgeType": "Edge",
+          "source": "9820ea09f72240e9bbf80128ae160cac",
+          "target": "8187b7befabf4f248c8a9dfbc03d7860",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "da0ecbfa143e42198b2e06879d48f73c",
+          "edgeType": "Edge",
+          "source": "8187b7befabf4f248c8a9dfbc03d7860",
+          "target": "fdbf80e07f3c4b1699544ad99700f9c4",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "fd956a249bc4436ea4ef257b9b2d66e4",
+          "edgeType": "Branch",
+          "source": "fdbf80e07f3c4b1699544ad99700f9c4",
+          "target": "69dacff570d44f789d2f174a7af5c834",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "is_your_record=no",
+            "mode": "query"
+          },
+          "label": "No"
+        },
+        {
+          "id": "a553cdc1e0064102b49d4e062f5223bf",
+          "edgeType": "Branch",
+          "source": "fdbf80e07f3c4b1699544ad99700f9c4",
+          "target": "b5331affe0954261a40ad7cfd21b83ff",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "is_your_record=yes",
+            "mode": "query"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "005e1fcf5aed4a7f9eac37dbaf2073b0",
+          "edgeType": "Edge",
+          "source": "b5331affe0954261a40ad7cfd21b83ff",
+          "target": "00aea2cfd681456e82f7032a53e99709",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "637f74e0ac3146c7aa85d5243e60d01f",
+          "edgeType": "Edge",
+          "source": "00aea2cfd681456e82f7032a53e99709",
+          "target": "ca8cadcb0ca04d11832b8680ae6b5f32",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "ee282e9650624fc594db81176a4bdb03",
+          "edgeType": "Branch",
+          "source": "4414cc0ad02f4a03b6281438089e312d",
+          "target": "05012369b6864e92b987fb36b8958576",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "conditional_forced=yes",
+            "mode": "query"
+          },
+          "label": "Conditional"
+        },
+        {
+          "id": "d982fbbf1c074ec1896d1e0353374b42",
+          "edgeType": "Edge",
+          "source": "05012369b6864e92b987fb36b8958576",
+          "target": "1f63ae4cb5ae44edbe65471de1779d99",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "5adaf5d4f085415da388b7db11edeeee",
+          "edgeType": "Branch",
+          "source": "1f63ae4cb5ae44edbe65471de1779d99",
+          "target": "ca8cadcb0ca04d11832b8680ae6b5f32",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "logic_in_addition_to_mandatory=yes",
+            "mode": "query"
+          },
+          "label": "Business Rule"
+        },
+        {
+          "id": "1698e358ca6041558851492b9bb9c42d",
+          "edgeType": "Branch",
+          "source": "1f63ae4cb5ae44edbe65471de1779d99",
+          "target": "ca8cadcb0ca04d11832b8680ae6b5f32",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "logic_in_addition_to_mandatory=no",
+            "mode": "query"
+          },
+          "label": "Data Policy"
+        }
+      ]
+    }
+  },
+  "variables": {
+    "8b6eff86775d4aa1a08c39eed54f2c3e": {
+      "id": "8b6eff86775d4aa1a08c39eed54f2c3e",
+      "name": "name_of_field",
+      "label": "Name Of Field",
+      "varType": "string",
+      "category": "vaInputs"
+    },
+    "402b2908dab74d1f824aaa5ee582b027": {
+      "id": "402b2908dab74d1f824aaa5ee582b027",
+      "name": "name_of_table",
+      "label": "Name Of Table",
+      "varType": "string",
+      "category": "vaInputs"
+    },
+    "5b71c37210434d80be7df65a26b8f55d": {
+      "id": "5b71c37210434d80be7df65a26b8f55d",
+      "name": "suggestion_or_forced",
+      "label": "Suggestion Or Forced",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Suggestion",
+          "value": "suggestion"
+        },
+        {
+          "label": "Forced",
+          "value": "forced"
+        }
+      ],
+      "category": "vaInputs"
+    },
+    "c5b9b36f82164327bf9fb840930bfcc0": {
+      "id": "c5b9b36f82164327bf9fb840930bfcc0",
+      "name": "conditional_forced",
+      "label": "Conditional Forced",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": "no"
+        }
+      ],
+      "category": "vaInputs"
+    },
+    "58dac2e42c57415a89009ee57483f071": {
+      "id": "58dac2e42c57415a89009ee57483f071",
+      "name": "field_to_mandatory",
+      "label": "Field To Mandatory",
+      "varType": "reference",
+      "table": "sys_dictionary",
+      "category": "vaInputs"
+    },
+    "378f0e54e21d4aea9971bf22315cdd87": {
+      "id": "378f0e54e21d4aea9971bf22315cdd87",
+      "name": "is_your_record",
+      "label": "Is Your Record",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": "no"
+        }
+      ],
+      "category": "vaInputs"
+    },
+    "17f2efa90c10468dbba67638973a4f6d": {
+      "id": "17f2efa90c10468dbba67638973a4f6d",
+      "name": "make_mandatory",
+      "label": "Make Mandatory",
+      "varType": "reference",
+      "table": "",
+      "inactive": true,
+      "category": "vaInputs"
+    },
+    "70d566ad201f4355ae3b2ddffadb3c33": {
+      "id": "70d566ad201f4355ae3b2ddffadb3c33",
+      "name": "logic_in_addition_to_mandatory",
+      "label": "Logic In Addition To Mandatory",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": "no"
+        }
+      ],
+      "category": "vaInputs"
+    }
+  }
+}</graph>
+        <key_phrases>Make Field Mandatory,mandatory</key_phrases>
+        <live_agent>false</live_agent>
+        <name>Make Field Mandatory</name>
+        <roles>admin</roles>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-09-26 03:31:26</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>93ffa07edb0cc8104a1192a6db961968</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>Make Field Mandatory</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sys_cb_topic_93ffa07edb0cc8104a1192a6db961968</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-09-26 04:01:42</sys_updated_on>
+        <variables/>
+    </sys_cb_topic>
+    <sys_variable_value action="delete_multiple" query="document_key=93ffa07edb0cc8104a1192a6db961968"/>
+</record_update>

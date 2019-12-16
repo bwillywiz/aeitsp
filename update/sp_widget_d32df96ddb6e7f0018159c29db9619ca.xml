@@ -1,167 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function($scope, spAriaUtil) {
+        <client_script><![CDATA[function($scope, spAriaUtil, spModal) {
 	$scope.accessibilityModeEnabled = spAriaUtil.isAccessibilityEnabled();
+
+//View My Profile Modal Client code
+  var c = this;
+	//View Profile Modal
+	c.openModal = function(widgetId, articleID) {
+		spModal.open({
+			size: 'lg',
+			widget: widgetId,
+			buttons: [{label:'${Close}', cancel: true}],
+			widgetInput: {sys_id: articleID}
+		});
+	};
+
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css>.iconlink a label,h2 {
-  display: block;
-  font-size: 2.5rem;
-  font-weight: 300;
-  line-height: 1.1;
-  padding: 0;
-  margin: 0 0 10px 0;
-}
+        <css>/* ICON CSS ---------- */
+.a-disabled {cursor: pointer; color: $sp-disabled-breadcrumb;}
 
-/* TOP ICON ---------- */
+.dropdown {position: relative; display: inline-block;}
 
-a.top_icon {
-  display: block;
-  padding: 20px;
-  text-align: center;
-}
-
-a.top_icon .fa {
-  display: block;
-  text-align: center;
-}
-
-/* CIRCLE ICON ---------- */
-
-a.circle_icon {
-  display: block;
-  padding: 20px 0px 20px 70px;
-  position: relative;
-}
-
-a.circle_icon .fa {
-  position:absolute;
-  left: 0px;
-  top: 10px;
-}
-
-/* COLOR BOX ---------- */
-
-a.color_box {
-  display: block;
-  position: relative;
-  padding: 20px 20px 20px 82px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-}
-
-a.color_box .fa {
-  position:absolute;
-  left: 20px;
-  top: 20px;
-  width:42px;
-  text-align: center;
-}
-
-.icon-link-background-primary {
-  background-color: $brand-primary;
-}
-
-.icon-link-background-info {
-  background-color: $brand-info;
-}
-
-.icon-link-background-success {
-  background-color: $brand-success;
-}
-
-.icon-link-background-warning {
-  background-color: $brand-warning;
-}
-
-.icon-link-background-danger {
-  background-color: $brand-danger;
-}
-
-.icon-link-background-default {
-  background-color: $brand-primary;
-}
-
-.text-primary {
-  color: $brand-primary;
-  
-  &amp;:hover {
-    color: darken($brand-primary, 20%);
-  }
-}
-
-.text-info {
-  color: $brand-info;
-  
-  &amp;:hover {
-    color: darken($brand-info, 20%);
-  }
-}
-
-.text-success {
-  color: $brand-success;
-  
-  &amp;:hover {
-    color: darken($brand-success, 20%);
-  }
-}
-
-.text-warning {
-  color: $brand-warning;
-  
-  &amp;:hover {
-    color: darken($brand-warning, 20%);
-  }
-}
-
-.text-danger {
-  color: $brand-danger;
-  
-  &amp;:hover {
-    color: darken($brand-danger, 20%);
-  }
-}
-
-.text-default {
-  color: $brand-primary;
-  
-  &amp;:hover {
-    color: darken($brand-primary, 20%);
-  }
-}
-
-.high-contrast {
-  .text-primary {
-    color: darken($brand-primary, 10%);
-  }
-
-  .text-info {
-    color: darken($brand-info, 10%);
-  }
-
-  .text-success {
-    color: darken($brand-success, 10%);
-  }
-
-  .text-warning {
-    color: darken($brand-warning, 10%);
-  }
-
-  .text-danger {
-    color: darken($brand-danger, 10%);
-  }
-
-  .text-default {
-    color: darken($brand-primary, 10%);
-  }
-}</css>
+.dropdown .dropbtn {font-size: 16px; width: 100%; border: none; outline: none; color: black; padding: 5px 4px; background-color: #fff;font-family: inherit;
+  margin: 0;}
+.dropdown-content {display: none; position: absolute; background-color: #fff; min-width: 220px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px; z-index: 1; cursor: pointer;}
+.dropdown:hover .dropdown-content {display: block;}</css>
         <data_table>sp_instance_link</data_table>
         <demo_data/>
         <description>Link to IT Services portal page</description>
         <docs/>
         <field_list>type,url,sc_category,sc_cat_item,kb_topic,kb_article,kb_category,sp_page,title,short_description,color,class_name,glyph</field_list>
-        <has_preview>false</has_preview>
+        <has_preview>true</has_preview>
         <id>ask_it_icon_link</id>
         <internal>false</internal>
         <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
@@ -173,6 +45,8 @@ a.color_box .fa {
 	var gr = $sp.getInstanceRecord();
 	data.href = $sp.getMenuHREF(gr);
 	data.target = options.target || "";
+	
+
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
@@ -180,7 +54,7 @@ a.color_box .fa {
         <sys_created_on>2019-07-09 22:22:04</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>d32df96ddb6e7f0018159c29db9619ca</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>68</sys_mod_count>
         <sys_name>Ask IT Icon Link</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
@@ -188,32 +62,28 @@ a.color_box .fa {
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_widget_d32df96ddb6e7f0018159c29db9619ca</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-10 13:31:26</sys_updated_on>
-        <template><![CDATA[<div class="iconlink" ng-class="{'high-contrast': accessibilityModeEnabled}">
-  <!--// Top Icon -->
-  <a ng-if="::(options.link_template == 'Top Icon' || !options.link_template)" ng-href="{{::data.href}}" class="top_icon {{::options.class_name}}" target="{{::data.target}}">
-    <div class="m-b fa fa-{{::options.glyph}} fa-4x {{::options.class_name}} text-{{::options.color}}"></div>
-    <h2>{{::options.title}}</h2>
-     <img src="askIT.png" width="196" height="199"/>
-    <span class="text-muted">{{::options.short_description}}</span>
-  </a>
-
-  <!--// Circle Icon -->
-  <a ng-if="::(options.link_template == 'Circle Icon')" ng-href="{{::data.href}}" class="circle_icon {{::options.class_name}} text-{{::options.color}}" target="{{::data.target}}">
-    <span class="fa fa-stack fa-2x">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-{{::options.glyph}} fa-stack-1x fa-inverse"></i>
-    </span>
-    <h2>{{::options.title}}</h2>
-    <span class="text-muted">{{::options.short_description}}</span>
-  </a>
-
-  <!--// Color Box -->
-  <a ng-if="::(options.link_template == 'Color Box')" ng-href="{{::data.href}}" class="color_box {{::options.class_name}} icon-link-background-{{::options.color}} text-white" target="{{::data.target}}">
-    <div class="fa fa-{{::options.glyph}} fa-3x {{::options.class_name}}"></div>
-    <h2>{{::options.title}}</h2>
-    <span>{{::options.short_description}}</span>
-  </a>
+        <sys_updated_on>2019-08-25 13:22:01</sys_updated_on>
+        <template><![CDATA[/* ICON HTML ---------- */
+<div class="dropdown">
+      <button class="dropbtn">
+        <span align="center";><img src="itrequesticon.png" width="88" height="74" align="middle"/><br/>My Account</span>
+			</button>
+        <div class="dropdown-content">
+        <p><a ng-click="c.openModal('supv_asgn_grp_ritms')">${View My Group Requested Items}</a></p>
+        <p><a ng-click="c.openModal('task_widget_delgadoa')">${Form Test}</a></p>
+        <p><a ng-click="c.openModal('it-form-test')">${Form Test}</a></p>
+        <p><a ng-click="c.openModal('create_agency_record_delgadoa')">${Add Agency Record - Group A}</a></p>
+        <p><a ng-href="essp?id=sc_category">${Accounts &amp; Access}</a></p>
+        <p><a ng-click="c.openModal('it_quick_order')">${IT Quick Order}</a></p>
+        <p><a ng-click="c.openModal('requisition_form')">${Requisition Form}</a></p>
+        <p><a ng-click="c.onOpen()">${Business Applications &amp; Services}</a></p>
+        <p><a ng-href="javascript:void(0)">${Order Hardware}</a></p>
+        <p><a ng-href="javascript:void(0)">${Order Software}</a></p>
+        <p><a ng-href="javascript:void(0)">${Network Services}</a></p>
+        <p><a ng-href="javascript:void(0)">${Staffing Services}</a></p>
+        <p><a ng-href="https://austinenergydev.service-now.com/ess/create_incident.do">${Something is Broken}</a></p>
+        <p><a ng-click="c.openModal('widget-sc-cat-item')">${Something is Broken}</a></p>
+        </div>   
 </div>]]></template>
     </sp_widget>
 </record_update>

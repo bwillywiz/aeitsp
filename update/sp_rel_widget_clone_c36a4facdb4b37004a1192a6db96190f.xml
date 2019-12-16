@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
+    <sp_rel_widget_clone action="INSERT_OR_UPDATE">
+        <child display_value="AE User Profile">cf6a4facdb4b37004a1192a6db96190b</child>
+        <cloned>2019-07-31 21:57:01</cloned>
+        <last_validated>2019-07-31 21:57:01</last_validated>
+        <parent display_value="User Profile">6e6ac664d710120023c84f80de610318</parent>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;sp_widget&gt;&lt;category&gt;standard&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function ($scope, $element, $window, $location, $rootScope, $timeout, snAttachmentHandler, $http, spUtil, userPreferences, $filter, i18n, $uibModal) {
+
+	// Many of these fields are more configuration-type fields than profile fields. We still want to display
+	// these to a user who is configuring their 'settings', but we shouldn't show them on a user profile page.
+	// We need to handle this better.
+	var fieldExcludes = {
+		sys_user: ['name', 'introduction', 'title', 'department', 'location', 'photo',
+							 'manager', 'company'],
+		live_profile: ['short_description', 'photo']
+	}
+
+	$scope.openConnectConversation = function() {
+		$window.open('/$c.do#?user=' + $scope.data.liveProfileID, '_blank');
+	}
+
+	$scope.uploadNewProfilePicture = function($event) {
+		$event.stopPropagation();
+		if($event.keyCode === 9) {
+			return;
+		}
+		var $el = $element.find('input[type=file]');
+		$el.click();
+	}
+
+	$scope.attachFiles = function(files) {
+		var file = files.files[0];
+
+		var validImage = false;
+
+		switch(file.type) {
+			case 'image/jpeg':
+			case 'image/png':
+			case 'image/bmp':
+			case 'image/x-windows-bmp':
+			case 'image/gif':
+			case 'image/x-icon':
+			case 'image/svg+xml':
+				validImage = true;
+				break;
+			default:
+				break;
+		}
+
+		if(!validImage) {
+			alert(file.name + " " + i18n.getMessage("isn't a recognized image file format"));
+			return;
+		}
+
+		snAttachmentHandler.create("live_profile", $scope.data.liveProfileID).uploadAttachment(file, {
+			sysparm_fieldname: "photo"
+		}).then(function(response) {
+			$scope.avatarPicture = {
+				'background-image': "url('" + response.sys_id + ".iix')",
+				'color': 'transparent'
+			};
+			$rootScope.$broadcast("sp.avatar_changed");
+		});
+	}
+
+	$scope.avatarPicture = "";
+
+	$http.get('/api/now/live/profiles/sys_user.' + $scope.data.sysUserID).then(function (response) {
+		if (response.data.result &amp;&amp; response.data.result.avatar){
+			var avatarPicture = response.data.result.avatar.replace("?t=small", "");
+			$scope.avatarPicture = {
+				'background-image': "url('" + avatarPicture + "')",
+				'color': 'transparent'
+			};
+		}
+	});
+
+	spUtil.recordWatch($scope, "sys_user", "sys_id=" + $scope.data.sysUserID);
+	spUtil.recordWatch($scope, "live_profile", "sys_id=" + $scope.data.liveProfileID);
+
+	$scope.connectEnabled = function() {
+		return $scope.data.connectEnabled &amp;&amp; !$scope.data.isLoggedInUsersProfile;
+	}
+
+	$scope.openUserProfile = function($event, userID) {
+		$event.stopPropagation();
+		$event.preventDefault();
+		$location.search("id=user_profile&amp;sys_id=" + userID);
+	}
+
+	$scope.getSysUserModelFields = function() {
+		return $scope.data.sysUserModelList
+						.filter(function(field) {
+							return $scope.displayField("sys_user", field.name)
+						});
+	}
+
+	$scope.data.userPreferencesChanged = false;
+
+	// get the list of values for a property using the concourse picker api (timezone, language)
+	var getListValuesForProperty = function(endpoint, listProperty) {
+		$http.get('/api/now/ui/concoursepicker/' + endpoint).then(function(response) {
+			if (response &amp;&amp; response.data &amp;&amp; response.data.result &amp;&amp; response.data.result.list) {
+				if (!listProperty.list)
+					listProperty.list = [];
+
+				listProperty.list = response.data.result.list;
+				if (response.data.result.current) {
+					if (!listProperty.current)
+						listProperty.current = {};
+					listProperty.current = $filter('filter')(listProperty.list, {value: response.data.result.current}, true)[0];
+				}
+			}
+		});
+	};
+
+	// list of user properties that are not user preferences
+	$scope.data.listProperties = {
+		timezone: {},
+		language: {}
+	}
+
+	// initialize dropbox data
+	getListValuesForProperty('timezone', $scope.data.listProperties.timezone);
+	getListValuesForProperty('language', $scope.data.listProperties.language);
+	//set the user property
+	$scope.setPreferenceValue = function(endpoint, value) {
+		$http.put('/api/now/ui/concoursepicker/' + endpoint, {current : value}).then(function(response) {
+			if (response &amp;&amp; response.data &amp;&amp; response.data.result) {
+				$scope.data.userPreferencesChanged = true;
+			}
+		});
+	}
+
+	//set the user preference value
+	$scope.setUserPreferenceValue = function(userProperty) {
+		userPreferences.setPreference(userProperty.key, userProperty.value).then(function() {
+				 $scope.data.userPreferencesChanged = true;
+	 });
+	};
+
+	$scope.toggle = function(e, userProperty) {
+		if (e.type === 'keypress' &amp;&amp; e.keyCode === 32) {
+			userProperty.value = !userProperty.value;
+			$scope.setUserPreferenceValue(userProperty);
+		}
+	}
+
+	$scope.reloadPage = function() {
+			$window.location.reload(true);
+	};
+
+	$scope.teamExists = function() {
+		return $scope.data.teamData.direct_reports.length &gt; 0 ||
+			$scope.data.teamData.members.length &gt; 0 ||
+			$scope.data.teamData.manager;
+	}
+
+	var models = {
+		sys_user: $scope.data.sysUserModel,
+		live_profile: $scope.data.liveProfileModel
+	}
+
+	$scope.displayField = function(tableName, field, isHeader) {
+		if (!isHeader &amp;&amp; fieldExcludes[tableName].indexOf(field) &gt; -1) return false;
+
+		if (models[tableName][field] &amp;&amp; models[tableName][field].type === "boolean") return false;
+
+		if ($scope.data.isLoggedInUsersProfile) {
+			if (models[tableName][field] &amp;&amp; models[tableName][field].readonly)
+				return models[tableName][field].displayValue;
+			else
+				return models[tableName][field];
+		} else {
+			return models[tableName][field] &amp;&amp; models[tableName][field].displayValue;
+		}
+	}
+
+	$scope.triggerMFAConfigurationModal = function() {
+		$scope.mfaModalInstance = $uibModal.open({
+			templateUrl: 'mfaModalTemplate',
+			scope: $scope,
+			size: 'lg'
+		});
+
+		createCloseMFAModalHandler();
+	}
+
+	$scope.dismissMFAConfigurationModal = function() {
+		$scope.mfaModalInstance.close();
+	}
+
+	$timeout(function(){
+		$rootScope.$broadcast('finishedChanged', {profile: $scope.data.teamData});
+	});
+
+	$scope.sysUserModelFields = $scope.getSysUserModelFields();
+
+	function createCloseMFAModalHandler() {
+		// This is a hack. Wait for the inner iframe to load, then mock
+		// the GlideDialogWindow close function to do the right thing. If it's not ready
+		// after a second, try again 9 more times. 
+		var retryCount = 0;
+		var maxRetries = 10;
+		tryOverrideGlideDialogWindowClose();
+		function tryOverrideGlideDialogWindowClose() {
+			$timeout(function() {
+				var frameGlideDialogWindow = document.getElementById('mfa-config-window').contentWindow['GlideDialogWindow'];
+				if (!frameGlideDialogWindow) {
+					retryCount++;
+					if (retryCount &gt;= maxRetries)
+						return;
+
+					tryOverrideGlideDialogWindowClose();
+					return;
+				}
+
+				frameGlideDialogWindow.get = function() {
+					return {
+						destroy: function() {
+							$scope.dismissMFAConfigurationModal();
+						}
+					}
+				};
+			}, 1000);	
+		}
+	}
+}]]&gt;&lt;/client_script&gt;&lt;controller_as/&gt;&lt;css&gt;.list-group-item {
+  border: none;
+
+  .btn-link {
+  	padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+
+.select2-container.select2-allowclear .select2-choice .select2-chosen {
+  margin-right: 60px;
+}
+
+.mia i {
+  font-size: 6rem;
+}
+
+.mia {
+  color: #808080;
+}
+
+// *Force* chrome default focus outline
+.default-focus-outline {
+    :focus {
+        outline: thin dotted;
+
+        // a css property that is often overwritten but we don't want it to be overwritten
+        // for focus
+        outline: 3px solid $input-border-tab-focus !important; /* IE */
+        outline: 5px auto $input-border-tab-focus !important; /* Webkit */;
+        outline-offset: -2px;
+
+        @-moz-document url-prefix() {
+            outline: 3px solid $input-border-tab-focus !important; /* FF */
+        }
+    }
+}
+
+// accessible accessibility toggle
+@media screen and (-ms-high-contrast: active) {
+  .input-switch input.ng-not-empty+label.switch[for="accessibility-enabled"] {
+    background-color: highlight;
+    border: none;
+
+    &amp;amp;:before {
+      background-color: highlightText;
+    }
+  }
+
+  .input-switch input.ng-empty+label[for="accessibility-enabled"] {
+    background-color: window;
+    border: 1px solid windowText;
+
+    &amp;amp;:before {
+      background-color: windowText;
+    }
+  }
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;user-profile&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link/&gt;&lt;name&gt;User Profile&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;true&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[// populate the 'data' object
+// e.g., data.table = $sp.getValue('table');
+data.sysUserID = $sp.getParameter("sys_id");
+if (!data.sysUserID)
+         data.sysUserID = gs.getUser().getID();
+var sysUserGR = new GlideRecord("sys_user");
+data.userExists = sysUserGR.get(data.sysUserID) &amp;&amp; sysUserGR.canRead();
+
+if (data.userExists) {
+	data.name = sysUserGR.getValue("name");
+	var loggedInSysUserID = gs.getUser().getID();
+	data.connectEnabled = GlidePluginManager().isActive('com.glide.connect');
+	data.liveProfileID = "";
+
+	//get live profile id for sending connect messages
+	if (GlidePluginManager().isActive('com.glideapp.live_common')) {
+		var liveProfileGR = new GlideRecord("live_profile");
+		liveProfileGR.addQuery("document", data.sysUserID);
+		liveProfileGR.query();
+		if (liveProfileGR.next()) {
+			data.liveProfileID = liveProfileGR.getValue("sys_id");
+			data.liveProfileModel = $sp.getForm("live_profile", data.liveProfileID)._fields;
+		} else
+			data.connectEnabled = false; //can't find a live profile for this user, so lets not integrate Connect
+	}
+
+	data.isLoggedInUsersProfile = loggedInSysUserID.equals(data.sysUserID);
+	var sysUserForm = $sp.getForm("sys_user", data.sysUserID);
+	data.sysUserView = sysUserForm._view;
+	data.sysUserModel = sysUserForm._fields;
+	data.sysUserModelList = [];
+
+	for (var i = 0; i &lt; data.sysUserView.length; i++) {
+		data.sysUserModelList.push(data.sysUserModel[data.sysUserView[i].name]);
+	}
+
+	data.directReports = [];
+	data.teamData = {};
+	data.teamData.direct_reports = [];
+	data.teamData.members = [];
+
+	if (!data.isLoggedInUsersProfile) {
+		data.teamData.user = {
+			sys_id: data.sysUserID
+		}
+	}
+
+	//Calculate manager
+	var managerGR = new GlideRecord("sys_user");
+	if (managerGR.get(sysUserGR.getValue("manager"))) {
+		data.teamData.manager = buildUser(managerGR);
+	}
+
+	//Calculate team
+	if (data.teamData.manager) {
+		var teamGR = new GlideRecord("sys_user");
+		teamGR.addActiveQuery();
+		teamGR.orderBy("name");
+		teamGR.addQuery("manager", data.teamData.manager.sys_id);
+		teamGR.addQuery("sys_id", "!=", data.sysUserID);
+		teamGR.query();
+		while(teamGR.next())
+			data.teamData.members.push(buildUser(teamGR));
+	}
+
+	//Calculate direct reports
+	var directReportGR = new GlideRecord("sys_user");
+	directReportGR.addActiveQuery();
+	directReportGR.orderBy("name");
+	directReportGR.addQuery("manager", data.sysUserID);
+	directReportGR.query();
+
+	while(directReportGR.next())
+		data.teamData.direct_reports.push(buildUser(directReportGR));
+
+	data.teamWidget = $sp.getWidget('sp-my-team', {glyph: 'user', color: 'primary'});
+
+	//get state preferences
+	data.preferencesEnabled = getPreferencesEnabled();
+
+	//get the user Preferences of the user
+	data.userPreferences = getUserPreferences(data.sysUserID);
+}
+
+function buildUser(userGR) {
+	return {
+		email: userGR.getValue("email") || "",
+		first_name: userGR.getValue("first_name"),
+		last_name: userGR.getValue("last_name"),
+		name: userGR.getValue("name"),
+		phone: userGR.getValue("phone") || "",
+		sys_id: userGR.getValue("sys_id")
+	}
+}
+
+// returns the user preferences from the platform
+function getUserPreferences(userID){
+	var user = GlideUser.getUserByID(userID);
+	return {
+		accessibility: {
+			key: 'glide.ui.accessibility',
+			value: user.getPreference('glide.ui.accessibility') == 'true'
+		}
+	}
+}
+
+// read the proper state so we can show/hide preferences in the preferences table
+function getPreferencesEnabled(){
+	return {
+		// show preferences only if the sys_id of the url is the same user that is logged on
+	  preferencesPanelEnabled : GlideStringUtil.nil($sp.getParameter('sys_id')) || $sp.getParameter('sys_id') == gs.getUserID(),
+
+		//certain properties are visible in some cases
+		languageEnabled : pm.isActive('com.glide.i18n') &amp;&amp; gs.getProperty('glide.ui.language_picker.enabled', 'true') == 'true',
+		timezoneEnabled: gs.hasRole(gs.getProperty('glide.timezone_changer.roles')),
+		mfaEnabled: gs.getProperty('glide.authenticate.multifactor', "false") == "true"
+	}
+}
+
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;true&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2015-12-09 23:18:31&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;6e6ac664d710120023c84f80de610318&lt;/sys_id&gt;&lt;sys_mod_count&gt;824&lt;/sys_mod_count&gt;&lt;sys_name&gt;User Profile&lt;/sys_name&gt;&lt;sys_package display_value="Service Portal - Core" source="com.glide.service-portal"&gt;7943ae2adbceba40381c71bdbf9619f5&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_6e6ac664d710120023c84f80de610318&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2018-10-30 11:26:26&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="default-focus-outline"&gt;
+  &lt;div ng-if="data.userExists"&gt;
+    &lt;div class="panel panel-default"&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;div class="row"&gt;
+          &lt;div class="col-xs-12 col-sm-4 text-center"&gt;
+            &lt;div class="row"&gt;
+              &lt;div class="avatar-extra-large avatar-container" style="cursor:default;"&gt;
+                &lt;div class="avatar soloAvatar bottom"&gt;
+                  &lt;div class="sub-avatar mia" ng-style="avatarPicture"&gt;&lt;i class="fa fa-user"&gt;&lt;/i&gt;&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="row"&gt;
+              &lt;button ng-if="::connectEnabled()" ng-click="openConnectConversation()" type="button"
+                      class="btn btn-primary send-message"&gt;&lt;span class="glyphicon glyphicon-comment pad-right"&gt;&lt;/span&gt;${Message}&lt;/button&gt;
+              &lt;!-- file upload --&gt;
+              &lt;span ng-if="::data.isLoggedInUsersProfile"&gt;
+                &lt;input ng-show="false" type="file" accept="image/jpeg,image/png,image/bmp,image/x-windows-bmp,image/gif,image/x-icon,image/svg+xml" ng-file-select="attachFiles({files: $files})" /&gt;
+                &lt;button ng-click="uploadNewProfilePicture($event)"
+                        ng-keypress="uploadNewProfilePicture($event)" type="button"
+                        class="btn btn-default send-message"&gt;${Upload Picture}&lt;/button&gt;
+              &lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="col-xs-12 col-sm-8"&gt;
+            &lt;h2&gt;{{data.name}}&lt;/h2&gt;
+            &lt;h4 ng-if="::(displayField('sys_user', 'title', true) || displayField('sys_user', 'company', true))"&gt;
+              &lt;sp-editable-field ng-if="::displayField('sys_user', 'title', true)" editable-by-user="data.isLoggedInUsersProfile" table="sys_user" table-id="data.sysUserID" field-model="data.sysUserModel.title" on-change="titleOnChange" on-submit="titleOnSubmit"&gt;&lt;/sp-editable-field&gt;
+              &lt;span ng-if="::(displayField('sys_user', 'company', true) &amp;&amp; displayField('sys_user', 'title', true))"&gt;at&lt;/span&gt;
+              &lt;span ng-if="::(displayField('sys_user', 'company', true) &amp;&amp; !displayField('sys_user', 'title', true))"&gt;Works at&lt;/span&gt;
+              &lt;sp-editable-field ng-if="::displayField('sys_user', 'company', true)" editable-by-user="data.isLoggedInUsersProfile" table="sys_user" table-id="data.sysUserID" field-model="data.sysUserModel.company"&gt;&lt;/sp-editable-field&gt;
+            &lt;/h4&gt;
+            &lt;p ng-if="::displayField('sys_user', 'department', true)"&gt;&lt;strong class="pad-right"&gt;${Department}&lt;/strong&gt;&lt;sp-editable-field editable-by-user="data.isLoggedInUsersProfile" table="sys_user" table-id="data.sysUserID" field-model="data.sysUserModel.department"&gt;&lt;/sp-editable-field&gt;&lt;/p&gt;
+            &lt;p ng-if="::displayField('sys_user', 'location', true)"&gt;&lt;strong class="pad-right"&gt;${Location}&lt;/strong&gt;&lt;sp-editable-field editable-by-user="data.isLoggedInUsersProfile" table="sys_user" table-id="data.sysUserID" field-model="data.sysUserModel.location"&gt;&lt;/sp-editable-field&gt;&lt;/p&gt;
+            &lt;p ng-if="::(data.liveProfileID &amp;&amp; displayField('live_profile', 'short_description', true))"&gt;&lt;strong class="pad-right"&gt;${Bio}&lt;/strong&gt;&lt;sp-editable-field editable-by-user="data.isLoggedInUsersProfile" table="live_profile" table-id="data.liveProfileID" field-model="data.liveProfileModel.short_description"&gt;&lt;/sp-editable-field&gt;&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="row"&gt;
+      &lt;div ng-class="{'col-md-6': teamExists(), 'col-md-12': !teamExists()}" class="col-sm-12 col-xs-12"&gt;
+        &lt;div class="panel panel-default b" ng-if="getSysUserModelFields().length &gt; 0"&gt;
+          &lt;div class="panel-heading"&gt;
+            &lt;h4 class="panel-title"&gt;
+              &lt;i class="fa fa-info-circle m-r-sm"&gt;&lt;/i&gt;${About}
+            &lt;/h4&gt;
+          &lt;/div&gt;
+          &lt;div class="body padder-xs"&gt;
+            &lt;div class="list-group"&gt;
+              &lt;div ng-repeat="fieldModel in sysUserModelFields"&gt;
+                &lt;div class="list-group-item"&gt;
+                  &lt;div&gt;
+                    &lt;sp-editable-field block="true" table="sys_user" editable-by-user="data.isLoggedInUsersProfile" table-id="data.sysUserID" field-model="fieldModel"&gt;&lt;/sp-editable-field&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div ng-if="teamExists()" class="col-md-6 col-sm-12 col-xs-12"&gt;
+        &lt;sp-widget widget="data.teamWidget"&gt;&lt;/sp-widget&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="row" ng-if="data.preferencesEnabled.preferencesPanelEnabled"&gt;
+      &lt;div class="col-sm-12 col-xs-12"&gt;
+        &lt;div class="panel panel-default b"&gt;
+          &lt;div class="panel-heading"&gt;
+            &lt;h4 class="panel-title"&gt;
+              &lt;i class="fa fa-cog m-r-sm"&gt;&lt;/i&gt;${User preferences}
+            &lt;/h4&gt;
+          &lt;/div&gt;
+          &lt;div class="body padder-xs"&gt;
+            &lt;div class="list-group"&gt;
+              &lt;div class="list-group-item"&gt;
+                &lt;label&gt;${Accessibility enabled} &lt;/label&gt;
+                &lt;div class="input-switch"&gt;
+                  &lt;input type="checkbox"
+                         ng-change="setUserPreferenceValue(data.userPreferences.accessibility)"
+                         ng-model="data.userPreferences.accessibility.value"
+                         name="accessibility-enabled" id="accessibility-enabled"/&gt;
+                  &lt;label class="switch" for="accessibility-enabled" ng-click="toggle($event, data.userPreferences.accessibility)"&gt;
+                    &lt;span class="sr-only"&gt;${Accessibility enabled}&lt;/span&gt;
+                  &lt;/label&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="list-group-item" ng-if="data.preferencesEnabled.timezoneEnabled"&gt;
+                &lt;label for="time_zone_picker_select"&gt;${Time zone}&lt;/label&gt;
+                &lt;select id="time_zone_picker_select" class="form-control "
+                        name="time_zone_picker_select" ng-model="data.listProperties.timezone.current"
+                        ng-change="setPreferenceValue('timezone', data.listProperties.timezone.current.value)"
+                        ng-options="item as item.label for item in data.listProperties.timezone.list"/&gt;
+              &lt;/div&gt;
+              &lt;div class="list-group-item" ng-if="data.preferencesEnabled.languageEnabled"&gt;
+                &lt;label for="language_picker_select"&gt;${Language}&lt;/label&gt;
+                &lt;select id="language_picker_select" class="form-control"
+                        name="language_picker_select" ng-model="data.listProperties.language.current"
+                        ng-change="setPreferenceValue('language', data.listProperties.language.current.value)"
+                        ng-options="item as item.label for item in data.listProperties.language.list "/&gt;
+              &lt;/div&gt;
+              &lt;div class="list-group-item" ng-if="data.preferencesEnabled.mfaEnabled"&gt;
+                &lt;button class="btn btn-link" ng-click="triggerMFAConfigurationModal()" aria-haspopup="dialog"&gt;${Configure Multi-Factor Authentication}&lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="panel-footer clearfix" ng-if="data.userPreferencesChanged"&gt;
+            &lt;a id="refresh-to-see-changes" href="javascript:void(0)"
+               ng-click="reloadPage()" class="pull-right btn btn-primary"&gt;&lt;i class="fa fa-refresh m-r-sm" aria-hidden="true"&gt;&lt;/i&gt;${Refresh to see changes}&lt;/a&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div ng-if="!data.userExists" &gt;
+        &lt;div class="panel panel-default"&gt;
+          &lt;div class="panel-heading"&gt;&lt;h4 class="panel-title"&gt;${User not found}&lt;/h4&gt;&lt;/div&gt;
+          &lt;div class="panel-body wrapper"&gt;
+            &lt;p&gt;${This user does not exist}&lt;/p&gt;
+            &lt;p&gt;${Suggestions}:&lt;/p&gt;
+            &lt;ul&gt;
+              &lt;li&gt;${Contact your portal administrator}&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;script type="text/ng-template" id="mfaModalTemplate"&gt;
+        &lt;div&gt;
+          &lt;div class="modal-header"&gt;
+            &lt;h1 class="h4 modal-title" style="display: inline-block"&gt;${Complete the steps below to enable multi-factor authentication}&lt;/h1&gt;
+            &lt;i class="fa fa-close pull-right text-base" autofocus="true" tabindex="0" ng-click="dismissMFAConfigurationModal()" aria-label="${Close dialog}" role="button"&gt;&lt;/i&gt;
+          &lt;/div&gt;
+          &lt;div class="modal-body"&gt;
+          	&lt;iframe id="mfa-config-window" src="/google_auth_setup_dialog" width="100%" height="500px" frameBorder="0"&gt;&lt;/iframe&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/script&gt;
+    &lt;/div&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;</payload>
+        <sys_class_name>sp_rel_widget_clone</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-31 21:57:01</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c36a4facdb4b37004a1192a6db96190f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cf6a4facdb4b37004a1192a6db96190b</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_rel_widget_clone_c36a4facdb4b37004a1192a6db96190f</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-31 21:57:01</sys_updated_on>
+    </sp_rel_widget_clone>
+</record_update>

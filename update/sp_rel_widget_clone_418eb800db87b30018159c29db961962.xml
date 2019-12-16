@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
+    <sp_rel_widget_clone action="INSERT_OR_UPDATE">
+        <child display_value="IT Top KB Articles">c18eb800db87b30018159c29db96195f</child>
+        <cloned>2019-07-29 22:28:48</cloned>
+        <last_validated>2019-07-29 22:28:48</last_validated>
+        <parent display_value="KB Topic Articles">35c51f56d7f33100a9ad1e173e24d4b1</parent>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;sp_widget&gt;&lt;category&gt;kb&lt;/category&gt;&lt;client_script/&gt;&lt;controller_as/&gt;&lt;css/&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list&gt;title,color,glyph&lt;/field_list&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id/&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link/&gt;&lt;name&gt;KB Topic Articles&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;true&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[// populate the 'data' variable
+$sp.getValues(data, "color,glyph,kb_topic,title");
+data.items = $sp.getKBTopicArticles(data.kb_topic);
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;true&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2015-05-05 22:36:48&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;35c51f56d7f33100a9ad1e173e24d4b1&lt;/sys_id&gt;&lt;sys_mod_count&gt;42&lt;/sys_mod_count&gt;&lt;sys_name&gt;KB Topic Articles&lt;/sys_name&gt;&lt;sys_package display_value="Service Portal - Core" source="com.glide.service-portal"&gt;7943ae2adbceba40381c71bdbf9619f5&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_35c51f56d7f33100a9ad1e173e24d4b1&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-08-24 18:55:37&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="panel panel-{{::data.color}}"&gt;
+  &lt;div class="panel-heading"&gt;
+    &lt;h3 class="panel-title"&gt;
+      &lt;span ng-if="data.glyph" class="m-r"&gt;
+        &lt;glyph sn-char="{{::data.glyph}}" /&gt;
+      &lt;/span&gt;
+      &lt;a href="?id=kb_topic&amp;kb_topic={{::data.kb_topic}}"&gt;{{::data.title}}&lt;/a&gt;
+    &lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="panel-body panel-body-250"&gt;
+    &lt;div class="m-b panel-link" ng-repeat="i in data.items"&gt;
+      &lt;a href="?id=kb_article&amp;sys_id={{::i.sys_id}}"&gt;{{::i.title}}&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div ng-if="data.items.length == 0"&gt;
+      (${No articles})
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;</payload>
+        <sys_class_name>sp_rel_widget_clone</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-29 22:28:48</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>418eb800db87b30018159c29db961962</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>c18eb800db87b30018159c29db96195f</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_rel_widget_clone_418eb800db87b30018159c29db961962</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-29 22:28:48</sys_updated_on>
+    </sp_rel_widget_clone>
+</record_update>

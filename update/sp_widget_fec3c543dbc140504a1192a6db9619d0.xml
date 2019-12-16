@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[/**
+	Created by: Brent Williams & Andres Delgado
+	Date:  06/25/2019 - 09/14/2019
+	Last Update: 08/26/2019
+	Updated By:
+	Review Date:
+	Code ID:
+	widget controller **/
+function($scope,$rootScope,$timeout) {
+  var c = this;
+  $scope.showWidget = ""; //Listening for "showHideWidget" event
+  $rootScope.$on('showHideWidget', function(event,data) {
+  $timeout(function(){
+            $scope.showWidget = data;
+  });
+  });
+}
+
+/* function($scope, spAriaUtil, spModal, $uibModal) {
+$scope.accessibilityModeEnabled = spAriaUtil.isAccessibilityEnabled();
+
+//View My Requested Items Modal Client code
+	var c = this;
+	c.openModal = function(widgetId) {
+		spModal.open({
+			title: 'My Group Requested Items',
+			size: 'md',
+			widget: widgetId,
+			buttons: [{label:'${Close}', cancel: true}],
+			widgetInput: {sys_id: widgetId }
+		});
+	};
+} */]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.list-group-item {
+  border: none;
+
+  .btn-link {
+  	padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+body {
+  font: normal medium/1.4 sans-serif;
+}
+h2 {
+  color: #fff;
+  background: #00549F;
+}
+h6 {
+  font-size:12px;
+	font-color: #000;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+thead{
+	background: #000;
+  font: normal medium/1.4 sans-serif;
+  color: #fff;
+}
+th, td {
+  padding: 0.25rem;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+tbody tr:hover {
+  background: #D7E4BD;
+}
+
+#rcorners1 {
+  border-radius: 25px;
+  background: #73AD21;
+  padding: 20px; 
+  width: 200px;
+  height: 150px; 
+}
+
+.select2-container.select2-allowclear .select2-choice .select2-chosen {
+  margin-right: 60px;
+}
+
+.mia i {
+  font-size: 6rem;
+}
+
+.mia {
+  color: #808080;
+}
+
+// *Force* chrome default focus outline
+.default-focus-outline {
+    :focus {
+        outline: thin dotted;
+
+        // a css property that is often overwritten but we don't want it to be overwritten
+        // for focus
+        outline: 3px solid $input-border-tab-focus !important; /* IE */
+        outline: 5px auto $input-border-tab-focus !important; /* Webkit */;
+        outline-offset: -2px;
+
+        @-moz-document url-prefix() {
+            outline: 3px solid $input-border-tab-focus !important; /* FF */
+        }
+    }
+}
+
+// accessible accessibility toggle
+@media screen and (-ms-high-contrast: active) {
+  .input-switch input.ng-not-empty+label.switch[for="accessibility-enabled"] {
+    background-color: highlight;
+    border: none;
+
+    &amp;:before {
+      background-color: highlightText;
+    }
+  }
+
+  .input-switch input.ng-empty+label[for="accessibility-enabled"] {
+    background-color: window;
+    border: 1px solid windowText;
+
+    &amp;:before {
+      background-color: windowText;
+    }
+  }
+}
+  </css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>my_requested_items_rejected</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>My Requested Items Rejected</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/**
+	Created by: Brent Williams & Andres Delgado
+	Date:  06/25/2019 - 09/14/2019
+	Last Update: 08/26/2019
+	Updated By:
+	Review Date:
+	Code ID:
+	**/
+	
+	//Data Setup
+	data.ritms = [];
+	
+	//Set Variables
+/*	var currentUser = gs.getUserID();
+	var user = new GlideRecord('sc_req_item','sys_user');
+	//var user = new GlideRecord('sc_req_item','sys_user');
+	user.get('sys_id',currentUser);
+	user.setLimit(5);
+	user.addQuery('request.requested_for.org_unit=javascript:getMyUnit()');
+	user.addQuery('active',true);
+	user.query();
+	while(user.next()){
+		var ritm = {};
+		ritm.number = gr.getDisplayValue('number');
+		ritm.item = gr.getDisplayValue('cat_item');
+		ritm.user = gr.getDisplayValue('request.requested_for');
+		ritm.approval = gr.getDisplayValue('approval');
+		ritm.org = gr.getDisplayValue('request.requested_for.u_unit');
+		ritm.bu = gr.getDisplayValue('request.requested_for.u_unit.u_business_unit_id.u_name');
+		ritm.mega_bu = gr.getDisplayValue('request.requested_for.u_unit.u_business_unit_id.u_mega_business_unit_id.u_name');
+		ritm.sys_id = gr.getUniqueValue();
+		data.ritms.push(ritm);
+	}
+})(); */
+
+	var gr = new GlideRecord('sc_req_item','sys_user');
+	gr.setLimit(5);
+	//gr.addQuery('request.requested_for.org_unit=javascript:getMyUnit()');
+	gr.addQuery('approval=rejected^opened_by=javascript:gs.getUserID()');
+	gr.query();
+	while(gr.next()){
+		
+		var ritm = {};
+		ritm.number = gr.getDisplayValue('number');
+		ritm.item = gr.getDisplayValue('cat_item');
+		ritm.user = gr.getDisplayValue('request.requested_for');
+		ritm.approval = gr.getDisplayValue('approval');
+		ritm.org = gr.getDisplayValue('request.requested_for.u_unit');
+		ritm.bu = gr.getDisplayValue('request.requested_for.u_unit.u_business_unit_id.u_name');
+		ritm.mega_bu = gr.getDisplayValue('request.requested_for.u_unit.u_business_unit_id.u_mega_business_unit_id.u_name');
+		ritm.sys_id = gr.getUniqueValue();
+		data.ritms.push(ritm);
+	}
+	
+})();	
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-11-15 16:39:12</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>fec3c543dbc140504a1192a6db9619d0</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>My Requested Items Rejected</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_fec3c543dbc140504a1192a6db9619d0</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-11-15 16:41:52</sys_updated_on>
+        <template><![CDATA[<!-- <div ng-if="showWidget == 'my_unit_requests'"> -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 style="align:center;">
+      <b style="color:white;">My Unit Requests</b>
+    </h2>
+  </div>
+    <div class="list-group">
+      <table class="list-group-item">
+        <thead>
+					<th>Number</th>
+          <th>Item</th>
+          <th>Requester</th>
+          <th>Org&nbsp;|&nbsp;Unit Name&nbsp;|&nbsp;Mega Unit</th>
+          <th>Status</th>
+        </thead>
+        <tr ng-repeat="ritm in c.data.ritms">
+        		<td>{{ritm.number}}</td>
+            <td>{{ritm.item}}</td>
+          	<td>{{ritm.user}}</td>
+            <td>{{ritm.org}}&nbsp;|&nbsp; {{ritm.mega_bu}}</td>
+            <td>{{ritm.approval}}</td>
+          </tr>
+      </table>
+  </div>
+  <div ng-if="c.data.ritms.length == 0" class="b-t wrapper text-center">
+    No RITMs
+  </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($rootScope,$scope,$timeout) {
+  /* widget controller */
+  var c = this;
+  c.selectedAction = 'create-request'; // When page loads, default action selected
+  /*broadcast to other widgets after waiting for 500 milliseconds, to ensure other widgets are loaded and ready to listen when we broadcast */
+  $timeout(function(){
+  $rootScope.$broadcast('showHideWidget', 'create-request');
+  },500);
+  //broadcast the selection when ever cliked on each IconAction
+  $scope.selectAction = function(selection){
+  c.selectedAction = selection;
+  $rootScope.$broadcast('showHideWidget', selection);
+  };
+}
+/**
+Created by: Brent Williams
+Date: 08/01/2019
+Last Update: 10/15/2019
+Updated By: Brent Williams
+Review Date:
+Code ID:
+**/]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/**
+Created by: Brent Williams
+Date:  08/01/2019 - 08/14/2019
+Last Update:
+Updated By:
+Review Date:
+Code ID:
+**/
+.a-disabled {cursor: pointer; color: $sp-disabled-breadcrumb;}
+.dropdown {position: relative; display: inline-block;}
+.dropdown .dropbtn {
+  font-size: 16px; 
+  width: 100%; 
+  border: none; 
+  outline: none; 
+  color: black; 
+  padding: 5px 4px; 
+  background-color: #fff;
+  font-family: inherit;
+  margin: 0;}
+.dropdown-content {
+  display: none; 
+  position: absolute; 
+  background-color: #fff;
+  border: 1px solid #6FC8C1;
+  border-radius: 15px 15px;
+  box-shadow: 0 0 10px #E8E8E8 inset;
+  min-width: 220px; 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 5px 5px; 
+  z-index: 1; 
+  cursor: pointer;}
+.dropdown:hover .dropdown-content {display: block;}
+.icon-background {
+      height: 175px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      .each-icon {
+              &amp;.active {
+              color: #c70000;
+              }
+              height:150px;
+              width:200px;
+              background:#ddd;
+              padding:50px;
+              text-align:center;
+              border-radius:4px;
+          cursor:pointer;        
+          p{
+            margin-top:5px;
+          }
+      }
+}
+.remove-margin {
+      margin-bottom: 0px;
+}</css>
+        <data_table>sp_instance_link</data_table>
+        <demo_data/>
+        <description>Icons on the AE ESSP page</description>
+        <docs/>
+        <field_list>type,url,sc_category,sc_cat_item,kb_topic,kb_article,kb_category,sp_page,title,short_description,color,class_name,glyph</field_list>
+        <has_preview>true</has_preview>
+        <id>essp_main_icons</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>ESSP Main Icons</name>
+        <option_schema>[{"name":"link_template","section":"Presentation","label":"Template","type":"choice","choices":[{"label":"Top Icon","value":"Top Icon"},{"label":"Circle Icon","value":"Circle Icon"},{"label":"Color Box","value":"Color Box"}]}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  // Collect the User Info to Display Users First Name
+          data.sysUserID = gs.getUserID();
+              if (!data.sysUserID)
+              data.sysUserID = gs.getUser().getID();
+      var sysUserGR = new GlideRecord("sys_user");
+      data.userExists = sysUserGR.get(data.sysUserID);
+      if (data.userExists) {
+              data.name = sysUserGR.getValue("first_name");
+      } else {
+              data.name = "User";
+      }  
+})();
+
+/* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-26 22:18:24</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>e75f9983db32b70018159c29db96199d</sys_id>
+        <sys_mod_count>297</sys_mod_count>
+        <sys_name>ESSP Main Icons</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_e75f9983db32b70018159c29db96199d</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-10-21 23:05:36</sys_updated_on>
+        <template><![CDATA[<!--
+Created by: Brent Williams
+Date:  08/01/2019 - 08/14/2019
+Last Update:
+Updated By:
+Review Date:
+Code ID:
+-->
+<div><!-- your widget template -->
+  <div class="icon-background">
+		<div class="dropdown">
+      <button class="dropbtn">  
+        <span align="center";><img src="myaccount.png" width="219" height="96" align="middle"/></span>
+      </button>
+        <div class="dropdown-content">
+          <p><a ng-href="?id=user_profile_v2">${View My Profile}</a></p>
+          <p><a ng-href="?id=user_profile_v2">${Change Password}</a></p>
+          <p><a ng-href="?id=pwd_reset">${Reset Password}</a></p>
+          <p><a ng-href="?id=aeit_index">${My Approvals}</a></p>
+          <p><a ng-href="?id=aeit_index">${Incident Status}</a></p>
+          <p><a ng-href="?id=requests_v2">${Request Status}</a></p>
+          <p><a ng-href="?id=aeit_index">${Requested Item Status}</a></p>
+          <p><a ng-href="?id=aeit_index">${My Unit Requests}</a></p>
+        </div>   
+    </div>
+	<div class="dropdown">
+      <button class="dropbtn">  
+      <span align="center";><img src="rptissue-icon.png" width="219" height="96" align="middle"/></span>
+      </button>
+      <div class="dropdown-content">
+          <p><a ng-href="?id=aeit_index">${Something is Broken}</a></p>
+      </div>
+   </div>   
+<div class="dropdown">
+      <button class="dropbtn">
+        <span align="center";><img src="makeITRequest.png" width="219" height="96" align="middle"/></span>
+			</button>
+        <div class="dropdown-content">
+        <p><a ng-href="essp?id=account_access">${Accounts &amp; Access}</a></p>
+        <p><a ng-click="c.onOpen()">${Business Applications &amp; Services}</a></p>
+        <p><a ng-href="javascript:void(0)">${Order Hardware}</a></p>
+        <p><a ng-href="javascript:void(0)">${Order Software}</a>
+        <p><a ng-href="javascript:void(0)">${Network Services}</a></p>
+        <p><a ng-href="javascript:void(0)">${Technology Idea | Demands}</a></p>
+        </div>   
+</div>
+<div class="dropdown">
+      <button class="dropbtn">  
+      <span align="center";><img src="hrrequest-icon.png" width="219" height="96" align="middle"/></span>
+      </button>      
+        <div class="dropdown-content">
+          <p><a href="javascript:void(0)" ng-click="c.openModal('article-page',(a.sys_id))">${AE Onboarding | Internal Transfers}</a></p>
+          <p><a ng-click="c.openModal('requisition_form')">${AE Offboarding | Leaving AE}</a></p>
+		  		<p><a ng-href="?id=sc_cat_item&sys_id=382220a9db2b87004a1192a6db96199d">
+            ${Cell Phone Stipend Request}</a></p>
+          <p><a ng-href="javascript:void(0)">${Getting Started - On/Offboarding System}</a></p>
+		  		<p><a ng-href="javascript:void(0)">${Name Change Request}</a></p>
+        </div>
+</div>
+<div class="dropdown">
+      <button class="dropbtn">  
+      <span align="center";><img src="training-icon.png" width="219" height="96" align="middle"/></span>
+      </button>      
+        <div class="dropdown-content">
+          <p><a ng-href="?id=aeit_index">${ServiceNow Training}</a></p>
+          <p><a ng-href="?id=aeit_index">${ACC Interlocal Request}</a></p>
+          <!-- <glyph sn-char="eye-open" class="pad-right pull-right" />  -->
+        </div>
+</div>
+<div class="dropdown">
+      <button class="dropbtn">  
+      <span align="center";><img src="knowledge_icon.png" width="219" height="96" align="middle"/></span>
+      </button>
+        <div class="dropdown-content">
+          <p><a ng-href="javascript:void(0)">${Common Answers}</a></p>
+          <p><a ng-href="javascript:void(0)">${Highest Related Articles}</a></p>
+          <p><a ng-href="javascript:void(0)">${Most Read Articles}</a></p>
+        </div>
+</div>
+<div class="dropdown">
+      <button class="dropbtn">  
+      <span align="center";><img src="aeloanerIcon.png" width="219" height="96" align="middle"/></span>
+      </button>
+        <div class="dropdown-content">
+          <p><a ng-href="javascript:void(0)">${New Vehicle Motor Pool Request}</a></p>
+          <p><a ng-href="javascript:void(0)">${My Vehicle Motor Pool Requests}</a></p>
+        </div>
+</div>
+<div class="dropdown">
+      <button class="dropbtn">  
+      <span align="center";><img src="optsvc-icon.png" width="219" height="96" align="middle"/></span>
+      </button>      
+        <div class="dropdown-content">
+          <p><a href="javascript:void(0)" ng-click="c.openModal('article-page',(a.sys_id))">${One-Line Diagram Change Request}</a></p>
+          <!-- <glyph sn-char="eye-open" class="pad-right pull-right" />  -->
+        </div>
+		</div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

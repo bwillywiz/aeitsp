@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cs_topic">
+    <sys_cs_topic action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applicability/>
+        <cb_topic_id display_value="My Fun Test Topic">6919f3abdbed08d018159c29db96198e</cb_topic_id>
+        <definition>{"id":"6919f3abdbed08d018159c29db96198e","name":"My Fun Test Topic","vendor_id":"c2f0b8f187033200246ddd4c97cb0bb9","description":"My Fun Test Topic","category":"","key_phrases":["My Fun Test Topic","itsm"],"variables":[{"name":"LiveAgent_application","type":"java.lang.Object"},{"name":"__segment_trigger_a459443c329744ccb06b70b6ee57a19a_done","type":"java.lang.Object","init_value":"false"},{"name":"previous_graph_node","type":"java.lang.Object"}],"fields":[{"type":"Boolean","name":"RootDecisionBranch_3a4977ab65ed08d00f394e68170febaa","unique":false,"default_value":"true","key_phrases":[],"static_enum_list":[]},{"type":"String","name":"__silent_TerminateGoal_d18685e1ddd344abb06eecd469b65e96","unique":false,"key_phrases":[],"static_enum_list":[]},{"type":"String","name":"__silent_Decision_RootDecision_b64977abe6ed08d09597b9b7cb2c72aa","unique":false,"key_phrases":[],"static_enum_list":[]},{"type":"String","name":"__silent_Branch_RootDecisionBranch_f64977abd2ed08d0f7ee69fb46ce7daa","unique":false,"key_phrases":[],"static_enum_list":[]},{"type":"String","name":"__silent_StartGoal_518ece0fe3ef4111bf0d1df3664921ba","unique":false,"key_phrases":[],"static_enum_list":[]},{"type":"Reference","table_name":"sys_user","name":"user","unique":false,"key_phrases":[],"static_enum_list":[]}],"actions":[],"tasks":[{"type":"Consumer to system","show_as_button":true,"name":"primary","description":"primary","applicability":"vaVars.__segment_trigger_a459443c329744ccb06b70b6ee57a19a_done==false","mode":"Qmode","key_phrases":[],"greeting_msg":"vaInputs.initialize(\"user\");vaInputs.initialize(\"RootDecisionBranch_3a4977ab65ed08d00f394e68170febaa\");vaInputs.initialize(\"__silent_TerminateGoal_d18685e1ddd344abb06eecd469b65e96\");vaInputs.initialize(\"__silent_Branch_RootDecisionBranch_f64977abd2ed08d0f7ee69fb46ce7daa\");vaInputs.initialize(\"__silent_Decision_RootDecision_b64977abe6ed08d09597b9b7cb2c72aa\");vaInputs.initialize(\"__silent_StartGoal_518ece0fe3ef4111bf0d1df3664921ba\");null;","fields":[{"name":"__silent_Decision_RootDecision_b64977abe6ed08d09597b9b7cb2c72aa","direction":"Input","required":true,"prompt_msg":"vaVars.previous_graph_node=\"RootDecision_for_goal_primary___RootDecision_b64977abe6ed08d09597b9b7cb2c72aa\";vaInputs.__silent_Decision_RootDecision_b64977abe6ed08d09597b9b7cb2c72aa=true;null;","confirm_msg_on_default_value":{"msg":"","val_for_confirm":true},"acknowledge_msg":"vaVars.previous_graph_node=\"RootDecision_for_goal_primary___RootDecision_b64977abe6ed08d09597b9b7cb2c72aa\";vaInputs.RootDecisionBranch_3a4977ab65ed08d00f394e68170febaa=true;null;"},{"name":"__silent_Branch_RootDecisionBranch_f64977abd2ed08d0f7ee69fb46ce7daa","applicable":"vaVars.previous_graph_node==\"RootDecision_for_goal_primary___RootDecision_b64977abe6ed08d09597b9b7cb2c72aa\" &amp;&amp; ((vaInputs.RootDecisionBranch_3a4977ab65ed08d00f394e68170febaa.getValue() == true))","direction":"Input","required":true,"prompt_msg":"vaVars.previous_graph_node=\"RootDecisionBranch_f64977abd2ed08d0f7ee69fb46ce7daa___RootDecisionBranch_f64977abd2ed08d0f7ee69fb46ce7daa\";vaInputs.__silent_Branch_RootDecisionBranch_f64977abd2ed08d0f7ee69fb46ce7daa=true;null;","confirm_msg_on_default_value":{"msg":"","val_for_confirm":true},"acknowledge_msg":"vaVars.previous_graph_node=\"RootDecisionBranch_f64977abd2ed08d0f7ee69fb46ce7daa___RootDecisionBranch_f64977abd2ed08d0f7ee69fb46ce7daa\";null;"},{"name":"__silent_StartGoal_518ece0fe3ef4111bf0d1df3664921ba","applicable":"vaVars.previous_graph_node==\"RootDecisionBranch_f64977abd2ed08d0f7ee69fb46ce7daa___RootDecisionBranch_f64977abd2ed08d0f7ee69fb46ce7daa\"","direction":"Input","required":true,"prompt_msg":"vaVars.previous_graph_node=\"Start___518ece0fe3ef4111bf0d1df3664921ba\";vaInputs.__silent_StartGoal_518ece0fe3ef4111bf0d1df3664921ba=true;null;","confirm_msg_on_default_value":{"msg":"","val_for_confirm":true},"acknowledge_msg":"vaVars.previous_graph_node=\"Start___518ece0fe3ef4111bf0d1df3664921ba\";null;"},{"name":"__silent_TerminateGoal_d18685e1ddd344abb06eecd469b65e96","applicable":"vaVars.previous_graph_node==\"Start___518ece0fe3ef4111bf0d1df3664921ba\"","direction":"Input","required":true,"prompt_msg":"vaVars.previous_graph_node=\"End___d18685e1ddd344abb06eecd469b65e96\";vaInputs.__silent_TerminateGoal_d18685e1ddd344abb06eecd469b65e96=true;null;","confirm_msg_on_default_value":{"msg":"","val_for_confirm":true},"acknowledge_msg":"vaVars.previous_graph_node=\"End___d18685e1ddd344abb06eecd469b65e96\";vaVars.__segment_trigger_a459443c329744ccb06b70b6ee57a19a_done=true;null;"}],"variables_update":[]}],"roles":[],"active":true,"published":true,"score":0.0,"sys_scope":"d7c8b857db16f30018159c29db96193d","title":"My Fun Test Topic"}</definition>
+        <fields/>
+        <is_system_topic>false</is_system_topic>
+        <key_phrases>My Fun Test Topic itsm</key_phrases>
+        <metaphone>ATSM TST FN M TPK</metaphone>
+        <name>My Fun Test Topic</name>
+        <published>true</published>
+        <roles/>
+        <sys_class_name>sys_cs_topic</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-12-12 15:39:43</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>ae19b76bdbed08d018159c29db961906</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>My Fun Test Topic</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sys_cs_topic_ae19b76bdbed08d018159c29db961906</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-12-12 15:40:34</sys_updated_on>
+        <title>My Fun Test Topic</title>
+        <vendor display_value="ServiceNow">c2f0b8f187033200246ddd4c97cb0bb9</vendor>
+    </sys_cs_topic>
+    <sys_variable_value action="delete_multiple" query="document_key=ae19b76bdbed08d018159c29db961906"/>
+</record_update>

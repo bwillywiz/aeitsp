@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[/**
+Created by: Brent Williams
+Date: 08/01/2019
+Last Update: 10/15/2019
+Updated By: Brent Williams
+Review Date:
+Code ID:
+**/
+function widgetController ($rootScope,$scope,$timeout) {
+  /* widget controller */
+  //var widgetCtrl = function(callWidget){
+  var c = this;
+  c.selectedAction = 'create-request'; // When page loads, default action selected
+  /*broadcast to other widgets after waiting for 500 milliseconds, to ensure other widgets are loaded and ready to listen when we broadcast */
+  $timeout(function(){
+  $rootScope.$broadcast('showHideWidget', 'create-request');
+  },500);
+  //broadcast the selection when ever cliked on each IconAction
+  $scope.selectAction = function(selection){
+  c.selectedAction = selection;
+  $rootScope.$broadcast('showHideWidget', selection);
+  };
+	//};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/**
+Created by: Brent Williams
+Date:  08/01/2019 - 08/14/2019
+Last Update:
+Updated By:
+Review Date:
+Code ID:
+**/
+.a-disabled {cursor: pointer; color: $sp-disabled-breadcrumb;}
+.dropdown {position: relative; display: inline-block;}
+.dropdown .dropbtn {
+  font-size: 16px; 
+  width: 100%; 
+  border: none; 
+  outline: none; 
+  color: black; 
+  padding: 5px 4px; 
+  background-color: #fff;
+  font-family: inherit;
+  margin: 0;}
+.dropdown-content {
+  display: none; 
+  position: absolute; 
+  background-color: #fff;
+  border: 1px solid #6FC8C1;
+  border-radius: 15px 15px;
+  box-shadow: 0 0 10px #E8E8E8 inset;
+  min-width: 220px; 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 5px 5px; 
+  z-index: 1; 
+  cursor: pointer;}
+.dropdown:hover .dropdown-content {display: block;}
+.icon-background {
+      height: 175px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      .each-icon {
+              &amp;.active {
+              color: #c70000;
+              }
+              height:150px;
+              width:200px;
+              background:#ddd;
+              padding:50px;
+              text-align:center;
+              border-radius:4px;
+          cursor:pointer;        
+          p{
+            margin-top:5px;
+          }
+      }
+}
+.remove-margin {
+      margin-bottom: 0px;
+}</css>
+        <data_table>sp_instance_link</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>type,url,sc_category,sc_cat_item,kb_topic,kb_article,kb_category,sp_page,title,short_description,color,class_name,glyph</field_list>
+        <has_preview>true</has_preview>
+        <id>apps_and_accounts_icon</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Apps and Accounts Icon</name>
+        <option_schema>[{"name":"link_template","section":"Presentation","label":"Template","type":"choice","choices":[{"label":"Top Icon","value":"Top Icon"},{"label":"Circle Icon","value":"Circle Icon"},{"label":"Color Box","value":"Color Box"}]}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  // Collect the User Info to Display Users First Name
+          data.sysUserID = gs.getUserID();
+              if (!data.sysUserID)
+              data.sysUserID = gs.getUser().getID();
+      var sysUserGR = new GlideRecord("sys_user");
+      data.userExists = sysUserGR.get(data.sysUserID);
+      if (data.userExists) {
+              data.name = sysUserGR.getValue("first_name");
+      } else {
+              data.name = "User";
+      }  
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-11-15 18:16:59</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>cb2a19c7db0540504a1192a6db961929</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Apps and Accounts Icon</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_cb2a19c7db0540504a1192a6db961929</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-11-15 18:18:57</sys_updated_on>
+        <template><![CDATA[<!--
+Created by: Brent Williams
+Date:  08/01/2019 - 08/14/2019
+Last Update:
+Updated By:
+Review Date:
+Code ID:
+-->
+<div><!-- your widget template -->
+<div class="icon-background">
+		<div class="dropdown">
+      <button class="dropbtn">  
+        <span align="center";><img src="app_acctAccessIcon.png" width="146" height="76"></span>
+      </button>
+        <div class="dropdown-content">
+          <p><a ng-href="?id=sc_cat_item&sys_id=485619564f2bb20098940f5d0210c75b&sysparm_category=8f95a6412b8a1200256c5cc7a8da15e7&catalog_id=e0d08b13c3330100c8b837659bba8fb4">
+            ${WebEx Host Account}</a></p>
+          <p><a ng-href="?id=sc_cat_item&sys_id=0a086d422bb77500256c5cc7a8da156b&sysparm_category=8f95a6412b8a1200256c5cc7a8da15e7&catalog_id=e0d08b13c3330100c8b837659bba8fb4">
+            ${ACS Requests}</a></p>
+          <p><a ng-href="?id=pwd_reset">${AECall Access}</a></p>
+          <p><a ng-href="javascript:void(0)">${Add or Remove User Membership Request | Active Directory}</a></p>
+          <p><a ng-href="javascript:void(0)">${CC&amp;B Access Request}</a></p>
+          <p><a ng-href="?id=requests_v2">${CC&amp;B Security Change Request}</a></p>
+          <p><a ng-href="javascript:void(0)">${CIS Access Request}</a></p>
+          <p><a ng-href="javascript:void(0)">${Contractor Invoicing Account Request}</a></p>
+          <p><a ng-href="javascript:void(0)">${Datazeo }</a></p>
+          <p><a ng-href="javascript:void(0)">${ECC Switching Access}</a></p>	
+          <p><a ng-href="javascript:void(0)">${ECC Switching Access}</a></p>
+          <p><a ng-href="javascript:void(0)">${Electric Office}</a></p>
+          <p><a ng-href="javascript:void(0)">${Employee information changes}</a></p>
+          <p><a ng-href="javascript:void(0)">${JIRA User Access Request}</a></p>
+          <p><a ng-href="javascript:void(0)">${Other Application Access}</a></p>
+          <p><a ng-href="javascript:void(0)">${Power Improvement Action Committee (PIAC) Account}</a></p>
+          <p><a ng-href="javascript:void(0)">${Splunk Access Request }</a></p>
+          <p><a ng-href="javascript:void(0)">${Storms Access Request}</a></p>
+        </div>   
+</div>
+</div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

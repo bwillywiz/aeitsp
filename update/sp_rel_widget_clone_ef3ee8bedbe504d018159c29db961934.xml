@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
+    <sp_rel_widget_clone action="INSERT_OR_UPDATE">
+        <child display_value="AE Executives Organization Chart">df3ee8bedbe504d018159c29db96192e</child>
+        <cloned>2019-12-09 16:57:58</cloned>
+        <last_validated>2019-12-09 16:57:58</last_validated>
+        <parent display_value="Organization Chart">33b0f6f5c3310200b7b87868e1d3ae7b</parent>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;sp_widget&gt;&lt;category&gt;standard&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function ($scope, $location, $http, spUtil, $timeout) {
+
+	var c = this;
+	var $ = go.GraphObject.make;
+
+	c.user = {
+		displayValue: $scope.data.name,
+		value: $scope.data.start,
+		name: 'user'
+	};
+
+	// base user changed, reload page
+	$scope.$on("field.change", function(evt, parms) {
+		if (parms.field.name != 'user')
+			return;
+
+		var s = $location.search();
+		s.p = parms.newValue;
+		$location.search(s);
+	});
+
+
+	$timeout(function() {
+		c.diagram = $(go.Diagram, 'org_chart', {
+			mouseWheelBehavior: go.ToolManager.WheelZoom,
+			layout: $(go.TreeLayout, evalGoCode(c.options.tree_layout)) // use a TreeLayout to position all of the nodes
+		});
+
+		makeTemplate(c.diagram);
+
+		// create the Model with data for the tree, and assign to the Diagram
+		c.diagram.model = $(go.TreeModel, {
+			nodeParentKeyProperty: "manager", // this property refers to the parent node data
+			nodeDataArray: $scope.data.nodes
+		});
+
+	});
+
+	c.zoomIn = function() {
+		c.diagram.commandHandler.increaseZoom()
+	}
+
+	c.zoomOut = function() {
+		c.diagram.commandHandler.decreaseZoom()
+	}
+
+	// When a Node is double clicked, open the user record for the person in a new window
+	function nodeClick(event, node) {
+		window.open(spUtil.format($scope.options.url, {sys_id: node.data.key, page: c.options.page}));
+	}
+
+	function makeTemplate(diagram) {
+		diagram.nodeTemplate =  $(go.Node, "Auto", angular.extend({click: nodeClick}, evalGoCode(c.options.node_layout)),
+			$(go.Shape, "Rectangle", new go.Binding("fill", "color")), // the outer shape for the node, surrounding the Table
+			$(go.Panel, "Horizontal",$(go.Picture, evalGoCode(c.options.picture_layout), new go.Binding("source", "photo")), panel()));
+		diagram.linkTemplate = $(go.Link, go.Link.Orthogonal,{ selectable: false }, $(go.Shape, evalGoCode(c.options.line) )); // the default black link shape
+	}
+
+	function evalGoCode(item) {
+		for (var x in item) {
+			var re = /{([^}]+)?}/g, match;
+			while (match = new RegExp(re).exec(item[x])) {
+				item[x] = eval(match[1])
+			}
+		}
+
+		return item;
+	}
+
+	function panel() {
+		var opts = [
+			go.Panel, "Table", evalGoCode(c.options.table_layout),
+			$(go.RowColumnDefinition, evalGoCode(c.options.row_layout))];
+		var item;
+		for (var fieldName in c.options.card_fields) {
+			item = c.options.card_fields[fieldName];
+			evalGoCode(item);
+			opts.push($(go.TextBlock, item, new go.Binding("text", fieldName)))
+		}
+		return $.apply(null, opts);
+	}
+
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;.org-chart {
+	height: 400px;
+  margin: 10px;
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id/&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link/&gt;&lt;name&gt;Organization Chart&lt;/name&gt;&lt;option_schema&gt;[{"hint":"Card Fields Config","name":"card_fields","section":"Data","label":"Card Fields","type":"string"},{"hint":"User Background color","name":"user_background_color","section":"Presentation","label":"User Background Color","type":"string"},{"hint":"Node Background Color","name":"node_background_color","section":"Presentation","label":"Node Background Color","type":"string"},{"hint":"URL to open on click","name":"url","section":"Behavior","label":"URL","type":"string"},{"name":"table_layout","section":"Presentation","label":"Table Layout","type":"string"},{"name":"row_layout","section":"Presentation","label":"Row Layout","type":"string"},{"name":"line","section":"Presentation","label":"Line","type":"string"},{"name":"tree_layout","section":"Presentation","label":"Tree Layout","type":"string"},{"name":"picture_layout","section":"Presentation","label":"Picture Layout","type":"string"},{"name":"table_layout","section":"Presentation","label":"Table Layout","type":"string"},{"name":"page","section":"Behavior","label":"Page","type":"string"}]&lt;/option_schema&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function () {		
+	var start = $sp.getParameter('p') || gs.getUserID();
+
+	// Default Values
+	options.table_layout = options.table_layout || {margin: 4, maxSize: '{new go.Size(180, NaN)}'}
+	options.row_layout = options.row_layout || {column: 0, stretch: '{go.GraphObject.Horizontal}', alignment: '{go.Spot.Left}'};
+	options.node_layout = options.node_layout || {cursor: "pointer", isShadowed: true}
+	options.user_background_color = options.user_background_color || 'lightblue';
+	options.node_background_color = options.node_background_color || 'azure';
+	options.url = options.url || '?id={page}&amp;sys_id={sys_id}';
+	options.line = options.line || {stroke: '#222'};
+	options.page = options.page || 'user_profile';
+	options.card_fields = options.card_fields || {
+			name: {row: 0, column: 0, columnSpan: 2, font: 'bold 9pt sans-serif', alignment: '{go.Spot.Top}',  maxSize: '{new go.Size(160, NaN)}'},
+			title: {row: 1, column: 0, columnSpan: 2, font: '8pt sans-serif'},
+			department: {row: 2, column: 0, columnSpan: 2, font: '8pt sans-serif'},
+			email: {row: 3, column: 0, columnSpan: 2, font: '8pt sans-serif'},
+			phone: {row: 4, column: 0, columnSpan: 2, font: '8pt sans-serif'},
+			location: {row: 5, column: 0, columnSpan: 2, font: '8pt sans-serif'}
+	};
+	options.tree_layout = options.tree_layout || {
+				treeStyle: '{go.TreeLayout.StyleLastParents}',
+				angle: 90,
+				layerSpacing: 80,
+				alternateAngle: 0,
+				alternateAlignment: '{go.TreeLayout.AlignmentStart}',
+				alternateNodeIndent: 20,
+				alternateNodeIndentPastParent: 1,
+				alternateNodeSpacing: 20,
+				alternateLayerSpacing: 40,
+				alternateLayerSpacingParentOverlap: 1,
+				alternatePortSpot: '{new go.Spot(0, 0.999, 20, 0)}',
+				alternateChildPortSpot: '{go.Spot.Left}'
+			};
+
+	options.picture_layout = options.picture_layout || {
+		name: 'Picture',
+		desiredSize: '{new go.Size(55, 65)}',
+		margin: '{new go.Margin(2, 2, 2, 6)}',
+		imageStretch: '{go.GraphObject.UniformToFill}'
+	};
+
+	createNodes(start);
+	
+	function createNodes() {
+		var gr = new GlideRecord('sys_user');
+		gr.get(start);
+		data.start = start;
+		data.name = gr.getDisplayValue('name');
+		var n = data.nodes = [];
+		// anchor user
+		var u = getUser(gr);
+		u.color = options.user_background_color;
+		n.push(u);
+
+		if (u.manager &amp;&amp; gr.manager.active) {
+			gr.get(u.manager);
+			var m = getUser(gr);
+			n.push(m);
+			getSubs(u.manager, n, start);
+		}
+
+		getSubs(u.sys_id, n);
+
+		function getSubs(manager, n, start) {
+			var gr = new GlideRecord('sys_user');
+			gr.addActiveQuery();
+			gr.addQuery('manager', manager);
+			gr.query();
+			while (gr.next()) {
+				var u = getUser(gr);
+
+				if (start &amp;&amp; u.sys_id == start)
+					continue;
+
+				n.push(u);
+			}
+		}
+
+		function getUser(gr) {
+			var u = {};
+			$sp.getRecordDisplayValues(u, gr, 'sys_id,' + Object.keys(options.card_fields));
+			$sp.getRecordValues(u, gr, 'manager');
+			u.key = u.sys_id;
+
+			var profile = new GlideRecord("live_profile");
+			profile.addQuery("document", u.sys_id);
+			profile.query();
+
+			while (profile.next()){
+				var photo = profile.getDisplayValue("photo");
+				if (photo.length &gt; 0) {
+					u.photo = photo + '?t=small';
+				}
+			}
+
+			u.color = options.node_background_color;
+			return u;
+		}
+	}
+})();
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;true&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2015-08-11 16:42:29&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;33b0f6f5c3310200b7b87868e1d3ae7b&lt;/sys_id&gt;&lt;sys_mod_count&gt;497&lt;/sys_mod_count&gt;&lt;sys_name&gt;Organization Chart&lt;/sys_name&gt;&lt;sys_package display_value="Service Portal - Core" source="com.glide.service-portal"&gt;7943ae2adbceba40381c71bdbf9619f5&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_33b0f6f5c3310200b7b87868e1d3ae7b&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-08-24 20:56:47&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div&gt;
+    &lt;sn-record-picker field="c.user" table="'sys_user'" display-field="'name'" value-field="'sys_id'" 
+                    display-fields="'email'" search-fields="'name'" page-size="100" &gt;
+    &lt;/sn-record-picker&gt;
+    &lt;div id="org_chart" class="org-chart"&gt;&lt;/div&gt;
+    &lt;button name="zoomin" ng-click="c.zoomIn()" class="btn btn-primary"&gt;&lt;span&gt;&lt;i class="fa fa-search-plus"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/button&gt;  
+    &lt;button name="zoomout" ng-click="c.zoomOut()" class="btn btn-primary"&gt;&lt;span&gt;&lt;i class="fa fa-search-minus"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/button&gt;  
+&lt;/div&gt;
+]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;</payload>
+        <sys_class_name>sp_rel_widget_clone</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-12-09 16:57:58</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ef3ee8bedbe504d018159c29db961934</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>df3ee8bedbe504d018159c29db96192e</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_rel_widget_clone_ef3ee8bedbe504d018159c29db961934</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-12-09 16:57:58</sys_updated_on>
+    </sp_rel_widget_clone>
+</record_update>

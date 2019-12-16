@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_design_topic">
+    <sys_cb_design_topic action="INSERT_OR_UPDATE">
+        <compiled_topic display_value="Hello World">240cc726db84c8104a1192a6db96195f</compiled_topic>
+        <design_definition>{"type":"FlowTopic","triggers":[{"type":"Trigger","name":"6d1aea6a397b49fa8d37493c8423fe5d","triggerType":"request","id":"6d1aea6a397b49fa8d37493c8423fe5d"}],"goals":[{"name":"primary","trigger_id":"6d1aea6a397b49fa8d37493c8423fe5d","nodes":[{"type":"StartGoal","goal_id":"3b992cf61543401fa622ee1ad5198c66","greeting_msg":{"type":"String","mode":"string","value":""},"id":"fd66cfa7a7b84cd59dd3905609d20c4e","name":"Start"},{"type":"TerminateGoal","goal_id":"3b992cf61543401fa622ee1ad5198c66","confirmation_msg":{"type":"String","mode":"string","value":""},"id":"40b65b5abe8b4614b8b84a2e31044ea3","name":"End"},{"type":"InputPrompt","variable_id":"917315aea94d4de2949051620038bd46","message":{"type":"String","mode":"string","value":"gs.getMessage(\"What is your name?\")"},"optional":false,"id":"f50506c2a50c4f7d8bee2ea58f92c573","name":"user name","goal_id":"3b992cf61543401fa622ee1ad5198c66"},{"type":"OutputPrompt","value":{"type":"String","mode":"script","value":"(function execute() {\n    return gs.getMessage('Hello {0}', [vaInputs.user_name]);\n    /* Return a quoted string.  For example:\n\n       var result;\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessage('hi there {0}', [vaInputs.first_name]);\n       } else {\n           return gs.getMessage('how are you {0}', [vaInputs.last_name]);\n       }\n    */\n    return '';\n})()\n"},"id":"0acf10f99d0044c8bb9524e2a2d7a094","name":"user","goal_id":"3b992cf61543401fa622ee1ad5198c66"}],"edges":[{"type":"Edge","source_node_id":"0acf10f99d0044c8bb9524e2a2d7a094","target_node_id":"40b65b5abe8b4614b8b84a2e31044ea3","id":"747cb93f014443418aafed735a88d33a"},{"type":"Edge","source_node_id":"fd66cfa7a7b84cd59dd3905609d20c4e","target_node_id":"f50506c2a50c4f7d8bee2ea58f92c573","id":"5692526a79924a9783824b26c9c55040"},{"type":"Edge","source_node_id":"f50506c2a50c4f7d8bee2ea58f92c573","target_node_id":"0acf10f99d0044c8bb9524e2a2d7a094","id":"f0c4bc692f5f484f9f28193004487074"}],"id":"3b992cf61543401fa622ee1ad5198c66"}],"script_variables":[],"glide_variables":[{"type":"String","name":"user_name","id":"917315aea94d4de2949051620038bd46"}],"roles":[],"scope":"d7c8b857db16f30018159c29db96193d","id":"ba5143aadb44c8104a1192a6db9619b5","name":"Hello World","key_phrases":["Hello World","Brent","Andy","Somebody","VirtualKing","my name is","hello"]}</design_definition>
+        <design_topic_id>ba5143aadb44c8104a1192a6db9619b5</design_topic_id>
+        <name>Hello World</name>
+        <sys_class_name>sys_cb_design_topic</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-09-25 20:14:36</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>6c0cc726db84c8104a1192a6db961962</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>FlowTopic</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sys_cb_design_topic_6c0cc726db84c8104a1192a6db961962</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-09-25 20:14:41</sys_updated_on>
+        <type>FlowTopic</type>
+    </sys_cb_design_topic>
+</record_update>

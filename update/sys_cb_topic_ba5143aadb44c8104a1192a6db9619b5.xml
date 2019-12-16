@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <connect_queue/>
+        <description>Testing Hello World</description>
+        <graph>{
+  "graph_api_version": "1.0.10.mp4",
+  "goals": {
+    "3b992cf61543401fa622ee1ad5198c66": {
+      "id": "3b992cf61543401fa622ee1ad5198c66",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "fd66cfa7a7b84cd59dd3905609d20c4e": {
+          "id": "fd66cfa7a7b84cd59dd3905609d20c4e",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "40b65b5abe8b4614b8b84a2e31044ea3": {
+          "id": "40b65b5abe8b4614b8b84a2e31044ea3",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "f50506c2a50c4f7d8bee2ea58f92c573": {
+          "id": "f50506c2a50c4f7d8bee2ea58f92c573",
+          "stepType": "Prompt",
+          "name": "user name",
+          "prompt": {
+            "value": "What is your name?",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "optional": false,
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "917315aea94d4de2949051620038bd46"
+        },
+        "0acf10f99d0044c8bb9524e2a2d7a094": {
+          "id": "0acf10f99d0044c8bb9524e2a2d7a094",
+          "stepType": "TextOutput",
+          "name": "user",
+          "value": {
+            "value": "(function execute() {\n    return gs.getMessage('Hello {0}', [vaInputs.user_name]);\n    /* Return a quoted string.  For example:\n\n       var result;\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessage('hi there {0}', [vaInputs.first_name]);\n       } else {\n           return gs.getMessage('how are you {0}', [vaInputs.last_name]);\n       }\n    */\n    return '';\n})()\n",
+            "mode": "script"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "747cb93f014443418aafed735a88d33a",
+          "edgeType": "Edge",
+          "source": "0acf10f99d0044c8bb9524e2a2d7a094",
+          "target": "40b65b5abe8b4614b8b84a2e31044ea3",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "5692526a79924a9783824b26c9c55040",
+          "edgeType": "Edge",
+          "source": "fd66cfa7a7b84cd59dd3905609d20c4e",
+          "target": "f50506c2a50c4f7d8bee2ea58f92c573",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f0c4bc692f5f484f9f28193004487074",
+          "edgeType": "Edge",
+          "source": "f50506c2a50c4f7d8bee2ea58f92c573",
+          "target": "0acf10f99d0044c8bb9524e2a2d7a094",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "variables": {
+    "917315aea94d4de2949051620038bd46": {
+      "id": "917315aea94d4de2949051620038bd46",
+      "name": "user_name",
+      "label": "User Name",
+      "varType": "string",
+      "category": "vaInputs"
+    }
+  }
+}</graph>
+        <key_phrases>Hello World,Brent,Andy,Somebody,VirtualKing,my name is,hello</key_phrases>
+        <live_agent>false</live_agent>
+        <name>Hello World</name>
+        <roles/>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-09-25 19:28:04</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>ba5143aadb44c8104a1192a6db9619b5</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>Hello World</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sys_cb_topic_ba5143aadb44c8104a1192a6db9619b5</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-09-25 20:14:00</sys_updated_on>
+        <variables/>
+    </sys_cb_topic>
+    <sys_variable_value action="delete_multiple" query="document_key=ba5143aadb44c8104a1192a6db9619b5"/>
+</record_update>

@@ -26,7 +26,7 @@
         <sys_created_on>2019-07-11 20:00:31</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>9ddf2b4edb6e334018159c29db961954</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>PMO</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
@@ -34,10 +34,10 @@
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_rectangle_menu_item_9ddf2b4edb6e334018159c29db961954</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-11 20:00:31</sys_updated_on>
+        <sys_updated_on>2019-08-13 14:20:53</sys_updated_on>
         <table/>
-        <type>page</type>
-        <url/>
+        <type>url</type>
+        <url>https://austinenergydev.service-now.com/pmosp</url>
         <url_target/>
     </sp_rectangle_menu_item>
     <sys_translated_text action="delete_multiple" query="documentkey=9ddf2b4edb6e334018159c29db961954"/>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <connect_queue/>
+        <description/>
+        <graph>{
+  "goals": {
+    "7540e528257547d78de41749274153eb": {
+      "id": "7540e528257547d78de41749274153eb",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "fd60773fd1c8432fb8953cbf697ce3ba": {
+          "id": "fd60773fd1c8432fb8953cbf697ce3ba",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "cd25e656a4f14b4c88cd6117aa30b21f": {
+          "id": "cd25e656a4f14b4c88cd6117aa30b21f",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "0905caf69d4943c7a609caf14e6c99ce",
+          "edgeType": "Edge",
+          "source": "fd60773fd1c8432fb8953cbf697ce3ba",
+          "target": "cd25e656a4f14b4c88cd6117aa30b21f",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "graph_api_version": "1.0.10.mp4",
+  "variables": {}
+}</graph>
+        <key_phrases>Reset Password,password,Password,reset,locked out</key_phrases>
+        <live_agent>false</live_agent>
+        <name>Enroll Reset Password</name>
+        <roles/>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-12-12 14:48:15</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>705d67ebdbad08d018159c29db9619d6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Enroll Reset Password</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sys_cb_topic_705d67ebdbad08d018159c29db9619d6</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-12-12 14:48:15</sys_updated_on>
+        <variables/>
+    </sys_cb_topic>
+    <sys_variable_value action="delete_multiple" query="document_key=705d67ebdbad08d018159c29db9619d6"/>
+</record_update>

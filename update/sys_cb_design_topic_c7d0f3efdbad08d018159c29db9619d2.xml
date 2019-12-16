@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_design_topic">
+    <sys_cb_design_topic action="INSERT_OR_UPDATE">
+        <compiled_topic display_value="Enroll Reset Password">c3d0f3efdbad08d018159c29db9619ce</compiled_topic>
+        <design_definition>{"type":"FlowTopic","triggers":[{"type":"Trigger","name":"63edd23fb1aa46c8941cf5cfd4fabcb7","triggerType":"request","id":"63edd23fb1aa46c8941cf5cfd4fabcb7"}],"goals":[{"name":"primary","trigger_id":"63edd23fb1aa46c8941cf5cfd4fabcb7","nodes":[{"type":"StartGoal","goal_id":"7540e528257547d78de41749274153eb","greeting_msg":{"type":"String","mode":"string","value":""},"id":"fd60773fd1c8432fb8953cbf697ce3ba","name":"Start"},{"type":"TerminateGoal","goal_id":"7540e528257547d78de41749274153eb","confirmation_msg":{"type":"String","mode":"string","value":""},"id":"cd25e656a4f14b4c88cd6117aa30b21f","name":"End"}],"edges":[{"type":"Edge","source_node_id":"fd60773fd1c8432fb8953cbf697ce3ba","target_node_id":"cd25e656a4f14b4c88cd6117aa30b21f","id":"0905caf69d4943c7a609caf14e6c99ce"}],"id":"7540e528257547d78de41749274153eb"}],"script_variables":[],"glide_variables":[],"roles":[],"scope":"d7c8b857db16f30018159c29db96193d","id":"705d67ebdbad08d018159c29db9619d6","name":"Enroll Reset Password","key_phrases":["Reset Password","password","Password","reset","locked out"]}</design_definition>
+        <design_topic_id>705d67ebdbad08d018159c29db9619d6</design_topic_id>
+        <name>Enroll Reset Password</name>
+        <sys_class_name>sys_cb_design_topic</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-12-12 15:03:43</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>c7d0f3efdbad08d018159c29db9619d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>FlowTopic</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sys_cb_design_topic_c7d0f3efdbad08d018159c29db9619d2</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-12-12 15:03:43</sys_updated_on>
+        <type>FlowTopic</type>
+    </sys_cb_design_topic>
+</record_update>

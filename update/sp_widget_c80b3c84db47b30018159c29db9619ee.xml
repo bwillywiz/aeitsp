@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function(spModal) {
+   var c = this;
+   c.openOverlay = function($event){
+   //pull data-article attribute from clicked element
+   var articleId = $event.currentTarget.dataset['article'];
+   //open modal
+   spModal.open({
+   //load our custom kb article widget
+   widget: 'kb_article_modal',
+   //pass article id to article widget
+   widgetInput: { sys_id:articleId },
+   //force modal to large size
+   size: 'lg'
+   })
+   }
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>html_kb_article_modal</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>HTML KB Article Modal</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-29 22:13:26</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c80b3c84db47b30018159c29db9619ee</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>HTML KB Article Modal</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_c80b3c84db47b30018159c29db9619ee</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-29 22:22:38</sys_updated_on>
+        <template><![CDATA[<div>
+   <a href="javascript:void(0)" data-article="SYS_ID_OF_ARTICLE" ng-click="c.openOverlay($event)">Click here for article</a>
+</div>
+
+]]></template>
+    </sp_widget>
+</record_update>

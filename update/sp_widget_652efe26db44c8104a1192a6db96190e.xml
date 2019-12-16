@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($log, $scope, $element, $document, spModal, $q, $timeout, $window) {
+	'use strict';
+	
+  /* widget controller */
+  var $ctrl = this;
+	var $spContainer = $document.find('.sp-page-root');
+	var $widgetParent = $element.parent();
+	
+	$ctrl.isWindowVisible = false;
+	$ctrl.hasUnreadMessages = false;
+	$ctrl.firstPress = false;
+	$ctrl.vaSource = '';
+	
+	
+	$ctrl.toggleWindow = function() {
+		if ($ctrl.isWindowVisible) {
+			$ctrl.isWindowVisible = false;
+			$timeout(function() {
+				if (!$ctrl.isWindowVisible) {
+					$element.find('.conversation-container').css("display", "none");
+					$element.find('.sn-connect-floating').css("display", "none");
+					$element.find('.sn-connect-floating-wrapper').css("display", "none");
+					
+					// ios overlay hacky fix.
+					$document.find('.touch_scroll').css("-webkit-overflow-scrolling", "touch");
+				}
+			}, 300);
+		} else {
+			if (!$ctrl.firstPress) {
+				$ctrl.firstPress = true;
+				$ctrl.vaSource = '/$sn-va-web-client-app.do?sysparm_nostack=true&sysparm_stack=no';
+				if ($ctrl.options.va_url_params) {
+					$ctrl.vaSource = $ctrl.vaSource + '&' + $ctrl.options.va_url_params;
+				}
+			}
+			$ctrl.isWindowVisible = true;
+			$ctrl.hasUnreadMessages = false;
+			$element.find('.conversation-container').css("display", "block");
+			$element.find('.sn-connect-floating').css("display", "block");
+			$element.find('.sn-connect-floating-wrapper').css("display", "block");
+			
+			// ios overlay hacky fix.
+			$document.find('.touch_scroll').css("-webkit-overflow-scrolling", "auto");
+		}
+	};
+	
+		$window.addEventListener("message", function(e) {
+			if (e.data === 'sn-va-web-client-app-new-message' && $ctrl.isWindowVisible === false) {
+				$ctrl.hasUnreadMessages = true;
+			}
+			else if (e.data === 'sn-va-web-client-app-trigger-login') {
+				$window.location.reload(true);
+			}
+		});
+	
+	$element.find('.help-button').on("mouseup", function(e) {
+		e.target.blur();
+		e.stopPropagation();
+	});
+	
+	$element.find('.help-icon').on("mouseup", function(e) {
+		e.target.blur();
+		e.stopPropagation();
+	});
+	
+	$ctrl.openWindow = function() {
+		$ctrl.isWindowVisible = true;		
+		// delay before clearing unread message indicator
+		// in-case user opens and closes quickly
+		$timeout(function() {
+			if ($ctrl.isWindowVisible) {
+				$ctrl.hasUnreadMessages = false;							
+			}
+		}, 500);
+	};
+	
+	var _closeWindow = function() {
+		
+		$ctrl.isWindowVisible = false;
+		$ctrl.hasActiveConversation = false;
+	};
+}]]></client_script>
+        <controller_as>$ctrl</controller_as>
+        <css>$color-darker: #485563;&#13;
+$color-white: #ffffff;&#13;
+&#13;
+$window-width: 275px;&#13;
+$window-height: 400px;&#13;
+$button-height: 60px;&#13;
+$bottom-margin: 15px;&#13;
+&#13;
+$sn-chatbot-animation-speed: 300ms;&#13;
+&#13;
+// OVERRIDE TO DISPLAY RECORD CARDS&#13;
+.sn-card-component_records {&#13;
+  display: block !important;&#13;
+}&#13;
+&#13;
+.conversation-button-container {&#13;
+  position: fixed;&#13;
+  right: 30px;&#13;
+  bottom: 15px;&#13;
+  z-index: 20;&#13;
+&#13;
+  .conversation-region {&#13;
+    position: relative;&#13;
+    opacity: 0;&#13;
+    visibility: hidden;&#13;
+&#13;
+&#13;
+    &amp;.open {&#13;
+      transition: $sn-chatbot-animation-speed ease-in opacity;&#13;
+      opacity: 1;&#13;
+      visibility: visible;&#13;
+&#13;
+    }&#13;
+  }&#13;
+&#13;
+&#13;
+  .help-button {&#13;
+    position: relative;&#13;
+    width: 60px;&#13;
+    color: #fff;&#13;
+    float: right;&#13;
+    border: none;&#13;
+    height: $button-height;&#13;
+    border-radius: 60px;&#13;
+    box-shadow: 0px 2px 11px #ababab;&#13;
+    -moz-box-shadow: 0px 2px 11px #ababab;&#13;
+    -o-box-shadow: 0px 2px 11px #ababab;&#13;
+    padding: 0;&#13;
+    background-color: #db2721;&#13;
+&#13;
+    &amp;::before {&#13;
+      content: "";&#13;
+      width: 60px;&#13;
+      height: 60px;&#13;
+      border-radius: 50%;&#13;
+      position: absolute;&#13;
+      top: 0;&#13;
+      left: 0;&#13;
+    }&#13;
+    &#13;
+    &amp;:hover::before {&#13;
+    	background-color: rgba(0,0,0,0.2);&#13;
+    }&#13;
+&#13;
+    &amp;:focus {&#13;
+      outline: thin dotted;&#13;
+      outline-color: gray;&#13;
+      outline: 5px auto -webkit-focus-ring-color;&#13;
+      outline-offset: 2px;&#13;
+    }&#13;
+&#13;
+    &amp;.state-unread {&#13;
+      &amp; &gt; span:after {&#13;
+        content: ' ';&#13;
+        position: absolute;&#13;
+        top: -17px;&#13;
+        right: -14px;&#13;
+        width: 16px;&#13;
+        height: 16px;&#13;
+        background-color: #ed6e5c;&#13;
+        border-radius: 25px;&#13;
+      }&#13;
+    }&#13;
+    &#13;
+    .help-icon {&#13;
+      pointer-events: none;&#13;
+      position: relative;&#13;
+    }&#13;
+    &#13;
+    .sn-va-widget-icon {&#13;
+    	background-image: url('/vagent-icon.svg');&#13;
+      height: 32px;&#13;
+      top: 1px;&#13;
+      left: 12px;&#13;
+      width: 36px;&#13;
+      display: block&#13;
+    }&#13;
+&#13;
+    .icon-close {&#13;
+      font-size: 20px;&#13;
+&#13;
+    }&#13;
+&#13;
+  }&#13;
+}&#13;
+&#13;
+// window sizing&#13;
+.sn-connect-floating {&#13;
+  position: relative;&#13;
+  bottom: 15px;&#13;
+  right: 0;&#13;
+  display: none;&#13;
+&#13;
+  .sn-connect-floating-wrapper {&#13;
+    width: $window-width; &#13;
+    transition: &#13;
+    border-bottom: 1px solid #bdc0c4;&#13;
+    margin-right: 0;&#13;
+    right: 0;&#13;
+    box-shadow: 0px 2px 11px #ababab !important;&#13;
+    -moz-box-shadow: 0px 2px 11px #ababab !important;&#13;
+    -o-box-shadow: 0px 2px 11px #ababab !important;&#13;
+    transition: max-height 0s $sn-chatbot-animation-speed;&#13;
+    display: none;&#13;
+&#13;
+    .conversation-container {&#13;
+      height: 100%;&#13;
+      display: none;&#13;
+&#13;
+      .chat-frame {&#13;
+        max-height: $window-height;&#13;
+        height: calc(100vh - $button-height - ($bottom-margin * 3));&#13;
+        width: $window-width;&#13;
+        margin-bottom: -5px;&#13;
+        border: none;&#13;
+        overflow: hidden;&#13;
+        background-color: #fff;&#13;
+      }&#13;
+&#13;
+      // Immediate div is autogenerated from serviceportal&#13;
+      &amp; &gt; div {&#13;
+        height: 100%;&#13;
+      }&#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+// Mobile SCSS&#13;
+@media (max-width: 425px) {  &#13;
+  .sn-connect-floating {&#13;
+    .sn-connect-floating-wrapper {&#13;
+      position: fixed;&#13;
+      max-height: 100%;&#13;
+      width: 100%;&#13;
+      left: 0;&#13;
+      right: 0;&#13;
+      bottom: calc($button-height + 20px);&#13;
+      top: 0;&#13;
+&#13;
+      .conversation-container {&#13;
+        position: absolute;&#13;
+        max-height: 100%;&#13;
+        width: 100%;&#13;
+        height: 100%;&#13;
+        left: 0;&#13;
+        right: 0;&#13;
+        top: 0;&#13;
+        bottom: 0;&#13;
+&#13;
+        .chat-frame {&#13;
+          position: absolute;&#13;
+          width: 100%;&#13;
+          height: 100%;&#13;
+          left: 0;&#13;
+          right: 0;&#13;
+          top: 0;&#13;
+          bottom: 0;&#13;
+        }&#13;
+      }&#13;
+    }&#13;
+  }&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>ae_virtual_agent_sp</id>
+        <internal>false</internal>
+        <link><![CDATA[function(){}]]></link>
+        <name>AE Virtual Agent SP</name>
+        <option_schema>[{"hint":"The color of the floating button which opens the virtual agent service portal widget button.","name":"button_color","section":"Presentation","default_value":"#8D8DE0","label":"Floating Button Color","type":"string"},{"hint":"The URL parameters to pass to the VA client, for example: sysparm_live_agent_queue=abc123&amp;sysparm_conversation=xzy456","name":"va_url_params","section":"Behavior","label":"Virtual Agent Client URL Parameters","type":"string"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	
+	var instanceGR = $sp.getInstanceRecord();
+	
+	options.va_url_params = options.va_url_params || "";
+	options.button_color = options.button_color || "red";
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-09-25 19:14:03</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>652efe26db44c8104a1192a6db96190e</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>AE Virtual Agent SP</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_652efe26db44c8104a1192a6db96190e</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-12-09 17:56:24</sys_updated_on>
+        <template><![CDATA[<div class="conversation-button-container">
+	<div class="conversation-region fade" 
+       ng-class="{'open': $ctrl.isWindowVisible}">
+    <div class="sn-connect sn-connect-floating">
+      <div class="sn-connect-floating-wrapper loaded">
+        <div class="conversation-container">
+          <iframe class = "chat-frame" scrolling="no"  horizontalscrolling="no" verticalscrolling="no" frameborder="none" ng-src="{{$ctrl.vaSource}}">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button aria-label="${Start Support Conversation}" 
+          class="help-button"
+          ng-attr-tabindex="0"
+          ng-class="{'state-open': $ctrl.isWindowVisible, 'state-unread': $ctrl.hasUnreadMessages}" 
+          ng-click="$ctrl.toggleWindow()"
+          ng-style="{'background-color': $ctrl.options.button_color}"
+          ng-attr-tabindex="0">
+    <div class="hover-overlay"></div>
+    <span aria-hidden="true" ng-class="$ctrl.isWindowVisible ? 'help-icon icon-close icon-cross' : 'help-icon icon-open sn-va-widget-icon'"></span>
+  </button>  
+</div>]]></template>
+    </sp_widget>
+</record_update>

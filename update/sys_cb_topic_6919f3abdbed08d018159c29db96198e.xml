@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <connect_queue/>
+        <description>Just a fun topic for Testing</description>
+        <graph>{
+  "graph_api_version": "1.0.10.mp4",
+  "goals": {
+    "86a8631492904ed19cd175b44b027e59": {
+      "id": "86a8631492904ed19cd175b44b027e59",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "518ece0fe3ef4111bf0d1df3664921ba": {
+          "id": "518ece0fe3ef4111bf0d1df3664921ba",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "d18685e1ddd344abb06eecd469b65e96": {
+          "id": "d18685e1ddd344abb06eecd469b65e96",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "1b43ba936b614de6ab6b2d4c5de6c002",
+          "edgeType": "Edge",
+          "source": "518ece0fe3ef4111bf0d1df3664921ba",
+          "target": "d18685e1ddd344abb06eecd469b65e96",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "variables": {
+    "69559fa54c724a13a0bb37fb0cb19b8a": {
+      "id": "69559fa54c724a13a0bb37fb0cb19b8a",
+      "name": "LiveAgent_application",
+      "value": {
+        "mode": "simple",
+        "value": ""
+      },
+      "varType": "script",
+      "category": "vaVars"
+    }
+  }
+}</graph>
+        <key_phrases>My Fun Test Topic,itsm</key_phrases>
+        <live_agent>false</live_agent>
+        <name>My Fun Test Topic</name>
+        <roles/>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-12-12 15:39:39</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>6919f3abdbed08d018159c29db96198e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>My Fun Test Topic</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sys_cb_topic_6919f3abdbed08d018159c29db96198e</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-12-12 15:39:39</sys_updated_on>
+        <variables/>
+    </sys_cb_topic>
+    <sys_variable_value action="delete_multiple" query="document_key=6919f3abdbed08d018159c29db96198e"/>
+</record_update>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, spAriaUtil, spModal, $uibModal) {
+$scope.accessibilityModeEnabled = spAriaUtil.isAccessibilityEnabled();
+
+}
+
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.iconlink a label,h2 {
+  display: block;
+  width: 50px;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.0;
+  padding: 0;
+  margin: 0 0 5px 0;
+}
+
+/* TOP ICON ---------- */
+
+a.top_icon {
+  display: block;
+  padding: 5px;
+  text-align: center;
+}
+
+a.top_icon .fa {
+  display: block;
+  text-align: center;
+}
+
+.nav {
+  align-content: center;
+  li {
+    padding: 5px 2px;
+
+    &gt; span {
+      &gt; a {
+          display: inline;
+      }
+
+      &gt; i {
+          padding-left: 5px;
+      }
+    }
+  }
+}
+
+/* ICON CSS ---------- */
+.a-disabled {
+  cursor: default;
+  color: $sp-disabled-breadcrumb;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 220px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.icon-link-background-primary {
+  background-color: $brand-primary;
+}
+
+.icon-link-background-info {
+  background-color: $brand-info;
+}
+
+.icon-link-background-success {
+  background-color: $brand-success;
+}
+
+.icon-link-background-warning {
+  background-color: $brand-warning;
+}
+
+.icon-link-background-danger {
+  background-color: $brand-danger;
+}
+
+.icon-link-background-default {
+  background-color: $brand-primary;
+}
+
+.text-primary {
+  color: $brand-primary;
+  
+  &amp;:hover {
+    color: darken($brand-primary, 20%);
+  }
+}
+
+.text-info {
+  color: $brand-info;
+  
+  &amp;:hover {
+    color: darken($brand-info, 20%);
+  }
+}
+
+.text-success {
+  color: $brand-success;
+  
+  &amp;:hover {
+    color: darken($brand-success, 20%);
+  }
+}
+
+.text-warning {
+  color: $brand-warning;
+  
+  &amp;:hover {
+    color: darken($brand-warning, 20%);
+  }
+}
+
+.text-danger {
+  color: $brand-danger;
+  
+  &amp;:hover {
+    color: darken($brand-danger, 20%);
+  }
+}
+
+.text-default {
+  color: $brand-primary;
+  
+  &amp;:hover {
+    color: darken($brand-primary, 20%);
+  }
+}
+
+.high-contrast {
+  .text-primary {
+    color: darken($brand-primary, 10%);
+  }
+
+  .text-info {
+    color: darken($brand-info, 10%);
+  }
+
+  .text-success {
+    color: darken($brand-success, 10%);
+  }
+
+  .text-warning {
+    color: darken($brand-warning, 10%);
+  }
+
+  .text-danger {
+    color: darken($brand-danger, 10%);
+  }
+
+  .text-default {
+    color: darken($brand-primary, 10%);
+  }
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>problem_mgmt_links</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Problem Mgmt Links</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function(){
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-08-20 18:39:58</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>5b1d15cbdbd3b3404a1192a6db9619e1</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Problem Mgmt Links</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_5b1d15cbdbd3b3404a1192a6db9619e1</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-08-20 18:48:43</sys_updated_on>
+        <template><![CDATA[class="top_icon {{::options.class_name}}" target="{{::data.target}}">
+    <h3>{{::options.title}}</h3>
+	<img src="itrequesticon.png" width="148" height="134"/></a>
+<div class="dropdown">
+      <button class="dropbtn">  
+      <span align="center";>Select a Problem Mgmt Status</span>
+      </button>
+        <div class="dropdown-content">
+        <p><a ng-click="c.openModal('supv_asgn_grp_ritms')">${Root Cause Analysis Summary}</a></p>
+        <p><a ng-href="#">${Open Problem Tickets}</a></p>
+        <p><a ng-href="#">${Problem Tickets: Known Errors}</a></p>
+        <p><a ng-href="#">${Closed Problem Tickets ServiceNow}</a></p>
+        </div>   
+</div>]]></template>
+    </sp_widget>
+</record_update>

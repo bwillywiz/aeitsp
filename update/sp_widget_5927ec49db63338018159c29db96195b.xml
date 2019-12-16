@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope,$rootScope,$timeout) {
+  /* widget controller */
+  var c = this;
+  $scope.showWidget = "";
+	//Listening for "showHideWidget" event
+  $rootScope.$on('showHideWidget', function(event,data) {
+  $timeout(function(){
+  $scope.showWidget = data;
+  });
+  });
+}
+/**
+	Created by: Brent Williams
+	Date:  10/15/2019
+	Last Update:
+	Updated By:
+	Review Date:  03/25/2020
+	Code ID:  
+	Description:  Widget used in AE IT Service Portal Index Page.
+	Customer:  ITSM Customers	
+	**/]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.center-div{
+
+      margin-left: auto;
+
+      margin-right: auto;
+
+  float:none;
+
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>create-request</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Create Request</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-08-26 19:52:01</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>5927ec49db63338018159c29db96195b</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>Create Request</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_5927ec49db63338018159c29db96195b</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-10-15 15:10:55</sys_updated_on>
+        <template><![CDATA[<div ng-if="showWidget == 'create'" class="col-md-10 center-div">
+  <h3 style=" border-bottom: 1px solid #ddd;padding-bottom:5px; ">Create Request</h3>
+<form class="form-horizontal">
+      <div class="form-group">
+       <label for="" class="col-sm-2 control-label">Request Number</label>
+       <div class="col-sm-10">
+            <input type="text" class="form-control"   placeholder="Number" autocomplete="off">
+       </div>
+      </div>
+      <div class="form-group">
+       <label for="" class="col-sm-2 control-label">Short Description</label>
+       <div class="col-sm-10">
+            <input type="text" class="form-control"   placeholder="Short Description" autocomplete="off"> </div>
+       </div>
+    	<div class="form-group">
+       <label for="" class="col-sm-2 control-label">Description</label>
+       <div class="col-sm-10">
+            <textarea class="form-control" rows="3"></textarea>
+       </div>
+      <div class="form-group">
+           <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                  <label>
+                     <input type="checkbox"> High priority </label>
+                </div>
+           </div>
+      </div>
+      <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                      <button class="btn btn-default">Submit</button>
+              </div>
+      </div>
+  </div>
+</form>
+</div>]]></template>
+    </sp_widget>
+</record_update>

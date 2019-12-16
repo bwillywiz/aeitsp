@@ -1,62 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function($scope, spAriaUtil) {
-	$scope.accessibilityModeEnabled = spAriaUtil.isAccessibilityEnabled();
+        <client_script><![CDATA[	function($scope, spAriaUtil, spModal, $uibModal,$rootScope, spUtil) {
+	var c = this;
+	c.expanded = !spUtil.isMobile();
+	c.expand = function() {
+		c.expanded = true;
+	};
+
+	var deregister = $rootScope.$on("sp.update.breadcrumbs", function(e, list) {
+		c.breadcrumbs = list;
+	});
+
+	$scope.$on('$destroy', function(){
+		deregister();
+	});
+		//Mark Balloch Start
+	c.openModal = function(widgetId, articleID) {
+		spModal.open({
+			size: 'lg',
+			widget: widgetId,
+			buttons: [{label:'${Close}', cancel: true}],
+			widgetInput: {sys_id: articleID}
+		});
+	};
+	//Mark Balloch End
 }]]></client_script>
         <controller_as>c</controller_as>
         <css>.iconlink a label,h2 {
   display: block;
-  font-size: 2.5rem;
+  width: 50px;
+  font-size: 1.5rem;
   font-weight: 300;
-  line-height: 1.1;
+  line-height: 1.0;
   padding: 0;
-  margin: 0 0 10px 0;
+  margin: 0 0 5px 0;
 }
-
 /* TOP ICON ---------- */
-
 a.top_icon {
   display: block;
-  padding: 20px;
+  padding: 5px;
   text-align: center;
 }
-
 a.top_icon .fa {
   display: block;
   text-align: center;
 }
+.nav {
+  align-content: center;
+  li {
+    padding: 5px 2px;
 
-/* CIRCLE ICON ---------- */
+    &gt; span {
+      &gt; a {
+          display: inline;
+      }
 
-a.circle_icon {
-  display: block;
-  padding: 20px 0px 20px 70px;
+      &gt; i {
+          padding-left: 5px;
+      }
+    }
+  }
+}
+
+
+.a-disabled {
+  cursor: default;
+  color: $sp-disabled-breadcrumb;
+}
+
+.dropdown {
   position: relative;
+  display: inline-block;
+  cursor: pointer;
 }
 
-a.circle_icon .fa {
-  position:absolute;
-  left: 0px;
-  top: 10px;
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
 }
 
-/* COLOR BOX ---------- */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 220px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
 
-a.color_box {
+.dropdown:hover .dropdown-content {
   display: block;
-  position: relative;
-  padding: 20px 20px 20px 82px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-}
-
-a.color_box .fa {
-  position:absolute;
-  left: 20px;
-  top: 20px;
-  width:42px;
-  text-align: center;
 }
 
 .icon-link-background-primary {
@@ -155,7 +196,11 @@ a.color_box .fa {
   .text-default {
     color: darken($brand-primary, 10%);
   }
-}</css>
+  
+}
+
+
+</css>
         <data_table>sp_instance_link</data_table>
         <demo_data/>
         <description>LInk to AE Motor Vehicle Loaner Pool portal page</description>
@@ -180,39 +225,30 @@ a.color_box .fa {
         <sys_created_on>2019-07-10 14:13:33</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>09f6dd7ddb6ebf0018159c29db9619f8</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>44</sys_mod_count>
         <sys_name>AE Motor Vehicle Loaner Pool Icon Link</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_widget_09f6dd7ddb6ebf0018159c29db9619f8</sys_update_name>
-        <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-10 14:14:42</sys_updated_on>
+        <sys_updated_by>Delgado.local</sys_updated_by>
+        <sys_updated_on>2019-08-13 20:08:44</sys_updated_on>
         <template><![CDATA[<div class="iconlink" ng-class="{'high-contrast': accessibilityModeEnabled}">
   <!--// Top Icon -->
   <a ng-if="::(options.link_template == 'Top Icon' || !options.link_template)" ng-href="{{::data.href}}" class="top_icon {{::options.class_name}}" target="{{::data.target}}">
-    <div class="m-b fa fa-{{::options.glyph}} fa-4x {{::options.class_name}} text-{{::options.color}}"></div>
-    <h2>{{::options.title}}</h2>
-    <img src="loanerIcon.png" width="196" height="199"/>
-  </a>
-
-  <!--// Circle Icon -->
-  <a ng-if="::(options.link_template == 'Circle Icon')" ng-href="{{::data.href}}" class="circle_icon {{::options.class_name}} text-{{::options.color}}" target="{{::data.target}}">
-    <span class="fa fa-stack fa-2x">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-{{::options.glyph}} fa-stack-1x fa-inverse"></i>
-    </span>
-    <h2>{{::options.title}}</h2>
-    <span class="text-muted">{{::options.short_description}}</span>
-  </a>
-
-  <!--// Color Box -->
-  <a ng-if="::(options.link_template == 'Color Box')" ng-href="{{::data.href}}" class="color_box {{::options.class_name}} icon-link-background-{{::options.color}} text-white" target="{{::data.target}}">
-    <div class="fa fa-{{::options.glyph}} fa-3x {{::options.class_name}}"></div>
-    <h2>{{::options.title}}</h2>
-    <span>{{::options.short_description}}</span>
-  </a>
+    <h3>{{::options.title}}</h3>
+      <img src="loanerIcon.png" width="148" height="134"/></a>
+    <div class="dropdown">
+      <button class="dropbtn">  
+      <span align="center";>AE Loaner Services</span>
+      </button>
+        <div class="dropdown-content">
+          <p><a ng-click="c.openModal('loaner_task_widget_delgadoa')">${Loaner 1}</a></p>
+          <p><a ng-href="#">${New Vehicle Motor Pool Request}</a></p>
+          <p><a ng-href="#">${My Vehicle Motor Pool Requests}</a></p>
+        </div>
+    </div>    
 </div>]]></template>
     </sp_widget>
 </record_update>

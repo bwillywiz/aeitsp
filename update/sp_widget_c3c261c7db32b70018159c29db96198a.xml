@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[//Client code
+function(spModal) {
+  var c = this;
+  c.onOpen = function() {
+        //ask the user for a string
+        spModal.open({
+            title: 'Give me a name',
+            message: 'What would you like to name it?',
+            input: true,
+            value: c.name
+        }).then(function(name) {
+            c.name = name;
+        })
+    }
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.iconlink a label,h2 {
+  display: block;
+  width: 50px;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.0;
+  padding: 0;
+  margin: 0 0 5px 0;
+}
+
+/* TOP ICON ---------- */
+
+a.top_icon {
+  display: block;
+  padding: 5px;
+  text-align: center;
+}
+
+a.top_icon .fa {
+  display: block;
+  text-align: center;
+}
+
+.nav {
+  align-content: center;
+  li {
+    padding: 5px 2px;
+
+    &gt; span {
+      &gt; a {
+          display: inline;
+      }
+
+      &gt; i {
+          padding-left: 5px;
+      }
+    }
+  }
+}
+
+/* ICON CSS ---------- */
+.a-disabled {
+  cursor: default;
+  color: $sp-disabled-breadcrumb;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 220px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>simple_modal_prompt</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Simple Modal Prompt</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-26 22:33:24</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c3c261c7db32b70018159c29db96198a</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>Simple Modal Prompt</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_c3c261c7db32b70018159c29db96198a</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-26 23:07:22</sys_updated_on>
+        <template><![CDATA[/* ICON HTML ---------- */
+<div class="iconlink" ng-class="{'high-contrast': accessibilityModeEnabled}">
+  <!--// Top Icon -->
+  <a ng-if="::(options.link_template == 'Top Icon' || !options.link_template)" ng-href="{{::data.href}}" class="top_icon {{::options.class_name}}" target="{{::data.target}}">
+    <h3>My Account</h3>
+		<img src="myaccount.png" width="148" height="134"/></a>
+        
+  <p><a ng-click="c.onOpen()">${View My Profile}</a></p>        
+  
+       		
+  <div ng-show="c.name">
+    You answered <span>{{c.name}}</span>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

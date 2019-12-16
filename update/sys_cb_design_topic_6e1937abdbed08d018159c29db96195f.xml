@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_design_topic">
+    <sys_cb_design_topic action="INSERT_OR_UPDATE">
+        <compiled_topic display_value="My Fun Test Topic">ae19b76bdbed08d018159c29db961906</compiled_topic>
+        <design_definition>{"type":"FlowTopic","triggers":[{"type":"Trigger","name":"a459443c329744ccb06b70b6ee57a19a","triggerType":"request","id":"a459443c329744ccb06b70b6ee57a19a"}],"goals":[{"name":"primary","trigger_id":"a459443c329744ccb06b70b6ee57a19a","nodes":[{"type":"StartGoal","goal_id":"86a8631492904ed19cd175b44b027e59","greeting_msg":{"type":"String","mode":"string","value":""},"id":"518ece0fe3ef4111bf0d1df3664921ba","name":"Start"},{"type":"TerminateGoal","goal_id":"86a8631492904ed19cd175b44b027e59","confirmation_msg":{"type":"String","mode":"string","value":""},"id":"d18685e1ddd344abb06eecd469b65e96","name":"End"}],"edges":[{"type":"Edge","source_node_id":"518ece0fe3ef4111bf0d1df3664921ba","target_node_id":"d18685e1ddd344abb06eecd469b65e96","id":"1b43ba936b614de6ab6b2d4c5de6c002"}],"id":"86a8631492904ed19cd175b44b027e59"}],"script_variables":[{"type":"String","name":"LiveAgent_application","value":{"type":"String","mode":"string"},"id":"69559fa54c724a13a0bb37fb0cb19b8a"}],"glide_variables":[],"roles":[],"scope":"d7c8b857db16f30018159c29db96193d","id":"6919f3abdbed08d018159c29db96198e","name":"My Fun Test Topic","key_phrases":["My Fun Test Topic","itsm"]}</design_definition>
+        <design_topic_id>6919f3abdbed08d018159c29db96198e</design_topic_id>
+        <name>My Fun Test Topic</name>
+        <sys_class_name>sys_cb_design_topic</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-12-12 15:39:44</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>6e1937abdbed08d018159c29db96195f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>FlowTopic</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sys_cb_design_topic_6e1937abdbed08d018159c29db96195f</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-12-12 15:40:34</sys_updated_on>
+        <type>FlowTopic</type>
+    </sys_cb_design_topic>
+</record_update>

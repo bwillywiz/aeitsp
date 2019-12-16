@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $location) {
+  /* widget controller */
+	var c = this;
+	var url = "/$pwd_reset.do?sysparm_url=ss_default";
+
+	var urlParams = $location.search();
+	
+	 for (var key in urlParams) {
+		 if (key == 'sysparm_redirect_url') 
+			 url += '&sysparm_redirect_url=' + urlParams[key];
+		 
+		 if (key == 'sysparm_show_custom_header_footer')
+			 url += '&sysparm_show_custom_header_footer=' + urlParams[key];
+			 
+	 }
+	
+	$scope.iframeUrl = url;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.frame-style {
+	height: 75%;
+  width: 100%;
+  border: 0px;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>ae_password_reset</id>
+        <internal>false</internal>
+        <link><![CDATA[function(scope, elem, attrs) {
+	var panelHeight;
+
+	$(document).ready(function() {
+		resizeWindow();
+	});
+
+	$(window).resize(function() {
+		resizeWindow();
+	});
+
+	function resizeWindow() {
+		var panelHeight = ($(document).height()- 60) + 'px';
+		$(elem).find('#pwd_reset_container').css('height', panelHeight);
+	}
+}]]></link>
+        <name>AE Password Reset</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-08-01 00:00:24</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>d6a6a36cdbcb37004a1192a6db96199d</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>AE Password Reset</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_d6a6a36cdbcb37004a1192a6db96199d</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-08-01 00:03:55</sys_updated_on>
+        <template><![CDATA[<!-- your widget template -->
+  <iframe id="pwd_reset_container" class="frame-style" ng-src="{{iframeUrl}}" />]]></template>
+    </sp_widget>
+</record_update>

@@ -70,7 +70,7 @@ td.border_bottom {
         <name>Requisition Form</name>
         <option_schema/>
         <public>false</public>
-        <roles/>
+        <roles>x_aue_ae_it_bqm.cs_user_access</roles>
         <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
@@ -78,7 +78,7 @@ td.border_bottom {
         <sys_created_on>2019-07-12 18:16:08</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>4ea1282edbe2b34018159c29db9619ce</sys_id>
-        <sys_mod_count>144</sys_mod_count>
+        <sys_mod_count>145</sys_mod_count>
         <sys_name>Requisition Form</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
@@ -86,7 +86,7 @@ td.border_bottom {
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_widget_4ea1282edbe2b34018159c29db9619ce</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-15 13:11:14</sys_updated_on>
+        <sys_updated_on>2019-07-23 14:09:53</sys_updated_on>
         <template><![CDATA[<div>
   <h1><p style="text-align:center">REQUISITION FORM   **** MOCK-UP ****</p></h1>
   <fieldset style="align:center; border:1px solid #999; border-radius:8px;">

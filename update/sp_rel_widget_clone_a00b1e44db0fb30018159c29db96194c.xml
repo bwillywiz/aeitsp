@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
+    <sp_rel_widget_clone action="INSERT_OR_UPDATE">
+        <child display_value="KB Top Rated (with modal)">1c0b1e44db0fb30018159c29db961948</child>
+        <cloned>2019-07-30 05:12:54</cloned>
+        <last_validated>2019-07-30 05:12:54</last_validated>
+        <parent display_value="KB Top Rated">3c817b52cb30020000f8d856634c9cfb</parent>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;sp_widget&gt;&lt;category&gt;kb&lt;/category&gt;&lt;client_script/&gt;&lt;controller_as/&gt;&lt;css&gt;.transclude:last-child {
+  padding-bottom: 10px;
+}
+
+.list-group {
+ 	margin-bottom: 0px; 
+}
+
+.list-group-item {
+    padding: 0;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 0px;
+}
+
+.list-group-item:last-child {
+	margin-bottom: 0px;
+}
+
+@media screen and (-ms-high-contrast: active) {
+  .panel-body .list-group .list-group-item .glyphicon-star {
+    color: windowText !important;
+  }
+}
+
+.kb-star-on {
+  color: $fav-star-color !important;
+  text-shadow: $fav-star-outline;
+}
+
+.kb-star-off {
+  color: $fav-star-color-off !important;
+  text-shadow: $fav-star-outline;
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list&gt;title,color,glyph&lt;/field_list&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id/&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link/&gt;&lt;name&gt;KB Top Rated&lt;/name&gt;&lt;option_schema&gt;[{"name":"max_number","section":"Presentation","label":"Max number","type":"integer"},{"displayValue":"Knowledge Category","name":"kb_category","section":"Data","label":"KB category","type":"reference","value":"kb_category","ed":{"reference":"kb_category"}}]&lt;/option_schema&gt;&lt;public&gt;true&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {
+	data.articles = [];
+	options.title = options.title || gs.getMessage("Top Rated Articles");
+	
+	var z;
+	var knowledge_bases;
+	var article_id = $sp.getParameter('sys_id');
+	var kb_id = $sp.getParameter('kb_id');
+	
+	if (article_id != null){  /* On the Article page, get KB of the article */
+		var gr = new GlideRecord("kb_knowledge");
+		if (gr.get(article_id)){
+			knowledge_bases = String(gr.getValue('kb_knowledge_base'));
+		} else /* return for an invalid article id */
+			return;
+		
+	} else {/* For all other pages this code will get executed. Used on knowledge home page.*/
+		
+		/*If KB is selected display top rated articles only from that KB*/
+		if (kb_id != null)
+			knowledge_bases = String(kb_id);
+		else {
+			/*Get all knowledge bases associated with Portal*/
+			knowledge_bases = String($sp.getKnowledgeBases());
+		}
+	}
+	
+	if (GlideStringUtil.notNil(knowledge_bases))
+		z = $sp.getAllKBRecords(knowledge_bases);
+	else //If there are no accessible KBs for logged in user
+		return;
+	
+	z.addQuery("rating", "&gt;", "0");
+	if (options.kb_category)
+		z.addQuery("kb_category", options.kb_category);
+	z.orderByDesc('rating');
+	z.setLimit(options.max_number || 5);
+	z.query();
+	while (z.next()) {
+		if (!z.canRead())
+			continue;
+
+		var a = {};
+		$sp.getRecordValues(a, z, 'short_description,sys_view_count,sys_id,published,rating');
+		a.published_display = z.getDisplayValue("published");
+		data.articles.push(a);
+	}
+})();
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;true&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2015-06-24 17:39:39&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;3c817b52cb30020000f8d856634c9cfb&lt;/sys_id&gt;&lt;sys_mod_count&gt;117&lt;/sys_mod_count&gt;&lt;sys_name&gt;KB Top Rated&lt;/sys_name&gt;&lt;sys_package display_value="Service Portal - Knowledge Base" source="com.glide.service-portal.knowledge-base"&gt;81a382f7db4513006df59c29db961960&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_3c817b52cb30020000f8d856634c9cfb&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2018-10-24 14:52:34&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="panel panel-{{options.color}} b" ng-if="::(data.articles.length &gt; 0)"&gt;
+  &lt;div class="panel-heading"&gt; &lt;h2 class="h4 panel-title" ng-bind="::options.title"&gt;
+    &lt;fa ng-if="::options.glyph.length" name="::{{options.glyph}}" class="m-r-sm" /&gt;&lt;/h2&gt;
+  &lt;/div&gt;
+  &lt;div class="panel-body"&gt;
+    &lt;ul class="list-group"&gt;
+      &lt;li class="list-group-item" ng-repeat="a in ::data.articles"&gt;
+        &lt;a href="?id=kb_article&amp;sys_id={{::a.sys_id}}"&gt;{{::a.short_description}}&lt;/a&gt;
+        &lt;div&gt;
+          &lt;span uib-rating sp-rating ng-model="::a.rating" max="5" readonly="true" aria-label="${Article rating} - ${Read Only}" state-on="'fa fa-star kb-star-on'" state-off="'fa fa-star kb-star-off'" /&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;</payload>
+        <sys_class_name>sp_rel_widget_clone</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-30 05:12:54</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a00b1e44db0fb30018159c29db96194c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>1c0b1e44db0fb30018159c29db961948</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_rel_widget_clone_a00b1e44db0fb30018159c29db96194c</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-30 05:12:54</sys_updated_on>
+    </sp_rel_widget_clone>
+</record_update>

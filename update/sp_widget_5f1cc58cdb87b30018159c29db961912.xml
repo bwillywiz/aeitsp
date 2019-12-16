@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($location, spUtil, spModal) {
+  var c = this;
+	
+	c.select = function(item_id) {
+		if (c.openItem == item_id) {
+			c.openItem = null;
+			return;
+		}
+		
+		renderCatalogItemWidget(item_id);
+	}
+	
+	function renderCatalogItemWidget(item_id) {
+		c.catalogItemWidget = null;
+		spUtil.get("widget-sc-cat-item", {sys_id: item_id}).then(function(response){
+			c.catalogItemWidget = response;
+			c.openItem = item_id;
+		});
+	}
+	
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.result-container {
+  margin-top: 10px;
+}
+
+.catalog-item {
+  background-color: #f5f5f5;
+  padding: 10px;
+  @include border-top-radius($panel-border-radius);
+  @include border-bottom-radius($panel-border-radius);
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>it_quick_search</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>IT Catalog Quick Search</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	if (input.keywords != null && input.keywords != '')
+	data.items = getCatalogItems(input.keywords);
+	else data.items = getPopularItems();
+
+	function getCatalogItems(keywords) {
+		var sc = new GlideRecord('sc_cat_item');
+		sc.addActiveQuery();
+		sc.addQuery('123TEXTQUERY321', keywords);
+		sc.addQuery('sys_class_name', 'NOT IN', 'sc_cat_item_wizard,sc_cat_item_content');
+		sc.addQuery('sc_catalogs', '0d08b13c3330100c8b837659bba8fb4');
+		sc.setLimit(100);
+		sc.orderByDesc("ir_query_score");
+		sc.query();
+		var results = [];
+		while (sc.next()) {
+			if (!$sp.canReadRecord(sc))
+				continue;
+
+			var item = {};
+			$sp.getRecordDisplayValues(item, sc, 'name,price,sys_id');
+			item.category = sc.getValue('category');
+			results.push(item);
+		}
+		return results;
+	}
+	
+	function getPopularItems() {
+		var items = [];
+		var count = new GlideAggregate('sc_req_item');
+		count.addAggregate('COUNT','cat_item');
+		count.groupBy('cat_item');
+		count.addQuery('cat_item.sys_class_name', 'NOT IN', 'sc_cat_item_guide,sc_cat_item_wizard,sc_cat_item_content');
+		count.addQuery('cat_item.sc_catalogs', '0d08b13c3330100c8b837659bba8fb4');
+		count.orderByAggregate('COUNT', 'cat_item');
+		count.query();
+		while (count.next() && items.length < 9) {
+			if (!$sp.canReadRecord("sc_cat_item", count.cat_item.sys_id.getDisplayValue()))
+				continue; // user does not have permission to see this item
+
+			var item = {};
+			item.name = count.cat_item.name.getDisplayValue();
+			item.category = count.cat_item.category.toString();
+			item.price = count.cat_item.price.getDisplayValue();
+			item.sys_id = count.cat_item.sys_id.getDisplayValue();
+			items.push(item);
+		}
+		return items;
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-29 23:28:12</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>5f1cc58cdb87b30018159c29db961912</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>IT Catalog Quick Search</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_5f1cc58cdb87b30018159c29db961912</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-10-15 14:11:14</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-primary">
+  <div class="panel-heading">Quick Search an item from our Catalog</div>
+  <div class="panel-body">
+    <input class="form-control" type="search" placeholder="Start typing here to search the list of catalog items" ng-model="c.data.keywords" ng-change="c.server.update()" ng-model-options="{debounce: 250}" />
+    <h5 ng-if="!c.data.keywords">Showing the most popular items</h5>
+    <ul class="list-group result-container">
+      <li class="list-group-item" ng-repeat="item in c.data.items">
+        <a href ng-click="c.select(item.sys_id)">{{item.name}}</a><span class="pull-right">{{item.price}}</span>
+        <div class="catalog-item" ng-if="item.sys_id == c.openItem">
+            <sp-widget ng-if="c.catalogItemWidget" widget="c.catalogItemWidget" />
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="panel-footer" ng-if="c.data.keywords">
+    <ng-pluralize count="c.data.items.length"
+                 when="{'0': 'No items found for ',
+                     '1': 'One item matching ',
+                     'other': 'Found {} items matching '}">
+    </ng-pluralize>
+    {{c.data.keywords}}
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

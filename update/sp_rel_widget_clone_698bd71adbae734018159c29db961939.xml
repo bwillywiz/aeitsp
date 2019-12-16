@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
     <sp_rel_widget_clone action="INSERT_OR_UPDATE">
-        <child display_value="AE ITSM Stock Header">a58bd71adbae734018159c29db961936</child>
+        <child display_value="AE IT Stock Header">a58bd71adbae734018159c29db961936</child>
         <cloned>2019-07-12 13:09:43</cloned>
         <last_validated>2019-07-12 13:09:43</last_validated>
         <parent display_value="Stock Header">bf5ec2f2cb10120000f8d856634c9c0c</parent>

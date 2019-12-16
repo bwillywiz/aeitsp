@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rectangle_menu_item">
+    <sp_rectangle_menu_item action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <color>default</color>
+        <condition/>
+        <display_1/>
+        <display_2/>
+        <display_date/>
+        <filter/>
+        <glyph/>
+        <hint/>
+        <kb_article/>
+        <kb_category/>
+        <kb_topic/>
+        <label>Report It!</label>
+        <order>200</order>
+        <record_script/>
+        <sc_cat_item display_value="Create Incident">3f1dd0320a0a0b99000a53f7604a2ef9</sc_cat_item>
+        <sc_category/>
+        <short_description/>
+        <sp_page display_value="create_an_incident">6a16f403db8140504a1192a6db96190a</sp_page>
+        <sp_rectangle_menu display_value="AEESSP Nav Menu">671cdb38dbebff4018159c29db961945</sp_rectangle_menu>
+        <sp_rectangle_menu_item/>
+        <sys_class_name>sp_rectangle_menu_item</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-08-26 14:26:46</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a8ac5f78dbebff4018159c29db96193c</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Report It!</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_rectangle_menu_item_a8ac5f78dbebff4018159c29db96193c</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-11-20 18:22:26</sys_updated_on>
+        <table/>
+        <type>sc_cat_item</type>
+        <url>?uri=incident.do?sys_id=-1</url>
+        <url_target/>
+    </sp_rectangle_menu_item>
+    <sys_translated_text action="delete_multiple" query="documentkey=a8ac5f78dbebff4018159c29db96193c"/>
+</record_update>

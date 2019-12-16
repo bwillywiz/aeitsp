@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_angular_provider">
+    <sp_angular_provider action="INSERT_OR_UPDATE">
+        <name>spDropdownTreeTemplateCustom</name>
+        <script><![CDATA[function () {
+	return {
+		restrict: 'E',
+		scope: {items: '='},
+		replace: true,
+		template: '<ul class="dropdown-menu">' +
+		'<li ng-repeat="mi in items" style="min-width: 20em;" ng-class="{\'dropdown-submenu\': mi.type == \'menu\', \'dropdown-menu-line\':$index < items.length - 1}" ng-include="getURL()">' +
+		'</ul>',
+		link : function(scope, element, attrs, controller) {
+			scope.getURL = function() {
+				return 'spDropdownTreeTemplateCustom';
+			}
+		}
+	}
+};
+(function($) {
+	$("body").on( "click", "a.menu_trigger", function(e) {
+		var current = $(this).next();
+		var grandparent = $(this).parent().parent();
+		if ($(this).hasClass('left-caret') || $(this).hasClass('right-caret'))
+			$(this).toggleClass('right-caret left-caret');
+		grandparent.find('.left-caret').not(this).toggleClass('right-caret left-caret');
+		current.toggle();
+		$(".dropdown-menu").each(function(i, elem) {
+			var elemClosest = $(elem).closest('.dropdown');
+			var currentClosest = current.closest('.dropdown');
+			if (!elem.contains(current[0]) && elem != current[0] && (!currentClosest.length || !elemClosest.length || elemClosest[0] == currentClosest[0]))
+				$(elem).hide();
+		})
+		e.stopPropagation();
+	});
+	$("body").on( "click", "a:not(.menu_trigger)", function() {
+		var root=$(this).closest('.dropdown');
+		root.find('.left-caret').toggleClass('right-caret left-caret');
+	});
+})(jQuery);]]></script>
+        <sys_class_name>sp_angular_provider</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-10-17 20:11:19</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>7dfddcb9dba400504a1192a6db961980</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>spDropdownTreeTemplateCustom</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_angular_provider_7dfddcb9dba400504a1192a6db961980</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-10-17 20:11:19</sys_updated_on>
+        <type>directive</type>
+    </sp_angular_provider>
+</record_update>

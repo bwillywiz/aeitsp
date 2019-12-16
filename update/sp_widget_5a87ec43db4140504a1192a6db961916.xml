@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[/**
+Created by: Brent Williams
+Date: 08/01/2019
+Last Update: 10/15/2019
+Updated By: Brent Williams
+Review Date:
+Code ID:
+**/
+function widgetController ($rootScope,$scope,$timeout) {
+  /* widget controller */
+  //var widgetCtrl = function(callWidget){
+  var c = this;
+  c.selectedAction = 'create-request'; // When page loads, default action selected
+  /*broadcast to other widgets after waiting for 500 milliseconds, to ensure other widgets are loaded and ready to listen when we broadcast */
+  $timeout(function(){
+  $rootScope.$broadcast('showHideWidget', 'create-request');
+  },500);
+  //broadcast the selection when ever cliked on each IconAction
+  $scope.selectAction = function(selection){
+  c.selectedAction = selection;
+  $rootScope.$broadcast('showHideWidget', selection);
+  };
+	//};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/**
+Created by: Brent Williams
+Date:  08/01/2019 - 08/14/2019
+Last Update: 12-09-19
+Updated By: Brent Williams
+Review Date:
+Code ID:
+**/
+.iconlink a label,h2 {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.1;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+/* CIRCLE ICON ---------- 
+a.circle_icon {
+  display: block;
+  padding: 20px 0px 20px 70px;
+  position: relative;
+}
+a.circle_icon .fa {
+  position:relative;
+  left: 0px;
+  top: 10px;
+}*/
+.a-disabled {cursor: pointer; color: $sp-disabled-breadcrumb;}
+.dropdown {position: relative; display: inline-block;}
+.dropdown .dropbtn {
+  font-size: 16px; 
+  //width: 100%; 
+  border: 1px;
+  border-radius: 15px 15px;
+  cursor: pointer;
+  outline: none; 
+  color: black; 
+  padding: 5px 4px; 
+  background-color: #EDF1F2;
+  font-family: inherit;
+  margin: 0;}
+.dropdown-content {
+  display: none; 
+  position: absolute;
+  left: 50% !important;
+  right: 50% !important;
+  text-align:center;
+  transform: translate(-50%, 0) !important;
+  width: auto;
+  line-height: 0.5;
+  background-color: #EDF1F2;
+  border: none;
+  border-radius: 15px 15px;
+  box-shadow: 0 0 10px #E8E8E8 inset;
+  min-width: 150px; 
+  box-shadow: none;
+  padding: 5px 5px; 
+  z-index: 1;}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: inline-block;
+}
+.dropdown:hover .dropdown-content {
+  display: inline-block;
+  opacity: 0.8;
+}
+.icon-background {
+      height: 125px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      .each-icon {
+              &amp;.active {
+              color: #fff;
+              }
+              height:100px;
+              width:150px;
+              background:#ddd;
+              padding:5px;
+              text-align:center;
+              border-radius:4px;
+          cursor:pointer;        
+          p{
+            margin-top:5px;
+          }
+      }
+}
+.remove-margin {
+      margin-bottom: 0px;
+}</css>
+        <data_table>sp_instance_link</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>type,url,sc_category,sc_cat_item,kb_topic,kb_article,kb_category,sp_page,title,short_description,color,class_name,glyph</field_list>
+        <has_preview>true</has_preview>
+        <id>knowledge_base_icon</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Knowledge Base Icon</name>
+        <option_schema>[{"name":"link_template","section":"Presentation","label":"Template","type":"choice","choices":[{"label":"Top Icon","value":"Top Icon"},{"label":"Circle Icon","value":"Circle Icon"},{"label":"Color Box","value":"Color Box"}]}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  // Collect the User Info to Display Users First Name
+          data.sysUserID = gs.getUserID();
+              if (!data.sysUserID)
+              data.sysUserID = gs.getUser().getID();
+      var sysUserGR = new GlideRecord("sys_user");
+      data.userExists = sysUserGR.get(data.sysUserID);
+      if (data.userExists) {
+              data.name = sysUserGR.getValue("first_name");
+      } else {
+              data.name = "User";
+      }  
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-11-15 14:35:45</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>5a87ec43db4140504a1192a6db961916</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>Knowledge Base Icon</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_5a87ec43db4140504a1192a6db961916</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-12-11 22:07:34</sys_updated_on>
+        <template><![CDATA[<!--
+Created by: Brent Williams
+Date:  08/01/2019 - 08/14/2019
+Last Update: 12-09-19
+Updated By: Brent Williams
+Review Date:
+Code ID:
+-->
+<div class="iconlink" ng-class="{'high-contrast': accessibilityModeEnabled}">
+<div class="icon-background">
+		<div class="dropdown">
+        <button class="dropbtn">
+        	<a ng-href="?id=ae_it_knowledge"><img src="kb-glyph.png" width="49" height="48"/>
+            <h4>{{::options.title}}</h4></a>
+      </button>   
+        <div class="dropdown-content">
+          <p><a ng-href="?id=ae_it_knowledge">${Click Here}</a></p>
+        </div>
+</div>
+</div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

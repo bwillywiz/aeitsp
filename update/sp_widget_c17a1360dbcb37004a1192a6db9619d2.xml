@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, spAriaUtil, spModal, $uibModal) {
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>
+
+  </css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>my_requested_items</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>My Requested Items List</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  
+	data.ritms = [];
+	
+	var gr = new GlideRecord('sc_req_item', 'sc_request', 'sc_item_option_mtom');
+	gr.orderByDesc('sys_created_on');
+	gr.setLimit(5);
+	gr.addQuery('request.requested_for=javascript:gs.getUserID()');
+	//gr.addQuery('priority', '=', 1);
+	//gr.addQuery('request.requested_for', '=', 'Brent Williams');
+	//gr.addQuery('short_description', 'CONTAINS', 'Contractor Staffing Request');
+	//gr.addQuery('sc_item_option.item_option_new.name','object_code');
+	//gr.addQuery('sc_item_option.value','object_code');
+	gr.query();
+	while(gr.next()){
+		
+		var ritm = {};
+		ritm.number = gr.getDisplayValue('number');
+		ritm.item = gr.getDisplayValue('cat_item');
+		ritm.user = gr.getDisplayValue('request.requested_for');
+		ritm.sys_id = gr.getUniqueValue();
+		data.ritms.push(ritm);
+		
+	}
+})();
+
+/* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-31 23:07:04</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c17a1360dbcb37004a1192a6db9619d2</sys_id>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>My Requested Items List</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_c17a1360dbcb37004a1192a6db9619d2</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-11-13 20:10:08</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default">
+  <div class="panel-heading">
+    <b style="color:blue;">Your Last Five (5) Requested Items Listing</b>
+  </div>
+    <div class="list-group">
+      <a class="list-group-item" ng-repeat="ritm in c.data.ritms">
+        <input class="pull-left" type="radio">
+        <div class="m-l-lg">
+          <i aria-hidden="true" class="fa fa-chevron-right"></i>
+          <b class="text-primary">{{ritm.number}} </b> |&nbsp;{{ritm.item}}<br/><b>{{ritm.user}} </b>
+        </div>
+      </a>
+  </div>
+  <div ng-if="c.data.ritms.length == 0" class="b-t wrapper text-center">
+    No RITMs
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

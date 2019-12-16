@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_menu">
+    <sp_instance_menu action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column/>
+        <sp_widget display_value="Header Menu">5ef595c1cb12020000f8d856634c9c6e</sp_widget>
+        <sys_class_name>sp_instance_menu</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-08-26 14:24:13</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>671cdb38dbebff4018159c29db961945</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>AEESSP Nav Menu</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_instance_menu_671cdb38dbebff4018159c29db961945</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-10-21 23:15:22</sys_updated_on>
+        <title>AEESSP Nav Menu</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"enable_cart": {
+		"displayValue": "true",
+		"value": true
+	}
+}]]></widget_parameters>
+    </sp_instance_menu>
+    <sys_translated_text action="delete_multiple" query="documentkey=671cdb38dbebff4018159c29db961945"/>
+</record_update>

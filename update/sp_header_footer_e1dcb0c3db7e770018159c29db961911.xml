@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_header_footer">
+    <sp_header_footer action="INSERT_OR_UPDATE">
+        <category>sample</category>
+        <client_script><![CDATA[function() {
+  // widget controller
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* .sn-va-widget-icon {&#13;
+background-image: url('/bg-bell.svg');&#13;
+height: 32px;&#13;
+top: 1px;&#13;
+left: 12px;&#13;
+width: 36px;&#13;
+display: block&#13;
+} */&#13;
+&#13;
+.aeit-footer {&#13;
+  display: block;&#13;
+  background-color: black; &#13;
+  color: white; &#13;
+  padding: 5px;&#13;
+}&#13;
+&#13;
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>ae_it_footer</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>AE IT Footer</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_header_footer</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-26 19:47:32</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>e1dcb0c3db7e770018159c29db961911</sys_id>
+        <sys_mod_count>24</sys_mod_count>
+        <sys_name>AE IT Footer</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_header_footer_e1dcb0c3db7e770018159c29db961911</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-12-12 16:27:41</sys_updated_on>
+        <template><![CDATA[ <div class="aeit-footer">
+   <center>
+     	<p style="color:white;">
+        We provide innovative and reliable technology services and solutions to our customers via strategic partnerships.
+     </p>
+     <p>Austin Energy IT Employee Self-Service Portal</p>
+  		<p>For support send email to &nbsp; <a href="#">AE IT Servicenow Admin</a></p>
+  </center>
+	<div class="sn-va-widget-icon">
+    	<widget id='ae_virtual_agent_sp' options='{"button_color": "#EDF1F2"}'>
+      	<!-- <img src="bg-bell.svg" width="86" height="71"/> -->
+      	</widget>
+	</div>
+   	<!-- <div>
+  		<widget id='sn-va-sp-widget' options='{"button_color": "#EDF1F2"}'></widget>
+	</div> -->
+ </div>]]></template>
+    </sp_header_footer>
+</record_update>

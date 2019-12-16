@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function(spModal) {
+  /* widget controller */
+	var c = this;
+	
+	//Mark Balloch Start
+	c.openModal = function(widgetId, articleID) {
+		spModal.open({
+			size: 'lg',
+			widget: widgetId,
+			buttons: [{label:'${Close}', cancel: true}],
+			widgetInput: {sys_id: articleID}
+		});
+	};
+	//Mark Balloch End
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.transclude:last-child {
+  padding-bottom: 10px;
+}
+
+.list-group {
+ 	margin-bottom: 0px; 
+}
+
+.list-group-item {
+    padding: 0;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 0px;
+}
+
+.list-group-item:last-child {
+	margin-bottom: 0px;
+}
+
+@media screen and (-ms-high-contrast: active) {
+  .panel-body .list-group .list-group-item .glyphicon-star {
+    color: windowText !important;
+  }
+}
+
+.kb-star-on {
+  color: $fav-star-color !important;
+  text-shadow: $fav-star-outline;
+}
+
+.kb-star-off {
+  color: $fav-star-color-off !important;
+  text-shadow: $fav-star-outline;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>title,color,glyph</field_list>
+        <has_preview>true</has_preview>
+        <id>kb_top_rated__with_modal_</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>KB Top Rated (with modal)</name>
+        <option_schema>[{"name":"max_number","section":"Presentation","label":"Max number","type":"integer"},{"displayValue":"Knowledge Category","name":"kb_category","section":"Data","label":"KB category","type":"reference","value":"kb_category","ed":{"reference":"kb_category"}}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	data.articles = [];
+	options.title = options.title || gs.getMessage("Top Rated Articles");
+	
+	var z;
+	var knowledge_bases;
+	var article_id = $sp.getParameter('sys_id');
+	var kb_id = $sp.getParameter('kb_id');
+	
+	if (article_id != null){  /* On the Article page, get KB of the article */
+		var gr = new GlideRecord("kb_knowledge");
+		if (gr.get(article_id)){
+			knowledge_bases = String(gr.getValue('kb_knowledge_base'));
+		} else /* return for an invalid article id */
+			return;
+		
+	} else {/* For all other pages this code will get executed. Used on knowledge home page.*/
+		
+		/*If KB is selected display top rated articles only from that KB*/
+		if (kb_id != null)
+			knowledge_bases = String(kb_id);
+		else {
+			/*Get all knowledge bases associated with Portal*/
+			knowledge_bases = String($sp.getKnowledgeBases());
+		}
+	}
+	
+	if (GlideStringUtil.notNil(knowledge_bases))
+		z = $sp.getAllKBRecords(knowledge_bases);
+	else //If there are no accessible KBs for logged in user
+		return;
+	
+	z.addQuery("rating", ">", "0");
+	if (options.kb_category)
+		z.addQuery("kb_category", options.kb_category);
+	z.orderByDesc('rating');
+	z.setLimit(options.max_number || 5);
+	z.query();
+	while (z.next()) {
+		if (!z.canRead())
+			continue;
+
+		var a = {};
+		$sp.getRecordValues(a, z, 'short_description,sys_view_count,sys_id,published,rating');
+		a.published_display = z.getDisplayValue("published");
+		data.articles.push(a);
+	}
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-30 05:12:54</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>1c0b1e44db0fb30018159c29db961948</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>KB Top Rated (with modal)</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_1c0b1e44db0fb30018159c29db961948</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-30 05:19:38</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-{{options.color}} b" ng-if="::(data.articles.length > 0)">
+  <div class="panel-heading"> <h4 class="panel-title" ng-bind="::options.title">
+    <fa ng-if="::options.glyph.length" name="::{{options.glyph}}" class="m-r-sm" /></h4>
+  </div>
+  <div class="panel-body">
+    <div ng-repeat="a in ::data.articles" style="margin-bottom: 1em;">
+      <a href="?id=kb_article&sys_id={{::a.sys_id}}">{{::a.short_description}}</a>
+      <!--Mark Balloch Start -->
+      <a href="javascript:void(0)" ng-click="c.openModal('article-page',(a.sys_id))" >
+      	<glyph sn-char="eye-open" class="pad-right pull-right" />
+      </a>
+      <!-- Mark Balloch End -->
+      <div>
+        <span>
+          <uib-rating ng-model="::a.rating" max="5" readonly="true"/>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

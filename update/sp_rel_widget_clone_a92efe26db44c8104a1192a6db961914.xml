@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
+    <sp_rel_widget_clone action="INSERT_OR_UPDATE">
+        <child display_value="AE Virtual Agent SP">652efe26db44c8104a1192a6db96190e</child>
+        <cloned>2019-09-25 19:14:03</cloned>
+        <last_validated>2019-09-25 19:14:03</last_validated>
+        <parent display_value="Virtual Agent Service Portal Widget">20c6031e733013004ab2369f2ef6a7c7</parent>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;sp_widget&gt;&lt;category/&gt;&lt;client_script&gt;&lt;![CDATA[function($log, $scope, $element, $document, spModal, $q, $timeout, $window) {
+	'use strict';
+	
+  /* widget controller */
+  var $ctrl = this;
+	var $spContainer = $document.find('.sp-page-root');
+	var $widgetParent = $element.parent();
+	
+	$ctrl.isWindowVisible = false;
+	$ctrl.hasUnreadMessages = false;
+	$ctrl.firstPress = false;
+	$ctrl.vaSource = '';
+	
+	
+	$ctrl.toggleWindow = function() {
+		if ($ctrl.isWindowVisible) {
+			$ctrl.isWindowVisible = false;
+			$timeout(function() {
+				if (!$ctrl.isWindowVisible) {
+					$element.find('.conversation-container').css("display", "none");
+					$element.find('.sn-connect-floating').css("display", "none");
+					$element.find('.sn-connect-floating-wrapper').css("display", "none");
+					
+					// ios overlay hacky fix.
+					$document.find('.touch_scroll').css("-webkit-overflow-scrolling", "touch");
+				}
+			}, 300);
+		} else {
+			if (!$ctrl.firstPress) {
+				$ctrl.firstPress = true;
+				$ctrl.vaSource = '/$sn-va-web-client-app.do?sysparm_nostack=true&amp;sysparm_stack=no';
+				if ($ctrl.options.va_url_params) {
+					$ctrl.vaSource = $ctrl.vaSource + '&amp;' + $ctrl.options.va_url_params;
+				}
+			}
+			$ctrl.isWindowVisible = true;
+			$ctrl.hasUnreadMessages = false;
+			$element.find('.conversation-container').css("display", "block");
+			$element.find('.sn-connect-floating').css("display", "block");
+			$element.find('.sn-connect-floating-wrapper').css("display", "block");
+			
+			// ios overlay hacky fix.
+			$document.find('.touch_scroll').css("-webkit-overflow-scrolling", "auto");
+		}
+	};
+	
+		$window.addEventListener("message", function(e) {
+			if (e.data === 'sn-va-web-client-app-new-message' &amp;&amp; $ctrl.isWindowVisible === false) {
+				$ctrl.hasUnreadMessages = true;
+			}
+			else if (e.data === 'sn-va-web-client-app-trigger-login') {
+				$window.location.reload(true);
+			}
+		});
+	
+	$element.find('.help-button').on("mouseup", function(e) {
+		e.target.blur();
+		e.stopPropagation();
+	});
+	
+	$element.find('.help-icon').on("mouseup", function(e) {
+		e.target.blur();
+		e.stopPropagation();
+	});
+	
+	$ctrl.openWindow = function() {
+		$ctrl.isWindowVisible = true;		
+		// delay before clearing unread message indicator
+		// in-case user opens and closes quickly
+		$timeout(function() {
+			if ($ctrl.isWindowVisible) {
+				$ctrl.hasUnreadMessages = false;							
+			}
+		}, 500);
+	};
+	
+	var _closeWindow = function() {
+		
+		$ctrl.isWindowVisible = false;
+		$ctrl.hasActiveConversation = false;
+	};
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;$ctrl&lt;/controller_as&gt;&lt;css&gt;$color-darker: #485563;
+$color-white: #ffffff;
+
+$window-width: 375px;
+$window-height: 600px;
+$button-height: 60px;
+$bottom-margin: 15px;
+
+$sn-chatbot-animation-speed: 300ms;
+
+// OVERRIDE TO DISPLAY RECORD CARDS
+.sn-card-component_records {
+  display: block !important;
+}
+
+.conversation-button-container {
+  position: fixed;
+  right: 30px;
+  bottom: 15px;
+  z-index: 20;
+
+  .conversation-region {
+    position: relative;
+    opacity: 0;
+    visibility: hidden;
+
+
+    &amp;amp;.open {
+      transition: $sn-chatbot-animation-speed ease-in opacity;
+      opacity: 1;
+      visibility: visible;
+
+    }
+  }
+
+
+  .help-button {
+    position: relative;
+    width: 60px;
+    color: #fff;
+    float: right;
+    border: none;
+    height: $button-height;
+    border-radius: 60px;
+    box-shadow: 0px 2px 11px #ababab;
+    -moz-box-shadow: 0px 2px 11px #ababab;
+    -o-box-shadow: 0px 2px 11px #ababab;
+    padding: 0;
+    background-color: #8D8DE0;
+
+    &amp;amp;::before {
+      content: "";
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    
+    &amp;amp;:hover::before {
+    	background-color: rgba(0,0,0,0.2);
+    }
+
+    &amp;amp;:focus {
+      outline: thin dotted;
+      outline-color: gray;
+      outline: 5px auto -webkit-focus-ring-color;
+      outline-offset: 2px;
+    }
+
+    &amp;amp;.state-unread {
+      &amp;amp; &amp;gt; span:after {
+        content: ' ';
+        position: absolute;
+        top: -17px;
+        right: -14px;
+        width: 16px;
+        height: 16px;
+        background-color: #ed6e5c;
+        border-radius: 25px;
+      }
+    }
+    
+    .help-icon {
+      pointer-events: none;
+      position: relative;
+    }
+    
+    .sn-va-widget-icon {
+    	background-image: url('/sn-va-sp-widget/sn-va-sp-widget-icon.svg');
+      height: 32px;
+      top: 1px;
+      left: 12px;
+      width: 36px;
+      display: block
+    }
+
+    .icon-close {
+      font-size: 20px;
+
+    }
+
+  }
+}
+
+// window sizing
+.sn-connect-floating {
+  position: relative;
+  bottom: 15px;
+  right: 0;
+  display: none;
+
+  .sn-connect-floating-wrapper {
+    width: $window-width; 
+    transition: 
+    border-bottom: 1px solid #bdc0c4;
+    margin-right: 0;
+    right: 0;
+    box-shadow: 0px 2px 11px #ababab !important;
+    -moz-box-shadow: 0px 2px 11px #ababab !important;
+    -o-box-shadow: 0px 2px 11px #ababab !important;
+    transition: max-height 0s $sn-chatbot-animation-speed;
+    display: none;
+
+    .conversation-container {
+      height: 100%;
+      display: none;
+
+      .chat-frame {
+        max-height: $window-height;
+        height: calc(100vh - $button-height - ($bottom-margin * 3));
+        width: $window-width;
+        margin-bottom: -5px;
+        border: none;
+        overflow: hidden;
+        background-color: #fff;
+      }
+
+      // Immediate div is autogenerated from serviceportal
+      &amp;amp; &amp;gt; div {
+        height: 100%;
+      }
+    }
+  }
+}
+
+// Mobile SCSS
+@media (max-width: 425px) {  
+  .sn-connect-floating {
+    .sn-connect-floating-wrapper {
+      position: fixed;
+      max-height: 100%;
+      width: 100%;
+      left: 0;
+      right: 0;
+      bottom: calc($button-height + 20px);
+      top: 0;
+
+      .conversation-container {
+        position: absolute;
+        max-height: 100%;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        .chat-frame {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+        }
+      }
+    }
+  }
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id&gt;sn-va-sp-widget&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function(){}]]&gt;&lt;/link&gt;&lt;name&gt;Virtual Agent Service Portal Widget&lt;/name&gt;&lt;option_schema&gt;[{"hint":"The color of the floating button which opens the virtual agent service portal widget button.","name":"button_color","section":"Presentation","default_value":"#8D8DE0","label":"Floating Button Color","type":"string"},{"hint":"The URL parameters to pass to the VA client, for example: sysparm_live_agent_queue=abc123&amp;amp;sysparm_conversation=xzy456","name":"va_url_params","section":"Behavior","label":"Virtual Agent Client URL Parameters","type":"string"}]&lt;/option_schema&gt;&lt;public&gt;true&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	
+	var instanceGR = $sp.getInstanceRecord();
+	
+	options.va_url_params = options.va_url_params || "";
+	options.button_color = options.button_color || "red";
+})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2017-09-05 23:22:12&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;20c6031e733013004ab2369f2ef6a7c7&lt;/sys_id&gt;&lt;sys_mod_count&gt;404&lt;/sys_mod_count&gt;&lt;sys_name&gt;Virtual Agent Service Portal Widget&lt;/sys_name&gt;&lt;sys_package display_value="Virtual Agent Service Portal Widgets" source="sn_va_sp_widgets"&gt;a650d4923b201300778f6da0a3efc4c3&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Virtual Agent Service Portal Widgets"&gt;a650d4923b201300778f6da0a3efc4c3&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_20c6031e733013004ab2369f2ef6a7c7&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2018-11-01 23:04:15&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="conversation-button-container"&gt;
+	&lt;div class="conversation-region fade" 
+       ng-class="{'open': $ctrl.isWindowVisible}"&gt;
+    &lt;div class="sn-connect sn-connect-floating"&gt;
+      &lt;div class="sn-connect-floating-wrapper loaded"&gt;
+        &lt;div class="conversation-container"&gt;
+          &lt;iframe class = "chat-frame" scrolling="no"  horizontalscrolling="no" verticalscrolling="no" frameborder="none" ng-src="{{$ctrl.vaSource}}"&gt;
+          &lt;/iframe&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button aria-label="${Start Support Conversation}" 
+          class="help-button"
+          ng-attr-tabindex="0"
+          ng-class="{'state-open': $ctrl.isWindowVisible, 'state-unread': $ctrl.hasUnreadMessages}" 
+          ng-click="$ctrl.toggleWindow()"
+          ng-style="{'background-color': $ctrl.options.button_color}"
+          ng-attr-tabindex="0"&gt;
+    &lt;div class="hover-overlay"&gt;&lt;/div&gt;
+    &lt;span aria-hidden="true" ng-class="$ctrl.isWindowVisible ? 'help-icon icon-close icon-cross' : 'help-icon icon-open sn-va-widget-icon'"&gt;&lt;/span&gt;
+  &lt;/button&gt;  
+&lt;/div&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;</payload>
+        <sys_class_name>sp_rel_widget_clone</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-09-25 19:14:03</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a92efe26db44c8104a1192a6db961914</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>652efe26db44c8104a1192a6db96190e</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_rel_widget_clone_a92efe26db44c8104a1192a6db961914</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-09-25 19:14:03</sys_updated_on>
+    </sp_rel_widget_clone>
+</record_update>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="e43e383bdba548d018159c29db961955" sys_domain="global" table="topic_variable" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>williamsbr.local</sys_created_by>
+            <sys_created_on>2019-12-12 20:41:40</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>2d3ebc7bdba548d018159c29db961978</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="topic_variable" name="topic_variable" sys_domain="global" view="7966be310a0a0b8c00bd504090503227">e43e383bdba548d018159c29db961955</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="topic_variable" sys_domain="global" view="7966be310a0a0b8c00bd504090503227">193ebc7bdba548d018159c29db961953</sys_ui_section>
+            <sys_updated_by>williamsbr.local</sys_updated_by>
+            <sys_updated_on>2019-12-12 20:41:40</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>williamsbr.local</sys_created_by>
+            <sys_created_on>2019-12-12 20:41:41</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>b13ebc7bdba548d018159c29db961990</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="topic_variable" name="topic_variable" sys_domain="global" view="7966be310a0a0b8c00bd504090503227">e43e383bdba548d018159c29db961955</sys_ui_form>
+            <sys_ui_section caption="Reference Specification" display_value="Reference Specification" name="topic_variable" sys_domain="global" view="7966be310a0a0b8c00bd504090503227">253ebc7bdba548d018159c29db961979</sys_ui_section>
+            <sys_updated_by>williamsbr.local</sys_updated_by>
+            <sys_updated_on>2019-12-12 20:41:41</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>williamsbr.local</sys_created_by>
+            <sys_created_on>2019-12-12 20:41:38</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>8d3e7c7bdba548d018159c29db9619cb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="topic_variable" name="topic_variable" sys_domain="global" view="7966be310a0a0b8c00bd504090503227">e43e383bdba548d018159c29db961955</sys_ui_form>
+            <sys_ui_section caption="Choice List Specification" display_value="Choice List Specification" name="topic_variable" sys_domain="global" view="7966be310a0a0b8c00bd504090503227">303e7c7bdba548d018159c29db9619c6</sys_ui_section>
+            <sys_updated_by>williamsbr.local</sys_updated_by>
+            <sys_updated_on>2019-12-12 20:41:38</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>3</position>
+            <sys_created_by>williamsbr.local</sys_created_by>
+            <sys_created_on>2019-12-12 20:41:38</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>d93e7c7bdba548d018159c29db9619d1</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="topic_variable" name="topic_variable" sys_domain="global" view="7966be310a0a0b8c00bd504090503227">e43e383bdba548d018159c29db961955</sys_ui_form>
+            <sys_ui_section caption="Dependent Field" display_value="Dependent Field" name="topic_variable" sys_domain="global" view="7966be310a0a0b8c00bd504090503227">0d3e7c7bdba548d018159c29db9619cc</sys_ui_section>
+            <sys_updated_by>williamsbr.local</sys_updated_by>
+            <sys_updated_on>2019-12-12 20:41:38</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>4</position>
+            <sys_created_by>williamsbr.local</sys_created_by>
+            <sys_created_on>2019-12-12 20:41:39</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>113ebc7bdba548d018159c29db961953</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="topic_variable" name="topic_variable" sys_domain="global" view="7966be310a0a0b8c00bd504090503227">e43e383bdba548d018159c29db961955</sys_ui_form>
+            <sys_ui_section caption="Calculated Value" display_value="Calculated Value" name="topic_variable" sys_domain="global" view="7966be310a0a0b8c00bd504090503227">593ebc7bdba548d018159c29db96194e</sys_ui_section>
+            <sys_updated_by>williamsbr.local</sys_updated_by>
+            <sys_updated_on>2019-12-12 20:41:39</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>5</position>
+            <sys_created_by>williamsbr.local</sys_created_by>
+            <sys_created_on>2019-12-12 20:41:42</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>4a3ebc7bdba548d018159c29db961995</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="topic_variable" name="topic_variable" sys_domain="global" view="7966be310a0a0b8c00bd504090503227">e43e383bdba548d018159c29db961955</sys_ui_form>
+            <sys_ui_section caption="Default Value" display_value="Default Value" name="topic_variable" sys_domain="global" view="7966be310a0a0b8c00bd504090503227">b93ebc7bdba548d018159c29db961990</sys_ui_section>
+            <sys_updated_by>williamsbr.local</sys_updated_by>
+            <sys_updated_on>2019-12-12 20:41:42</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>topic_variable</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>williamsbr.local</sys_created_by>
+            <sys_created_on>2019-12-12 20:41:36</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>e43e383bdba548d018159c29db961955</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>topic_variable</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+            <sys_update_name>sys_ui_form_sections_e43e383bdba548d018159c29db961955</sys_update_name>
+            <sys_updated_by>williamsbr.local</sys_updated_by>
+            <sys_updated_on>2019-12-12 20:41:36</sys_updated_on>
+            <sys_user/>
+            <view display_value="Advanced" name="advanced">7966be310a0a0b8c00bd504090503227</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

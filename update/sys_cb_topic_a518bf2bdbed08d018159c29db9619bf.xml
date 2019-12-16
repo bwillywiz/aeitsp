@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <connect_queue/>
+        <description>Search Catalog to Order Something</description>
+        <graph>{
+  "goals": {
+    "e0078ed1f5b049128c4a7c3302acec55": {
+      "id": "e0078ed1f5b049128c4a7c3302acec55",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "677b3d75e2bc45e5a3dbcd189a9a68dd": {
+          "id": "677b3d75e2bc45e5a3dbcd189a9a68dd",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "9b540765ffc446298be1750d61629e64": {
+          "id": "9b540765ffc446298be1750d61629e64",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "c12961fa411a4d01a212ad6717442202": {
+          "id": "c12961fa411a4d01a212ad6717442202",
+          "stepType": "Prompt",
+          "name": "user name",
+          "prompt": {
+            "value": "Hello, What is your name?",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "Thank you!",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "optional": false,
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "a12482a57a04493a8697131bc37b6fc2"
+        },
+        "699213abe2134758b06fe3e150bbe07b": {
+          "id": "699213abe2134758b06fe3e150bbe07b",
+          "stepType": "TextOutput",
+          "name": "Welcome",
+          "value": {
+            "value": "(function execute() {\n    result = 'Glad you are here with us '\n    result2 = '.'\n    return gs.getMessage(result + [vaInputs.user_name] + result2);\n    /* Return a quoted string.  For example:\n\n       var result;\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessage('hi there {0}', [vaInputs.first_name]);\n       } else {\n           return gs.getMessage('how are you {0}', [vaInputs.last_name]);\n       }\n    */\n    return '';\n})()\n",
+            "mode": "script"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "ae49810ccf8243a6b23247a4685e5729": {
+          "stepType": "ChoicePrompt",
+          "name": "Choose Catalog",
+          "prompt": {
+            "value": "What would you like help with?  Write a brief description or choose from the icons listed below?",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "Loading Content.",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "optional": false,
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "058b0c84d2f44408b9966d2d93ddd374",
+          "id": "ae49810ccf8243a6b23247a4685e5729"
+        },
+        "0e06d9ef3e234e92afb9f0200d9f6c30": {
+          "id": "0e06d9ef3e234e92afb9f0200d9f6c30",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "6c2d57bb9f6345b8ab45dcc589c111e8": {
+          "id": "6c2d57bb9f6345b8ab45dcc589c111e8",
+          "stepType": "ImplicitEnd"
+        },
+        "a4f9b134d59e473c87fec38f411fcfb4": {
+          "id": "a4f9b134d59e473c87fec38f411fcfb4",
+          "name": "Find Incident",
+          "script": "(function execute() {\n    /* Code your scripted action here. For example, you might update a \n       record based on conditional logic:\n    \n        if (vaVars.my_flag == 'say hello') {\n            gs.info('hi there');\n        } else {\n            gs.info('bye now');\n        }\n    */\n        var list = []\nincident_number = 'INC0111128';\nif (varInputs.number != \"\"){\n\tvar gr = new GlideRecord(\"incident\");\n\tgr.addQuery(\"number\", \"CONTAINS\", vaInputs.incident_number);\n\tgr.addQuery(\"active\", \"true\");\n\tgr.orderBy(\"number\");\n\tgr.query();\n\n\twhile (gr.hasNext()){\n\tgr.next();\n\tlist.push(gr.getUniqueValue());\n}\n\t}\n\tvaVars.incident_list = JSON.stringify(list);\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "931add45cacd40e5a0280434ea0e9d80",
+          "edgeType": "Edge",
+          "source": "677b3d75e2bc45e5a3dbcd189a9a68dd",
+          "target": "c12961fa411a4d01a212ad6717442202",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "4ff7b3c9261844558f8cef172fba24e2",
+          "edgeType": "Edge",
+          "source": "c12961fa411a4d01a212ad6717442202",
+          "target": "699213abe2134758b06fe3e150bbe07b",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "296860fa78194861962e9e7de5e19124",
+          "edgeType": "Edge",
+          "source": "699213abe2134758b06fe3e150bbe07b",
+          "target": "ae49810ccf8243a6b23247a4685e5729",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "3a76caf02ba14ae3a74959fdf99c5aea",
+          "edgeType": "Edge",
+          "source": "ae49810ccf8243a6b23247a4685e5729",
+          "target": "0e06d9ef3e234e92afb9f0200d9f6c30",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "83ea13d878124770b2c372a7adc3c685",
+          "edgeType": "Branch",
+          "source": "0e06d9ef3e234e92afb9f0200d9f6c30",
+          "target": "6c2d57bb9f6345b8ab45dcc589c111e8",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    var nameAndres = \"Hello Andres\";\n    return nameAndres;\n})()\n"
+          },
+          "label": "Print Name"
+        },
+        {
+          "id": "1466164a5ed64ba5bd66e11f2ffc0378",
+          "edgeType": "Branch",
+          "source": "0e06d9ef3e234e92afb9f0200d9f6c30",
+          "target": "a4f9b134d59e473c87fec38f411fcfb4",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n\n\n    return true;\n})()\n"
+          },
+          "label": "Search for Incidents"
+        },
+        {
+          "id": "6a9cc4faf190477586ce74e268bab5e7",
+          "edgeType": "Edge",
+          "source": "a4f9b134d59e473c87fec38f411fcfb4",
+          "target": "9b540765ffc446298be1750d61629e64",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "graph_api_version": "1.0.10.mp4",
+  "variables": {
+    "e2e6fce0c3f741df9338593d65beb663": {
+      "id": "e2e6fce0c3f741df9338593d65beb663",
+      "name": "LiveAgent_application",
+      "value": {
+        "mode": "simple",
+        "value": ""
+      },
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "a12482a57a04493a8697131bc37b6fc2": {
+      "id": "a12482a57a04493a8697131bc37b6fc2",
+      "name": "user_name",
+      "label": "User Name",
+      "varType": "string",
+      "category": "vaInputs"
+    },
+    "058b0c84d2f44408b9966d2d93ddd374": {
+      "id": "058b0c84d2f44408b9966d2d93ddd374",
+      "name": "choose_catalog",
+      "label": "Choose Catalog",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Print Name",
+          "value": "0"
+        },
+        {
+          "label": "Search for Incidents",
+          "value": "1"
+        }
+      ],
+      "category": "vaInputs"
+    }
+  }
+}</graph>
+        <key_phrases>Order an Item,request,buy,item,catalog,purchase,order,computer,phone,mouse,need,require</key_phrases>
+        <live_agent>false</live_agent>
+        <name>Place a Service Catalog Order</name>
+        <roles/>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-12-12 15:35:17</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>a518bf2bdbed08d018159c29db9619bf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Place a Service Catalog Order</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sys_cb_topic_a518bf2bdbed08d018159c29db9619bf</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-12-12 15:35:17</sys_updated_on>
+        <variables/>
+    </sys_cb_topic>
+    <sys_variable_value action="delete_multiple" query="document_key=a518bf2bdbed08d018159c29db9619bf"/>
+</record_update>

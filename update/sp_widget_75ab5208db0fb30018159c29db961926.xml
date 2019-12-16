@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function ($scope, spUtil, $sce, $rootScope, $timeout) {
+	spUtil.setSearchPage('kb');
+	$scope.data.text = $sce.trustAsHtml($scope.data.text);
+	$timeout(function() {
+		$rootScope.$broadcast('sp.update.breadcrumbs', $scope.data.breadcrumbs);
+	});
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>td {
+	padding: .5em;
+  	line-height: 1em;
+}
+
+.kb-star-on {
+  color: $fav-star-color !important;
+  text-shadow: $fav-star-outline;
+}
+
+.kb-star-off {
+  color: $fav-star-color-off !important;
+  text-shadow: $fav-star-outline;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>color</field_list>
+        <has_preview>false</has_preview>
+        <id>article-page</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>KB Article Page (modal use)</name>
+        <option_schema>[{"name":"show_star_rating","default_value":"Use system properties","section":"Presentation","label":"Show star rating","type":"choice","choices":[{"label":"Yes","value":"Yes"},{"label":"No","value":"No"},{"label":"Use system properties","value":"Use system properties"}]}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[var t = data;
+data.kb_knowledge_page = $sp.getDisplayValue("kb_knowledge_page") || "kb_view";
+var articleGR = GlideRecord("kb_knowledge");
+//Mark Balloch Start
+articleGR.get(input.sys_id);
+//Mark Balloch End
+var recordIsValid = articleGR.isValidRecord();
+var canReadArticle = articleGR.canRead();
+t.isvalid = recordIsValid && canReadArticle;
+ 
+if (canReadArticle) {
+  articleGR.incrementViewCount(); // update sys_view_count immediately on kb_knowledge record
+  var art = new GlideRecord("kb_use");
+  if (art.isValid()) {
+    art.article = articleGR.getUniqueValue();
+    art.user = gs.getUserID();
+    art.viewed = true;
+    art.insert(); // kb_use records are aggregated to update sys_view_count nightly
+    $sp.logStat('KB Article View', "kb_knowledge", articleGR.getUniqueValue(), articleGR.short_description);
+  }
+ 
+  t.category = articleGR.getValue('kb_category');
+  t.sys_id = $sp.getParameter('sys_id');
+  t.showAttachments = false;
+  if (articleGR.display_attachments)
+    t.showAttachments = true;
+  t.categoryDisplay = articleGR.getDisplayValue('kb_category');
+  t.short_description = articleGR.getValue('short_description');
+  t.text = articleGR.getValue('text');
+  t.sys_view_count = articleGR.getDisplayValue('sys_view_count');
+  t.author = articleGR.getDisplayValue('author');
+  t.publishedUtc = articleGR.getValue('published');
+  t.number = articleGR.getValue('number');
+  t.rating = articleGR.getValue('rating');
+	t.direct = false;
+	if (articleGR.direct)
+		t.direct = true;
+ 
+  t.breadcrumbs = [{label: t.short_description, url: '#'}];
+  if (!articleGR.kb_category.nil()) { 
+    var rec = articleGR.kb_category.getRefRecord();
+    while (rec.getRecordClassName() == "kb_category") {
+      t.breadcrumbs.unshift({label: rec.getDisplayValue(), url: '?id=kb_category&kb_category=' + rec.getUniqueValue()});
+      rec = rec.parent_id.getRefRecord();
+    }
+  }
+  t.breadcrumbs.unshift({label: gs.getMessage("Knowledge Base"), url: '?id=' + t.kb_knowledge_page});
+}]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-30 05:15:43</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>75ab5208db0fb30018159c29db961926</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>KB Article Page (modal use)</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_75ab5208db0fb30018159c29db961926</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-30 05:22:35</sys_updated_on>
+        <template><![CDATA[<div ng-if="data.isvalid" class="panel panel-{{options.color}} b">
+
+  <div class="panel-heading">
+      <h2 class="panel-title h4">
+          <span class="pull-left">{{::data.short_description}}</span>&nbsp;
+          <span class="pull-right">{{::data.number}}</span>
+      </h2>
+  </div>
+
+  <div class="panel-body m-b-lg wrapper-lg">
+
+    <div class="row m-b-lg b-b">
+        <span class="author pad-right" ng-if="data.author">
+          <glyph sn-char="user" class="pad-right" />
+          ${Authored by {{::data.author}}}
+        </span>
+        <span ng-if="data.sys_view_countValue == 1" class="views pad-right">
+          <span class="pad-right">&#8226;</span> <glyph sn-char="eye-open" class="pad-right" />
+          ${{{::data.sys_view_count}} View}
+        </span>
+        <span ng-if="data.sys_view_countValue > 1" class="views pad-right">
+          <span class="pad-right">&#8226;</span> <glyph sn-char="eye-open" class="pad-right" />
+          ${{{::data.sys_view_count}} Views}
+        </span>
+        <span class="published pad-right">
+          <span class="pad-right">&#8226;</span> <glyph sn-char="calendar" class="pad-right" />
+          <sn-day-ago date="data.publishedUtc"/>
+        </span>
+        <span ng-if="data.rating > 0 && !data.direct" title="{{::data.rating}} rating">
+          <span class="pad-right">&#8226;</span> <uib-rating sp-rating ng-model="::data.rating" max="5" readonly="true" aria-label="${Article rating} - ${Read Only}" state-on="'fa fa-star kb-star-on'" state-off="'fa fa-star kb-star-off'" />
+        </span>
+    </div>
+
+    <div ng-if="!data.direct" class="kb_article" ng-bind-html="::data.text" style="overflow-x:auto;"></div>
+
+    <h4 ng-if="data.direct">
+      ${View or download the attachments below}
+    </h4>
+    <div ng-if="::data.showAttachments || data.direct" class="b-t m-t">
+      <sp-attachment-manager table="'kb_knowledge'" sys-id="::data.sys_id" omit-edit="true"></sp-attachment-manager>
+    </div>
+
+  </div>
+</div>
+
+<div ng-if="!data.isvalid">
+  ${Article not found}
+</div>]]></template>
+    </sp_widget>
+</record_update>

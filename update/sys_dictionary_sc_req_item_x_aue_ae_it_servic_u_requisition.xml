@@ -49,7 +49,7 @@
         <sys_created_by>williamsbr.local</sys_created_by>
         <sys_created_on>2019-07-12 17:56:59</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>e14d14e6dbe2b34018159c29db9619c3</sys_id>
+        <sys_id>0a266b21db3a730018159c29db96197b</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>REQUISITION</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
@@ -57,8 +57,8 @@
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sys_dictionary_sc_req_item_x_aue_ae_it_servic_u_requisition</sys_update_name>
-        <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-12 17:56:59</sys_updated_on>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2019-07-22 16:33:14</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <u_division_title/>

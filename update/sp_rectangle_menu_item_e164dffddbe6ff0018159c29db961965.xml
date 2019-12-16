@@ -13,7 +13,7 @@
         <kb_category/>
         <kb_topic/>
         <label>EIS</label>
-        <order>300</order>
+        <order>500</order>
         <record_script/>
         <sc_cat_item/>
         <sc_category/>
@@ -26,7 +26,7 @@
         <sys_created_on>2019-07-10 23:21:39</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>e164dffddbe6ff0018159c29db961965</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>EIS</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
@@ -34,10 +34,10 @@
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_rectangle_menu_item_e164dffddbe6ff0018159c29db961965</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-11 19:57:47</sys_updated_on>
+        <sys_updated_on>2019-08-21 00:21:00</sys_updated_on>
         <table/>
-        <type>page</type>
-        <url/>
+        <type>url</type>
+        <url>https://austinenergydev.service-now.com/eissp</url>
         <url_target/>
     </sp_rectangle_menu_item>
     <sys_translated_text action="delete_multiple" query="documentkey=e164dffddbe6ff0018159c29db961965"/>

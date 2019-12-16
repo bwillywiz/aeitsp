@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $timeout) {
+	var c = this;
+	
+	$scope.$on("$$uiNotification", function(evt, $$uiNotification) {
+		evt.preventDefault();
+		if (evt.stopPropagation)
+			evt.stopPropagation();
+		addUiNotification($$uiNotification);
+	});
+	
+	var notificationAutoDismissTimeout;
+	function addUiNotification($$uiNotification) {
+		if (angular.isArray($$uiNotification) && !$$uiNotification.length)
+			return;
+
+		if (angular.isArray($$uiNotification) && $$uiNotification.length > 0)
+			c.$$uiNotification = $$uiNotification;
+		else {
+			if (!angular.isArray($scope.$$uiNotification))
+				c.$$uiNotification = [];
+
+			c.$$uiNotification.push($$uiNotification);
+		}
+
+		$timeout.cancel(notificationAutoDismissTimeout);
+		var seconds = 5;
+		if (c.$$uiNotification.length == 1 && c.$$uiNotification[0].type == 'trivial')
+			seconds = 2;
+
+		notificationAutoDismissTimeout = $timeout(function(){
+			c.dismissNotifications();
+		}, seconds * 1000);
+	}
+	
+	c.dismissNotifications = function() {
+		angular.forEach(c.$$uiNotification, function(notification){
+			notification.visible = false;
+		});
+		$timeout(function(){
+			c.$$uiNotification = {};
+		}, 20);
+	}
+
+	c.revealNotification = function($$uiNotification){
+		$timeout(function(){
+			$$uiNotification.visible = true;
+		}, 20);
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	// End notification handling
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>view_user_profile</id>
+        <internal>false</internal>
+        <link><![CDATA[function(scope, element, attrs, ctrl){
+	if (!scope.data)
+		return;
+	var $rootScope = $injector.get('$rootScope');
+	var $uibModal = $injector.get('$uibModal');
+	var $uibModalStack = $injector.get('$uibModalStack');
+
+	var opts = {
+		size : scope.options.size || 'lg',
+		scope: $rootScope.$new(false, scope),
+		template : element,
+		backdrop: scope.options.backdrop || true,
+		keyboard: scope.options.keyboard != undefined ? scope.options.keyboard : true,
+		controller : function($scope, $uibModalInstance){
+			$scope.instance = scope.data.instance;
+		}
+	};
+
+	var label = scope.options.modalLabel || scope.data.instance.name;
+	var widgetId = scope.widget.sys_id;
+
+	if (scope.options.modalBodyClass)
+		element.addClass(scope.options.modalBodyClass);
+	
+	if (scope.options.beforeRender)
+		scope.options.beforeRender.call(null, scope.data.instance.data);
+
+	var modalInstance = $uibModal.open(opts);
+
+	if (scope.options.afterOpen)
+		scope.options.afterOpen.call(null, modalController(modalInstance));
+	
+	if (scope.options.afterClose)
+		modalInstance.closed.then(scope.options.afterClose);
+
+	modalInstance.closed.then(function(){
+		scope.$emit('sp.widget-modal.closed');
+	});
+	
+	function setModalAriaLabel(label) {
+		var modalObj = $uibModalStack.getTop();
+		var modal = modalObj.value.modalDomEl;
+		modal.attr('aria-label', label);
+		scope.modalLabel = label;
+	}
+
+	modalInstance.rendered.then(function() {
+		if (!scope.modalLabel)
+			setModalAriaLabel(label);
+	});
+	scope.$on('sp.widget-modal.set-aria-label', function(evt, label) {
+		setModalAriaLabel(label);
+	});
+
+	function modalController(instance){
+		return {
+			close: function(){
+				instance.close();
+			}
+		};
+	}
+
+}]]></link>
+        <name>ViewProfile</name>
+        <option_schema>[{"name":"embeddedWidgetId","section":"Data","label":"Embedded Widget Id","type":"string"},{"name":"embeddedWidgetOptions","default_value":"","section":"Data","label":"Embedded Widget Options","type":"string"},{"name":"modalBodyClass","section":"Data","label":"Optional Class name for modal body","type":"string"},{"name":"beforeRender","section":"Data","label":"Before modal render Callback called with embedded widget data object","type":"string"},{"name":"afterClose","section":"Data","label":"After modal close Callback","type":"string"},{"name":"afterOpen","section":"Data","label":"After modal open Callback called with modal controller","type":"string"},{"name":"modalLabel","section":"Data","label":"Optional aria-label for the modal. Otherwise the modal will use the widget's name as the aria-label","type":"string"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[// populate the 'data' object
+// e.g., data.table = $sp.getValue('table');
+(function(){
+	var id = options.embeddedWidgetId || input.embeddedWidgetId;
+	var opt = options.embeddedWidgetOptions || input.embeddedWidgetOptions;
+	// if the modal initialization paramets not available in options, fetch from input.
+	if (!options.backdrop && input.backdrop)
+		options.backdrop = input.backdrop
+	if (!options.keyboard && input.keyboard != undefined)
+		options.keyboard = input.keyboard;
+	if (!options.size && input.size)
+		options.size = input.size;
+
+	data.instance = $sp.getWidget(id, opt);
+})()]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-07-26 20:15:37</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>704385cbdb7e770018159c29db961968</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>ViewProfile</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_widget_704385cbdb7e770018159c29db961968</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-07-26 20:36:36</sys_updated_on>
+        <template><![CDATA[<div class="modal-body" style="padding: 0">
+	<div ng-repeat="m in c.$$uiNotification" class="alert"
+			 ng-class="{'alert-danger' : m.type == 'error', 'alert-success' : m.type != 'error', 'visible' : m.visible}"
+			 ng-init="c.revealNotification(m)">
+		<span ng-bind-html="m.message"></span>
+		<a class="fa fa-close dismiss-notifications" ng-click="c.dismissNotifications()" ng-show="$first" ng-class="{'alert-danger' : m.type == 'error', 'alert-success' : m.type != 'error'}"></a>
+	</div>
+	<sp-widget widget="instance"></sp-widget>
+</div>]]></template>
+    </sp_widget>
+</record_update>

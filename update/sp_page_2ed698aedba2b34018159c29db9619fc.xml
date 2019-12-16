@@ -34,7 +34,7 @@ section.page, main.body {&#13;
         <sys_created_on>2019-07-12 17:28:56</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>2ed698aedba2b34018159c29db9619fc</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>ae_it_bqm_vam_landing</sys_name>
         <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
         <sys_policy/>
@@ -42,8 +42,8 @@ section.page, main.body {&#13;
         <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
         <sys_update_name>sp_page_2ed698aedba2b34018159c29db9619fc</sys_update_name>
         <sys_updated_by>williamsbr.local</sys_updated_by>
-        <sys_updated_on>2019-07-12 17:29:14</sys_updated_on>
-        <title>AE IT VAM Page</title>
+        <sys_updated_on>2019-07-22 17:13:31</sys_updated_on>
+        <title>Vendor and Asset Management</title>
     </sp_page>
     <sys_translated_text action="delete_multiple" query="documentkey=2ed698aedba2b34018159c29db9619fc"/>
 </record_update>

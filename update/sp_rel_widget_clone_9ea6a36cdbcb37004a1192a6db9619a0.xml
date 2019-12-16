@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
+    <sp_rel_widget_clone action="INSERT_OR_UPDATE">
+        <child display_value="AE Password Reset">d6a6a36cdbcb37004a1192a6db96199d</child>
+        <cloned>2019-08-01 00:00:24</cloned>
+        <last_validated>2019-08-01 00:00:24</last_validated>
+        <parent display_value="Pwd reset">d25a64e79f120300e78d317f842e7057</parent>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;sp_widget&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function($scope, $location) {
+  /* widget controller */
+	var c = this;
+	var url = "/$pwd_reset.do?sysparm_url=ss_default";
+
+	var urlParams = $location.search();
+	
+	 for (var key in urlParams) {
+		 if (key == 'sysparm_redirect_url') 
+			 url += '&amp;sysparm_redirect_url=' + urlParams[key];
+		 
+		 if (key == 'sysparm_show_custom_header_footer')
+			 url += '&amp;sysparm_show_custom_header_footer=' + urlParams[key];
+			 
+	 }
+	
+	$scope.iframeUrl = url;
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;.frame-style {
+	height: 100%;
+  width: 100%;
+  border: 0px;
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id&gt;widget-reset-password&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function(scope, elem, attrs) {
+	var panelHeight;
+
+	$(document).ready(function() {
+		resizeWindow();
+	});
+
+	$(window).resize(function() {
+		resizeWindow();
+	});
+
+	function resizeWindow() {
+		var panelHeight = ($(document).height()- 60) + 'px';
+		$(elem).find('#pwd_reset_container').css('height', panelHeight);
+	}
+}]]&gt;&lt;/link&gt;&lt;name&gt;Pwd reset&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;true&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2017-11-13 22:43:29&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;d25a64e79f120300e78d317f842e7057&lt;/sys_id&gt;&lt;sys_mod_count&gt;17&lt;/sys_mod_count&gt;&lt;sys_name&gt;Pwd reset&lt;/sys_name&gt;&lt;sys_package display_value="Password Reset" source="com.glideapp.password_reset"&gt;6d2dc69a0fa12100858e00dce1050e8e&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_d25a64e79f120300e78d317f842e7057&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-11-14 23:08:47&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;!-- your widget template --&gt;
+  &lt;iframe id="pwd_reset_container" class="frame-style" ng-src="{{iframeUrl}}" /&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;</payload>
+        <sys_class_name>sp_rel_widget_clone</sys_class_name>
+        <sys_created_by>williamsbr.local</sys_created_by>
+        <sys_created_on>2019-08-01 00:00:24</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>9ea6a36cdbcb37004a1192a6db9619a0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>d6a6a36cdbcb37004a1192a6db96199d</sys_name>
+        <sys_package display_value="AE IT Service Portal" source="x_aue_ae_it_servic">d7c8b857db16f30018159c29db96193d</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="AE IT Service Portal">d7c8b857db16f30018159c29db96193d</sys_scope>
+        <sys_update_name>sp_rel_widget_clone_9ea6a36cdbcb37004a1192a6db9619a0</sys_update_name>
+        <sys_updated_by>williamsbr.local</sys_updated_by>
+        <sys_updated_on>2019-08-01 00:00:24</sys_updated_on>
+    </sp_rel_widget_clone>
+</record_update>
